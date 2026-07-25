@@ -1,0 +1,91 @@
+@font-face {
+    font-family: "vazirmatn";
+    src: url(./fonts/Vazirmatn-Medium.woff2) format("woff2");
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "vazirmatn",sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.header{
+    background-color: rgba(244, 243, 243, 0.8);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    max-width: 1080px;
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1000;
+    max-width: 1200px;
+    width: 100%;
+
+
+    
+}
+.nav-bar-sec{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+
+
+}
+.nav-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+    margin-top: 10px;
+    position: relative;
+    top: 3px;
+}
+.nav-item{
+    color: #8b4309;
+    
+}
+.left-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+.search-input{
+    width: 350px;
+    height: 40px;
+    background-color: gray;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+
+}
+.loging-btn{
+    width: 80px;
+    height: 40px;
+    background-color: #8b4309;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+}
+.loging-btn a{
+    text-decoration: none;
+    color: white;
+}
+main{
+    flex: 1;
+}
+.footer{
+    margin-top: auto;
+}
