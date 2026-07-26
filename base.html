@@ -11,34 +11,35 @@
 </head>
 
 <body>
-    <section class="header">
-    <div class="container">
-            <nav class="nav-bar-sec">
+    <section class="header" data-aos="fade-up"  data-aos-duration="600">
+        <div class="container">
+            <nav class="nav-bar-sec"  >
 
                 <div class="right-nav">
+                    <button class="menu-btn">
+                        <span class="open">☰</span>
+                    </button>
                     <ul class="nav-list list-unstyled">
-                        <img src="./icons/profile.svg" alt="">
-                        <img src="./icons/cart.svg" alt="">
-                        <img src="./icons/search.svg" alt="">
-                        <li>
+                   
+                        <li data-aos="fade-left" data-aos-duration="1100" data-aos-delay="100">
                             <a href="" class="nav-item text-decoration-none">خانه</a>
                         </li>
-                        <li>
+                        <li data-aos="fade-left" data-aos-duration="1100" data-aos-delay="200">
 
                             <a href="" class="nav-item text-decoration-none">همه محصولات</a>
 
                         </li>
-                        <li>
+                        <li data-aos="fade-left" data-aos-duration="1100" data-aos-delay="300">
 
                             <a href="" class="nav-item text-decoration-none">سبد خرید </a>
 
                         </li>
-                        <li>
+                        <li data-aos="fade-left" data-aos-duration="1100" data-aos-delay="400">
 
                             <a href="" class="nav-item text-decoration-none">درباره ما </a>
 
                         </li>
-                        <li>
+                        <li data-aos="fade-left" data-aos-duration="1100" data-aos-delay="500">
 
                             <a href="" class="nav-item text-decoration-none">تماس با ما</a>
 
@@ -49,20 +50,29 @@
 
 
                 <div class="left-nav">
-                   <button class="loging-btn"> <a href="#" >ورود</a></button>
+                    <a href="" class="left-nav-item" data-aos="fade-left" data-aos-duration="1100" data-aos-delay="600">
+                        <img src="./icons/profile.svg" alt="">
+                    </a>
+                    <a href="" class="left-nav-item" data-aos="fade-left" data-aos-duration="1100" data-aos-delay="700">
+                        <img src="./icons/cart.svg" alt="">
+                    </a>
+                    <a href="" class="left-nav-item" data-aos="fade-left" data-aos-duration="1100" data-aos-delay="800">
+                        <img src="./icons/search.svg" alt="">
+                    </a>
+                        <button class="loging-btn" data-aos="fade-left" data-aos-duration="1100" data-aos-delay="900"> <a href="#">ورود</a></button>
                 </div>
 
             </nav>
 
 
-            
+
         </div>
     </section>
 
-<main></main>
+    <main></main>
 
 
-    <footer class="footer bg-dark text-white py-5 mt-4">
+    <footer class="footer  text-white py-5 mt-4">
 
 
         <div class="container">
@@ -70,48 +80,48 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <h5>لینک های سریع</h5>
-                    <ul class="list-unstyled">
-
+                    
+                    <ul class=" right-footer-list list-unstyled">
+                        <h4>لینک های سریع :</h4>
                         <li>
 
-                            <a href="" class="text-decoration-none text-white">رهگیری محصولات</a>
+                            <a href="" class="text-decoration-none text-white right-footer-item">رهگیری محصولات</a>
 
                         </li>
 
                         <li>
 
-                            <a href="" class="text-decoration-none"></a>
+                            <a href="" class="text-decoration-none text-white right-footer-item">راهنمای خرید</a>
 
                         </li>
 
                         <li>
 
-                            <a href="" class="text-decoration-none"></a>
+                            <a href="" class="text-decoration-none text-white right-footer-item">تماس با ما</a>
 
                         </li>
 
                         <li>
 
-                            <a href="" class="text-decoration-none"></a>
+                            <a href="" class="text-decoration-none text-white right-footer-item">درباره ما </a>
 
                         </li>
 
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    
-                    <h5>ارتباط با ما </h5>
-                    <p>: راه های ارتباطی</p>
+
+                    <ul class="contact-footer-list list-unstyled">
+                        <h4>راه های ارتباطی :</h4>
+                        <div class="footer-icons">
+                        <li><a href="" class="footer-item" title="واتساپ"><img src="./icons/whatsapp.svg" alt="واتساپ"></a></li>
+                        <li><a href="" class="footer-item" title="ایمیل"><img src="./icons/mai.svg" alt="ایمیل"></a></li>
+                        <li><a href="" class="footer-item" title="تلگرام"><img src="./icons/telegram.svg" alt="تلگرام"></a></li>
+                        <li><a href="" class="footer-item"></a></li>
+</div>
+                    </ul>
 
 
-                    <li>
-                        
-                        <a href="" class="text-decoration-none text-white">تلگرام</a>
-                        <a href="" class="text-decoration-none text-white">واتساپ</a>
-                        <a href="" class="text-decoration-none text-white">پشتیبانی</a>
-                    
-                    </li>
                 </div>
 
 
@@ -131,10 +141,13 @@
 
     </footer>
 
-        
-        
 
+    <div class="overlay"></div>
+    <script src="./script.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init()
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
