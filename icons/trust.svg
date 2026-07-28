@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="45"
+     height="45"
+     viewBox="0 0 24 24"
+     fill="none">
+
+    <!-- Medal -->
+    <circle
+        cx="12"
+        cy="10"
+        r="5"
+        stroke="#8B4309"
+        stroke-width="1.7"/>
+
+    <!-- Check -->
+    <path
+        d="M9.8 10.2L11.3 11.8L14.5 8.8"
+        stroke="#8B4309"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+    <!-- Ribbon Left -->
+    <path
+        d="M9.2 14.6L7.8 20L12 17.8"
+        stroke="#8B4309"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+    <!-- Ribbon Right -->
+    <path
+        d="M14.8 14.6L16.2 20L12 17.8"
+        stroke="#8B4309"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+</svg>
