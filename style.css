@@ -56,92 +56,10 @@
                                                                                 left: 0;
                                                                                 right: 0;
                                                                                 margin: auto;
-                                                                                padding: 12px 18px;
                                                                                 border-radius: 20px;
                                                                                 background: rgba(255, 255, 255, .75);
                                                                                 backdrop-filter: blur(14px);
                                                                                 z-index: 9999;
-                                                                            }
-                                                                            
-                                                                            .nav-bar-sec {
-                                                                                display: flex;
-                                                                                justify-content: space-between;
-                                                                                align-items: center;
-                                                                            }
-                                                                            
-                                                                            .nav-list {
-                                                                                display: flex;
-                                                                                align-items: center;
-                                                                                gap: 35px;
-                                                                            }
-                                                                            
-                                                                            .nav-item {
-                                                                                color: var(--primary-text-color);
-                                                                                font-size: 14px;
-                                                                                transition: .3s;
-                                                                            }
-                                                                            
-                                                                            .nav-item:hover {
-                                                                                color: #C9A227;
-                                                                            }
-                                                                            
-                                                                            .left-nav {
-                                                                                display: flex;
-                                                                                align-items: center;
-                                                                                gap: 18px;
-                                                                            }
-                                                                            
-                                                                            .left-nav-item {
-                                                                                cursor: pointer;
-                                                                            }
-                                                                            
-                                                                            .search-input {
-                                                                                width: 320px;
-                                                                                height: 40px;
-                                                                                border: none;
-                                                                                outline: none;
-                                                                                border-radius: 20px;
-                                                                                background: #ececec;
-                                                                                padding: 0 15px;
-                                                                            }
-                                                                            
-                                                                            .loging-btn {
-                                                                                width: 80px;
-                                                                                height: 40px;
-                                                                                border: none;
-                                                                                border-radius: 10px;
-                                                                                background: var(--primary-text-color);
-                                                                                transition: .3s;
-                                                                            }
-                                                                            
-                                                                            .loging-btn a {
-                                                                                color: #fff;
-                                                                            }
-                                                                            
-                                                                            .loging-btn:hover {
-                                                                                background: #6d3307;
-                                                                            }
-                                                                            
-                                                                            .menu-btn {
-                                                                                display: none;
-                                                                                border: none;
-                                                                                background: none;
-                                                                                cursor: pointer;
-                                                                                font-size: 24px;
-                                                                            }
-                                                                            
-                                                                            .close {
-                                                                                display: none;
-                                                                            }
-                                                                            
-                                                                            .overlay {
-                                                                                position: fixed;
-                                                                                inset: 0;
-                                                                                background: rgba(0, 0, 0, .4);
-                                                                                opacity: 0;
-                                                                                visibility: hidden;
-                                                                                transition: .3s;
-                                                                                z-index: 5000;
                                                                             }
                                                                             /* ================= HERO ================= */
                                                                             
@@ -1105,3 +1023,18 @@
                                                                             .prodcut-section-header:hover::after {
                                                                                 width: 100%;
                                                                             }
+
+/* 
+/////////////////////////////
+
+            ABOUT PAGE 
+
+////////////////////////////
+*/
+
+
+
+
+
+
+
