@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>single product page</title>
+    <link rel="stylesheet" href="./single_product.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="prodcut-section">
+            <div class="right-section">
+                <h1>گردنبد مرواریدی رزگلد</h1>
+                <p class="price">1,950,000</p>
+                <span class="product-info">گردنبند ظریف و خاص با طراحی مینیمال و سنگ درخشان و مناسب برای استایل های
+                    روزمره </span>
+
+
+
+
+                <div class="color-section">
+
+                    <h4>انتخاب رنگ</h4>
+
+                    <div class="color-options">
+
+                        <label class="color-card active">
+                            <input type="radio" name="color" checked>
+                            <span class="color-circle gold"></span>
+                            <span>طلایی</span>
+                        </label>
+
+
+                        <label class="color-card">
+                            <input type="radio" name="color">
+                            <span class="color-circle silver"></span>
+                            <span>نقره‌ای</span>
+                        </label>
+
+
+                        <label class="color-card">
+                            <input type="radio" name="color">
+                            <span class="color-circle rose"></span>
+                            <span>رزگلد</span>
+                        </label>
+
+
+                        <label class="color-card">
+                            <input type="radio" name="color">
+                            <span class="color-circle black"></span>
+                            <span>مشکی</span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="quantity-box">
+
+                    <h4>تعداد</h4>
+
+                    <div class="quantity-control">
+
+                        <button class="qty-btn minus">−</button>
+
+                        <span class="qty-number">1</span>
+
+                        <button class="qty-btn plus">+</button>
+
+                    </div>
+
+                </div>
+
+                <button class="add-to-cart-btn">اضافه کردن به سبد خرید </button>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="left-section">
+
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <script src="./single_product.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        AOS.init()
+    </script>
+    <script>
+        const swiper = new Swiper('.product-swiper', {
+            loop: true,
+            speed: 500,
+            grabCursor: true,
+            spaceBetween: 0,
+            slidesPerView: 1,
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+
+            // برای موبایل و دسکتاپ راحت‌تر
+            keyboard: {
+                enabled: true,
+            },
+            mousewheel: {
+                enabled: false, // اگه می‌خوای با اسکرول هم عوض بشه، true کن
+            },
+        });
+    </script>
+</body>
+
+</html>
