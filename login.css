@@ -1,0 +1,1494 @@
+@font-face {
+
+    font-family: "vazirmatn";
+
+    src: url("./fonts/Vazirmatn-Medium.woff2")
+    format("woff2");
+
+}
+
+
+:root {
+
+    --brown-dark: #2b170d;
+
+    --brown: #4a2c1b;
+
+    --brown-light: #765039;
+
+    --cream: #f8f5f0;
+
+    --cream-dark: #eee7df;
+
+    --white: #ffffff;
+
+    --gold: #b68a4a;
+
+    --gold-light: #d8b878;
+
+    --text-dark: #302016;
+
+    --text-light: #7a6556;
+
+}
+
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    font-family: "vazirmatn";
+
+}
+
+
+body {
+
+    background: var(--cream);
+
+    overflow: hidden;
+
+}
+
+
+/* =================================
+   LOGIN PAGE
+================================= */
+
+.login-page {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 50%,
+            rgba(118, 80, 57, .16),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(182, 138, 74, .10),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            135deg,
+            #f8f5f0,
+            #ffffff 50%,
+            #eee7df
+        );
+
+}
+
+
+/* =================================
+   BACKGROUND LIGHT
+================================= */
+
+.background-glow {
+
+    position: absolute;
+
+    width: 500px;
+
+    height: 500px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: .25;
+
+    animation:
+        glowMove
+        8s
+        infinite alternate
+        ease-in-out;
+
+}
+
+
+.glow-1 {
+
+    background: #8d6345;
+
+    left: -220px;
+
+    top: 10%;
+
+}
+
+
+.glow-2 {
+
+    background: #d6b77c;
+
+    right: -220px;
+
+    bottom: -100px;
+
+    animation-delay: 2s;
+
+}
+
+
+@keyframes glowMove {
+
+    from {
+
+        transform:
+            translate(0, 0);
+
+    }
+
+    to {
+
+        transform:
+            translate(100px, -60px);
+
+    }
+
+}
+
+
+/* =================================
+   PARTICLES
+================================= */
+
+.particles span {
+
+    position: absolute;
+
+    width: 3px;
+
+    height: 3px;
+
+    background: var(--gold);
+
+    border-radius: 50%;
+
+    box-shadow:
+
+        0 0 8px
+        rgba(182,138,74,.8),
+
+        0 0 15px
+        rgba(182,138,74,.4);
+
+    animation:
+        particleMove
+        linear
+        infinite;
+
+}
+
+
+.particles span:nth-child(1) {
+
+    left: 8%;
+    top: 20%;
+
+    animation-duration: 5s;
+
+}
+
+
+.particles span:nth-child(2) {
+
+    left: 18%;
+    top: 75%;
+
+    animation-duration: 7s;
+
+}
+
+
+.particles span:nth-child(3) {
+
+    left: 35%;
+    top: 15%;
+
+    animation-duration: 6s;
+
+}
+
+
+.particles span:nth-child(4) {
+
+    left: 48%;
+    top: 80%;
+
+    animation-duration: 8s;
+
+}
+
+
+.particles span:nth-child(5) {
+
+    left: 62%;
+    top: 10%;
+
+    animation-duration: 6s;
+
+}
+
+
+.particles span:nth-child(6) {
+
+    left: 75%;
+    top: 75%;
+
+    animation-duration: 7s;
+
+}
+
+
+.particles span:nth-child(7) {
+
+    left: 88%;
+    top: 30%;
+
+    animation-duration: 5s;
+
+}
+
+
+.particles span:nth-child(8) {
+
+    left: 92%;
+    top: 85%;
+
+    animation-duration: 9s;
+
+}
+
+
+.particles span:nth-child(9) {
+
+    left: 25%;
+    top: 45%;
+
+    animation-duration: 6s;
+
+}
+
+
+.particles span:nth-child(10) {
+
+    left: 70%;
+    top: 50%;
+
+    animation-duration: 8s;
+
+}
+
+
+@keyframes particleMove {
+
+    0% {
+
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity: 0;
+
+    }
+
+    30% {
+
+        opacity: 1;
+
+    }
+
+    70% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-100px)
+            scale(1.5);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =================================
+   FLOATING JEWELRY
+================================= */
+
+.floating-jewelry {
+
+    position: absolute;
+
+    color: var(--gold);
+
+    font-size: 30px;
+
+    opacity: .5;
+
+    animation:
+        floatJewelry
+        5s
+        ease-in-out
+        infinite;
+
+}
+
+
+.jewelry-1 {
+
+    left: 8%;
+    top: 25%;
+
+}
+
+
+.jewelry-2 {
+
+    left: 30%;
+    top: 15%;
+
+    animation-delay: 1s;
+
+}
+
+
+.jewelry-3 {
+
+    left: 40%;
+    bottom: 20%;
+
+    animation-delay: 2s;
+
+}
+
+
+.jewelry-4 {
+
+    right: 8%;
+    top: 20%;
+
+    animation-delay: 3s;
+
+}
+
+
+.jewelry-5 {
+
+    right: 40%;
+    bottom: 15%;
+
+    animation-delay: 1.5s;
+
+}
+
+
+@keyframes floatJewelry {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-25px)
+            rotate(15deg);
+
+    }
+
+}
+
+
+/* =================================
+   MODEL SECTION
+================================= */
+
+.model-section {
+
+    width: 50%;
+
+    height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.model-light {
+
+    position: absolute;
+
+    width: 400px;
+
+    height: 600px;
+
+    border-radius: 50%;
+
+    background:
+
+        radial-gradient(
+            ellipse,
+            rgba(182,138,74,.16),
+            transparent 65%
+        );
+
+    filter: blur(20px);
+
+}
+
+
+.model {
+
+    position: relative;
+
+    width: 350px;
+
+    height: 650px;
+
+    animation:
+        modelFloat
+        6s
+        ease-in-out
+        infinite;
+
+}
+
+
+@keyframes modelFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-12px);
+
+    }
+
+}
+
+
+/* =================================
+   HEAD
+================================= */
+
+.head {
+
+    position: absolute;
+
+    width: 145px;
+
+    height: 180px;
+
+    left: 100px;
+
+    top: 40px;
+
+    z-index: 4;
+
+}
+
+
+.face {
+
+    position: absolute;
+
+    width: 120px;
+
+    height: 150px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #e3b28d,
+            #c98965
+        );
+
+    border-radius:
+        48%
+        48%
+        45%
+        45%;
+
+    left: 12px;
+
+    top: 15px;
+
+}
+
+
+.hair {
+
+    position: absolute;
+
+    width: 145px;
+
+    height: 190px;
+
+    background:
+
+        linear-gradient(
+            120deg,
+            #24150d,
+            #4a2c1b
+        );
+
+    border-radius:
+        50%
+        50%
+        35%
+        35%;
+
+    z-index: -1;
+
+    left: 0;
+
+    top: 0;
+
+}
+
+
+.eye {
+
+    position: absolute;
+
+    width: 10px;
+
+    height: 5px;
+
+    background: #2b170d;
+
+    border-radius: 50%;
+
+    top: 70px;
+
+}
+
+
+.eye-right {
+
+    right: 28px;
+
+}
+
+
+.eye-left {
+
+    left: 28px;
+
+}
+
+
+.nose {
+
+    position: absolute;
+
+    width: 2px;
+
+    height: 25px;
+
+    background:
+        rgba(100,50,30,.3);
+
+    left: 59px;
+
+    top: 73px;
+
+}
+
+
+.lips {
+
+    position: absolute;
+
+    width: 18px;
+
+    height: 7px;
+
+    background: #8d4f4c;
+
+    border-radius: 50%;
+
+    left: 51px;
+
+    top: 110px;
+
+}
+
+
+/* =================================
+   NECK
+================================= */
+
+.neck {
+
+    position: absolute;
+
+    width: 55px;
+
+    height: 90px;
+
+    background: #c98965;
+
+    left: 145px;
+
+    top: 190px;
+
+}
+
+
+/* =================================
+   BODY
+================================= */
+
+.body {
+
+    position: absolute;
+
+    width: 300px;
+
+    height: 380px;
+
+    left: 25px;
+
+    top: 240px;
+
+}
+
+.dress {
+
+    width: 300px;
+
+    height: 380px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2a160d 0%,
+            #4a2919 35%,
+            #603a25 65%,
+            #2d180e 100%
+        );
+
+    clip-path:
+        polygon(
+            40% 0,
+            60% 0,
+            75% 12%,
+            100% 100%,
+            0 100%,
+            25% 12%
+        );
+
+    border-radius: 30px;
+
+    box-shadow:
+        inset 0 0 50px
+        rgba(0,0,0,.18),
+
+        0 20px 50px
+        rgba(43,23,13,.25);
+
+}
+
+
+/* =================================
+   NECKLACE
+================================= */
+
+.necklace {
+
+    position: absolute;
+
+    width: 150px;
+
+    height: 130px;
+
+    left: 75px;
+
+    top: -10px;
+
+}
+
+
+.chain {
+
+    position: absolute;
+
+    width: 130px;
+
+    height: 90px;
+
+    left: 10px;
+
+    top: 0;
+
+    border:
+
+        2px solid
+        var(--gold);
+
+    border-top: none;
+
+    border-radius:
+        0 0 70px 70px;
+
+    filter:
+
+        drop-shadow(
+            0 0 7px
+            rgba(182,138,74,.6)
+        );
+
+}
+
+
+.pendant {
+
+    position: absolute;
+
+    width: 32px;
+
+    height: 32px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #fff2bc,
+            #c58d32
+        );
+
+    transform:
+        rotate(45deg);
+
+    left: 59px;
+
+    top: 75px;
+
+    box-shadow:
+
+        0 0 20px
+        rgba(229,180,75,.6);
+
+}
+
+
+.pendant span {
+
+    position: absolute;
+
+    width: 15px;
+
+    height: 15px;
+
+    background: #fff7d4;
+
+    top: 8px;
+
+    left: 8px;
+
+}
+
+
+/* =================================
+   EARRINGS
+================================= */
+
+.earring {
+
+    position: absolute;
+
+    width: 17px;
+
+    height: 35px;
+
+    border:
+
+        2px solid
+        var(--gold);
+
+    border-radius: 50%;
+
+    top: 105px;
+
+}
+
+
+.right-earring {
+
+    right: -3px;
+
+}
+
+
+.left-earring {
+
+    left: -3px;
+
+}
+
+
+.earring span {
+
+    position: absolute;
+
+    width: 7px;
+
+    height: 7px;
+
+    background: #f5d58d;
+
+    border-radius: 50%;
+
+    bottom: -10px;
+
+    left: 3px;
+
+    box-shadow:
+
+        0 0 12px
+        rgba(182,138,74,.8);
+
+}
+
+
+/* =================================
+   BRACELET
+================================= */
+
+.bracelet {
+
+    position: absolute;
+
+    width: 75px;
+
+    height: 22px;
+
+    border:
+
+        3px solid
+        var(--gold);
+
+    border-radius: 50%;
+
+    right: 8px;
+
+    top: 180px;
+
+    transform:
+        rotate(-20deg);
+
+}
+
+
+/* =================================
+   MODEL TEXT
+================================= */
+
+.model-caption {
+
+    position: absolute;
+
+    bottom: 55px;
+
+    text-align: center;
+
+    color: var(--brown-light);
+
+    letter-spacing: 5px;
+
+}
+
+
+.model-caption span {
+
+    display: block;
+
+    font-size: 11px;
+
+    opacity: .6;
+    
+}
+
+
+.model-caption strong {
+
+    font-size: 22px;
+
+}
+
+
+/* =================================
+   LOGIN WRAPPER
+================================= */
+
+.login-wrapper {
+
+    width: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 10;
+
+}
+
+
+/* =================================
+   LOGIN CARD
+================================= */
+
+.login-card {
+
+    width: 440px;
+
+    padding: 45px;
+
+    border-radius: 30px;
+
+    background:
+
+        rgba(255,255,255,.72);
+
+    border:
+
+        1px solid
+        rgba(74,44,27,.12);
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+    box-shadow:
+
+        0 30px 80px
+        rgba(74,44,27,.14),
+
+        inset
+        0 1px 0
+        rgba(255,255,255,.9);
+
+}
+
+
+/* =================================
+   BRAND
+================================= */
+
+.brand {
+
+    text-align: center;
+
+    color: var(--brown-dark);
+
+}
+
+
+.brand-icon {
+
+    color: var(--gold);
+
+    font-size: 27px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.brand span {
+
+    display: block;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    color: var(--brown-light);
+
+}
+
+
+.brand h1 {
+
+    font-size: 24px;
+
+    letter-spacing: 5px;
+
+    color: var(--brown-dark);
+
+}
+
+
+/* =================================
+   LOGIN TITLE
+================================= */
+
+.login-title {
+
+    margin-top: 35px;
+
+    text-align: right;
+
+}
+
+
+.login-title span {
+
+    color: var(--gold);
+
+    font-size: 13px;
+
+}
+
+
+.login-title h2 {
+
+    color: var(--brown-dark);
+
+    font-size: 25px;
+
+    margin-top: 7px;
+
+}
+
+
+.login-title p {
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    margin-top: 8px;
+
+}
+
+
+/* =================================
+   INPUT
+================================= */
+
+.input-group {
+
+    margin-top: 25px;
+
+}
+
+
+.input-group label {
+
+    display: block;
+
+    color: var(--brown);
+
+    font-size: 13px;
+
+    margin-bottom: 9px;
+
+}
+
+
+.input-box {
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    border-radius: 14px;
+
+    padding: 0 15px;
+
+    background:
+
+        rgba(255,255,255,.85);
+
+    border:
+
+        1px solid
+        rgba(74,44,27,.14);
+
+    transition: .3s;
+
+}
+
+
+.input-box:focus-within {
+
+    border-color:
+        var(--gold);
+
+    box-shadow:
+
+        0 0 20px
+        rgba(182,138,74,.12);
+
+}
+
+
+.input-icon {
+
+    color: var(--gold);
+
+    margin-left: 12px;
+
+}
+
+
+.input-box input {
+
+    flex: 1;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: var(--brown-dark);
+
+    font-size: 13px;
+
+}
+
+
+.input-box input::placeholder {
+
+    color:
+        rgba(74,44,27,.35);
+
+}
+
+
+.show-password {
+
+    background: none;
+
+    border: none;
+
+    color: var(--brown-light);
+
+    cursor: pointer;
+
+}
+
+
+/* =================================
+   OPTIONS
+================================= */
+
+.login-options {
+
+    margin-top: 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    font-size: 11px;
+
+}
+
+
+.remember {
+
+    display: flex;
+
+    gap: 7px;
+
+    color: var(--text-light);
+
+}
+
+
+.login-options a {
+
+    color: var(--brown-light);
+
+    text-decoration: none;
+
+}
+
+
+/* =================================
+   LOGIN BUTTON
+================================= */
+
+.login-btn {
+
+    width: 100%;
+
+    height: 58px;
+
+    margin-top: 30px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    background:
+
+        linear-gradient(
+            120deg,
+            #3b2112,
+            #62402a,
+            #3b2112
+        );
+
+    background-size: 200%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    transition: .4s;
+
+}
+
+
+.login-btn strong {
+
+    font-size: 20px;
+
+}
+
+
+.login-btn:hover {
+
+    background-position: right;
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+
+        0 15px 30px
+        rgba(59,33,18,.22);
+
+}
+
+
+/* =================================
+   DIVIDER
+================================= */
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 18px 0;
+
+}
+
+
+.divider span {
+
+    height: 1px;
+
+    flex: 1;
+
+    background:
+        rgba(74,44,27,.12);
+
+}
+
+
+.divider p {
+
+    color:
+        rgba(74,44,27,.4);
+
+    font-size: 11px;
+
+}
+
+
+/* =================================
+   REGISTER
+================================= */
+
+.register {
+
+    text-align: center;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+}
+
+
+.register a {
+
+    color: var(--brown);
+
+    text-decoration: none;
+
+    margin-right: 5px;
+
+}
+
+
+/* =================================
+   SECURITY
+================================= */
+
+.security {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 10px;
+
+    padding-top: 10px;
+
+    border-top:
+
+        1px solid
+        rgba(74,44,27,.08);
+
+}
+
+
+.security span {
+
+    font-size: 11px;
+
+}
+
+
+.security p {
+
+    color:
+
+        rgba(74,44,27,.4);
+
+    font-size: 9px;
+
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 900px) {
+
+    .model-section {
+
+        display: none;
+
+    }
+
+
+    .login-wrapper {
+
+        width: 100%;
+
+    }
+
+
+    .login-card {
+
+        width:
+            min(440px, 92%);
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .login-card {
+
+        padding: 30px 23px;
+
+        border-radius: 24px;
+
+    }
+
+
+    .login-title h2 {
+
+        font-size: 21px;
+
+    }
+
+}

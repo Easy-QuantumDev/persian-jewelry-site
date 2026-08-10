@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us</title>
+
+    <link rel="stylesheet" href="./about.css">
+
+</head>
+
+
+<body>
+
+
+<section class="main-about-sec">
+
+
+    <!-- بخش متن -->
+
+    <div class="content-about">
+
+
+        <div class="content">
+
+
+            <span class="about-tag">
+                درباره فروشگاه ما
+            </span>
+
+
+            <h2>
+                زیبایی در جزئیات
+            </h2>
+
+
+            <p>
+                فروشگاه ما با هدف ارائه بدلیجات خاص و مدرن
+                فعالیت خود را آغاز کرده است.
+                ما تلاش می‌کنیم با ترکیب طراحی زیبا،
+                کیفیت بالا و قیمت مناسب،
+                تجربه‌ای متفاوت برای مشتریان خود ایجاد کنیم.
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- آمار فروشگاه -->
+
+
+    <div class="about-shop">
+
+
+        <ul class="about-shop-list list-unstyled">
+
+
+            <li class="about-shop-item">
+
+                <h5>
+                    100%
+                </h5>
+
+                <span>
+                    رضایت مشتری
+                </span>
+
+            </li>
+
+
+
+
+            <li class="about-shop-item">
+
+                <h5>
+                    2K+
+                </h5>
+
+                <span>
+                    محصول خاص
+                </span>
+
+            </li>
+
+
+
+
+            <li class="about-shop-item">
+
+                <h5>
+                    5K+
+                </h5>
+
+                <span>
+                    مشتری خوشحال
+                </span>
+
+            </li>
+
+
+
+
+            <li class="about-shop-item">
+
+                <h5>
+                    2+
+                </h5>
+
+                <span>
+                    سال تجربه
+                </span>
+
+            </li>
+
+
+
+        </ul>
+
+
+    </div>
+
+
+
+</section>
+
+<!-- FAQ Section -->
+
+<section class="faq-section">
+
+
+    <div class="faq-title">
+
+        <span class="about-tag">
+            سوالات متداول
+        </span>
+
+        <h2>
+            پاسخ سوالات شما
+        </h2>
+
+        <p>
+            سوالی دارید؟ اینجا می‌توانید پاسخ‌های رایج را پیدا کنید.
+        </p>
+
+    </div>
+
+
+
+    <div class="faq-container">
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                محصولات شما چه ویژگی‌ای دارند؟
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+                    ما تلاش می‌کنیم محصولاتی با طراحی خاص،
+                    ظاهر زیبا و کیفیت مناسب انتخاب و ارائه کنیم.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                زمان ارسال سفارش چقدر است؟
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+                    سفارش‌ها پس از ثبت و آماده‌سازی،
+                    در سریع‌ترین زمان ممکن ارسال خواهند شد.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                آیا امکان پیگیری سفارش وجود دارد؟
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+                    بله، پس از ارسال سفارش اطلاعات پیگیری
+                    برای شما ارسال خواهد شد.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                چگونه می‌توانم سفارش ثبت کنم؟
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p>
+                    محصول مورد نظر خود را انتخاب کرده،
+                    به سبد خرید اضافه کنید و مراحل ثبت سفارش را انجام دهید.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+</section>
+
+<script>
+
+const faqItems = document.querySelectorAll(".faq-item");
+
+
+faqItems.forEach(item => {
+
+
+    const button = item.querySelector(".faq-question");
+
+
+    button.addEventListener("click",()=>{
+
+
+        item.classList.toggle("active");
+
+
+    });
+
+
+});
+
+
+</script>
+
+</body>
+
+
+</html>
