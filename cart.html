@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>سبد خرید | Jewelry Store</title>
+
+    <link rel="stylesheet" href="cart.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="cart-page">
+
+    <!-- =========================
+         BACKGROUND
+    ========================== -->
+
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="cart-header">
+
+        <a href="../index.html" class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-gem"></i>
+            </div>
+
+            <div>
+                <span>JEWELRY</span>
+                <strong>بدلیجات</strong>
+            </div>
+
+        </a>
+
+
+        <a href="../index.html" class="continue-shopping">
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            ادامه خرید
+
+        </a>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="cart-container">
+
+
+        <!-- =========================
+             PAGE TITLE
+        ========================== -->
+
+        <section class="cart-title">
+
+            <span>SHOPPING CART</span>
+
+            <h1>
+                سبد خرید شما
+            </h1>
+
+            <p>
+                محصولات انتخابی خود را بررسی و سفارش خود را تکمیل کنید.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             CART CONTENT
+        ========================== -->
+
+        <section class="cart-layout">
+
+
+            <!-- =========================
+                 PRODUCTS
+            ========================== -->
+
+            <div class="cart-products">
+
+                <div class="products-header">
+
+                    <h2>
+                        محصولات سبد خرید
+                    </h2>
+
+                    <span id="cart-count">
+                        0 محصول
+                    </span>
+
+                </div>
+
+
+                <!-- PRODUCTS -->
+
+                <div id="cart-items"></div>
+
+
+                <!-- EMPTY CART -->
+
+                <div id="empty-cart"
+                     class="empty-cart">
+
+                    <div class="empty-icon">
+
+                        <i class="fa-solid fa-bag-shopping"></i>
+
+                    </div>
+
+                    <h3>
+                        سبد خرید شما خالی است
+                    </h3>
+
+                    <p>
+                        هنوز محصولی به سبد خرید اضافه نکرده‌اید.
+                    </p>
+
+                    <a href="../index.html"
+                       class="shop-now-btn">
+
+                        مشاهده فروشگاه
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 ORDER SUMMARY
+            ========================== -->
+
+            <aside class="order-summary">
+
+                <div class="summary-header">
+
+                    <span>
+                        ORDER SUMMARY
+                    </span>
+
+                    <h2>
+                        خلاصه سفارش
+                    </h2>
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="summary-row">
+
+                    <span>
+                        جمع محصولات
+                    </span>
+
+                    <strong id="subtotal">
+                        ۰ تومان
+                    </strong>
+
+                </div>
+
+
+                <!-- DISCOUNT -->
+
+                <div class="summary-row discount-row">
+
+                    <span>
+                        تخفیف
+                    </span>
+
+                    <strong id="discount">
+                        ۰ تومان
+                    </strong>
+
+                </div>
+
+
+                <!-- SHIPPING -->
+
+                <div class="summary-row">
+
+                    <span>
+                        هزینه ارسال
+                    </span>
+
+                    <strong id="shipping">
+                        رایگان
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <!-- TOTAL -->
+
+                <div class="total-row">
+
+                    <span>
+                        مبلغ نهایی
+                    </span>
+
+                    <strong id="total">
+                        ۰ تومان
+                    </strong>
+
+                </div>
+
+
+                <!-- DISCOUNT CODE -->
+
+                <div class="coupon-box">
+
+                    <label>
+                        کد تخفیف دارید؟
+                    </label>
+
+                    <div class="coupon-input">
+
+                        <input
+                            type="text"
+                            id="coupon-input"
+                            placeholder="کد تخفیف">
+
+                        <button id="coupon-btn">
+                            اعمال
+                        </button>
+
+                    </div>
+
+                    <small id="coupon-message"></small>
+
+                </div>
+
+
+                <!-- CHECKOUT -->
+
+                <button id="checkout-btn"
+                        class="checkout-btn">
+
+                    ادامه فرآیند خرید
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </button>
+
+
+                <!-- TRUST -->
+
+                <div class="secure-payment">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <div>
+
+                        <strong>
+                            خرید امن
+                        </strong>
+
+                        <span>
+                            اطلاعات شما محفوظ است.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="cart-footer">
+
+        <span>
+            © 2026 Jewelry Store
+        </span>
+
+        <span>
+            ساخته شده با ♥
+        </span>
+
+    </footer>
+
+</div>
+
+
+<script src="cart.js"></script>
+
+</body>
+
+</html>
