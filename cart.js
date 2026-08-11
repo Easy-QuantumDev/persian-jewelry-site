@@ -2,225 +2,105 @@
 // CART
 // ========================================
 
-let cart = JSON.parse(
-    localStorage.getItem("cart")
-) || [
-
-    {
-        id: 1,
-        name: "گردنبند مرواریدی",
-        category: "گردنبند",
-        price: 450000,
-        quantity: 1,
-        icon: "fa-gem"
-    },
-
-    {
-        id: 2,
-        name: "انگشتر ظریف طلایی",
-        category: "انگشتر",
-        price: 380000,
-        quantity: 1,
-        icon: "fa-ring"
-    },
-
-    {
-        id: 3,
-        name: "دستبند زنجیری",
-        category: "دستبند",
-        price: 420000,
-        quantity: 1,
-        icon: "fa-link"
-    }
-
-];
-
-
-// ========================================
-// ELEMENTS
-// ========================================
-
-const cartItems =
-    document.getElementById("cart-items");
-
-const emptyCart =
-    document.getElementById("empty-cart");
+const productsList =
+    document.getElementById("products-list");
 
 const cartCount =
     document.getElementById("cart-count");
 
-const subtotalElement =
+const summaryCount =
+    document.getElementById("summary-count");
+
+const subtotal =
     document.getElementById("subtotal");
 
-const discountElement =
-    document.getElementById("discount");
-
-const shippingElement =
-    document.getElementById("shipping");
-
-const totalElement =
+const total =
     document.getElementById("total");
 
-const checkoutBtn =
-    document.getElementById("checkout-btn");
-
-const couponInput =
-    document.getElementById("coupon-input");
-
-const couponBtn =
-    document.getElementById("coupon-btn");
-
-const couponMessage =
-    document.getElementById("coupon-message");
+const emptyCart =
+    document.getElementById("empty-cart");
 
 
 // ========================================
 // FORMAT PRICE
 // ========================================
 
-function formatPrice(price) {
+function formatPrice(number) {
 
     return new Intl.NumberFormat("fa-IR")
-        .format(price) + " تومان";
+        .format(number);
 
 }
 
 
 // ========================================
-// SAVE CART
+// UPDATE CART
 // ========================================
 
-function saveCart() {
+function updateCart() {
 
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(cart)
-    );
-
-}
+    const items =
+        document.querySelectorAll(".cart-item");
 
 
-// ========================================
-// RENDER CART
-// ========================================
+    let totalPrice = 0;
 
-function renderCart() {
-
-    cartItems.innerHTML = "";
+    let totalProducts = 0;
 
 
-    // EMPTY
+    items.forEach((item) => {
 
-    if (cart.length === 0) {
-
-        emptyCart.style.display = "block";
-
-        checkoutBtn.disabled = true;
-
-        updateSummary();
-
-        return;
-
-    }
+        const price =
+            Number(item.dataset.price);
 
 
-    emptyCart.style.display = "none";
-
-    checkoutBtn.disabled = false;
-
-
-    // PRODUCTS
-
-    cart.forEach((product) => {
-
-        const item =
-            document.createElement("div");
-
-        item.className = "cart-item";
-
-        item.dataset.id = product.id;
+        const quantity =
+            Number(
+                item.querySelector(".quantity-value").textContent
+            );
 
 
-        item.innerHTML = `
+        totalPrice += price * quantity;
 
-            <div class="product-image">
-
-                <i class="fa-solid ${product.icon}"></i>
-
-            </div>
-
-
-            <div class="product-info">
-
-                <span class="product-category">
-                    ${product.category}
-                </span>
-
-                <h3>
-                    ${product.name}
-                </h3>
-
-                <span class="product-price">
-                    ${formatPrice(product.price)}
-                </span>
-
-
-                <div class="quantity">
-
-                    <button
-                        class="increase"
-                        data-id="${product.id}">
-                        +
-                    </button>
-
-
-                    <span>
-                        ${product.quantity}
-                    </span>
-
-
-                    <button
-                        class="decrease"
-                        data-id="${product.id}">
-                        −
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="product-side">
-
-                <strong class="item-total">
-                    ${formatPrice(
-                        product.price *
-                        product.quantity
-                    )}
-                </strong>
-
-
-                <button
-                    class="remove-item"
-                    data-id="${product.id}">
-
-                    <i class="fa-regular fa-trash-can"></i>
-
-                    حذف
-
-                </button>
-
-            </div>
-
-        `;
-
-
-        cartItems.appendChild(item);
+        totalProducts += quantity;
 
     });
 
 
-    updateSummary();
+    // Count
+
+    cartCount.textContent =
+        `${totalProducts.toLocaleString("fa-IR")} محصول`;
+
+
+    summaryCount.textContent =
+        totalProducts.toLocaleString("fa-IR");
+
+
+    // Price
+
+    const priceText =
+        `${formatPrice(totalPrice)} تومان`;
+
+
+    subtotal.textContent =
+        priceText;
+
+
+    total.textContent =
+        priceText;
+
+
+    // Empty
+
+    if (items.length === 0) {
+
+        document.querySelector(".cart-container")
+            .style.display = "none";
+
+        emptyCart.style.display = "block";
+
+    }
 
 }
 
@@ -229,274 +109,200 @@ function renderCart() {
 // QUANTITY
 // ========================================
 
-cartItems.addEventListener(
-    "click",
-    (e) => {
+document.querySelectorAll(".cart-item")
+    .forEach((item) => {
 
-        const button =
-            e.target.closest("button");
+        const plus =
+            item.querySelector(".quantity-plus");
 
-        if (!button) return;
+        const minus =
+            item.querySelector(".quantity-minus");
 
-
-        const id =
-            Number(button.dataset.id);
-
-
-        const product =
-            cart.find(item => item.id === id);
+        const value =
+            item.querySelector(".quantity-value");
 
 
-        if (!product) return;
+        plus.addEventListener("click", () => {
+
+            let quantity =
+                Number(value.textContent);
+
+            quantity++;
+
+            value.textContent =
+                quantity.toLocaleString("fa-IR");
+
+            updateCart();
+
+        });
 
 
-        // INCREASE
+        minus.addEventListener("click", () => {
 
-        if (
-            button.classList.contains(
-                "increase"
-            )
-        ) {
-
-            product.quantity++;
-
-        }
+            let quantity =
+                Number(value.textContent);
 
 
-        // DECREASE
+            if (quantity <= 1) {
 
-        if (
-            button.classList.contains(
-                "decrease"
-            )
-        ) {
-
-            if (product.quantity > 1) {
-
-                product.quantity--;
+                return;
 
             }
 
-        }
 
+            quantity--;
 
-        // REMOVE
+            value.textContent =
+                quantity.toLocaleString("fa-IR");
 
-        if (
-            button.classList.contains(
-                "remove-item"
-            )
-        ) {
+            updateCart();
 
-            removeProduct(id);
+        });
 
-            return;
-
-        }
-
-
-        saveCart();
-
-        renderCart();
-
-    }
-);
+    });
 
 
 // ========================================
 // REMOVE PRODUCT
 // ========================================
 
-function removeProduct(id) {
+document.querySelectorAll(".remove-product")
+    .forEach((button) => {
 
-    const item =
-        document.querySelector(
-            `.cart-item[data-id="${id}"]`
-        );
+        button.addEventListener("click", () => {
 
-
-    if (item) {
-
-        item.style.opacity = "0";
-
-        item.style.transform =
-            "translateX(30px)";
-
-    }
+            const item =
+                button.closest(".cart-item");
 
 
-    setTimeout(() => {
-
-        cart =
-            cart.filter(
-                product => product.id !== id
-            );
-
-        saveCart();
-
-        renderCart();
-
-    }, 250);
-
-}
+            if (!item) return;
 
 
-// ========================================
-// UPDATE SUMMARY
-// ========================================
+            item.style.opacity = "0";
 
-function updateSummary() {
-
-    let subtotal = 0;
-
-    let totalQuantity = 0;
+            item.style.transform =
+                "translateX(20px)";
 
 
-    cart.forEach((product) => {
+            setTimeout(() => {
 
-        subtotal +=
-            product.price *
-            product.quantity;
+                item.remove();
 
-        totalQuantity +=
-            product.quantity;
+                updateCart();
+
+            }, 150);
+
+        });
 
     });
-
-
-    let discount = 0;
-
-
-    // Example discount
-
-    if (subtotal >= 1000000) {
-
-        discount =
-            Math.round(subtotal * 0.10);
-
-    }
-
-
-    // Free shipping over 800k
-
-    const shipping =
-        subtotal === 0 || subtotal >= 800000
-            ? 0
-            : 60000;
-
-
-    const total =
-        subtotal -
-        discount +
-        shipping;
-
-
-    cartCount.textContent =
-        `${new Intl.NumberFormat("fa-IR")
-            .format(totalQuantity)} محصول`;
-
-
-    subtotalElement.textContent =
-        formatPrice(subtotal);
-
-
-    discountElement.textContent =
-        discount > 0
-            ? `-${formatPrice(discount)}`
-            : "۰ تومان";
-
-
-    shippingElement.textContent =
-        shipping === 0
-            ? "رایگان"
-            : formatPrice(shipping);
-
-
-    totalElement.textContent =
-        formatPrice(total);
-
-}
-
-
-// ========================================
-// COUPON
-// ========================================
-
-couponBtn.addEventListener(
-    "click",
-    () => {
-
-        const code =
-            couponInput.value
-                .trim()
-                .toUpperCase();
-
-
-        if (!code) {
-
-            couponMessage.textContent =
-                "لطفاً کد تخفیف را وارد کنید.";
-
-            return;
-
-        }
-
-
-        if (code === "JEWELRY10") {
-
-            couponMessage.textContent =
-                "کد تخفیف با موفقیت اعمال شد ✓";
-
-
-            couponMessage.style.color =
-                "#9ed8a5";
-
-
-            return;
-
-        }
-
-
-        couponMessage.textContent =
-            "کد تخفیف معتبر نیست.";
-
-        couponMessage.style.color =
-            "#e5a29c";
-
-    }
-);
 
 
 // ========================================
 // CHECKOUT
 // ========================================
 
-checkoutBtn.addEventListener(
-    "click",
-    () => {
-
-        if (cart.length === 0) {
-
-            return;
-
-        }
+const checkoutBtn =
+    document.querySelector(".checkout-btn");
 
 
-        localStorage.setItem(
-            "checkoutCart",
-            JSON.stringify(cart)
-        );
+checkoutBtn.addEventListener("click", () => {
+
+    const items =
+        document.querySelectorAll(".cart-item");
 
 
-        window.location.href =
-            "../checkout/checkout.html";
+    if (items.length === 0) {
+
+        return;
 
     }
-);
+
+
+    showNotification(
+        "در حال انتقال به صفحه پرداخت..."
+    );
+
+});
+
+
+// ========================================
+// CLOSE CART
+// ========================================
+
+const closeCart =
+    document.querySelector(".close-cart");
+
+
+closeCart.addEventListener("click", () => {
+
+    window.history.back();
+
+});
+
+
+// ========================================
+// NOTIFICATION
+// ========================================
+
+function showNotification(message) {
+
+    const old =
+        document.querySelector(".cart-notification");
+
+
+    if (old) {
+
+        old.remove();
+
+    }
+
+
+    const notification =
+        document.createElement("div");
+
+
+    notification.className =
+        "cart-notification";
+
+
+    notification.textContent =
+        message;
+
+
+    document.body.appendChild(
+        notification
+    );
+
+
+    Object.assign(
+        notification.style,
+        {
+            position: "fixed",
+            bottom: "25px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "#3a291e",
+            color: "#fff",
+            padding: "12px 22px",
+            borderRadius: "10px",
+            fontSize: "12px",
+            zIndex: "9999",
+            boxShadow: "0 10px 30px rgba(0,0,0,.15)"
+        }
+    );
+
+
+    setTimeout(() => {
+
+        notification.remove();
+
+    }, 2500);
+
+}
 
 
 // ========================================
 // START
 // ========================================
 
-renderCart();
+updateCart();

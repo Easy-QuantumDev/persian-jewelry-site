@@ -40,7 +40,7 @@ const observer = new IntersectionObserver(
 cards.forEach((card, index) => {
 
     card.style.transitionDelay =
-        `${index * 70}ms`;
+        `${index * 1}ms`;
 
     observer.observe(card);
 
@@ -67,3 +67,47 @@ cards.forEach((card) => {
     });
 
 })
+const categorySwiper = new Swiper(".category-swiper", {
+
+    direction: "horizontal",
+
+    rtl: true,
+
+    grabCursor: true,
+
+    speed: 600,
+
+    spaceBetween: 18,
+
+    slidesPerView: 1.2,
+
+    navigation: {
+        nextEl: ".category-next",
+        prevEl: ".category-prev",
+    },
+
+    breakpoints: {
+
+        576: {
+            slidesPerView: 2,
+            spaceBetween: 18,
+        },
+
+        768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+        },
+
+        1024: {
+            slidesPerView: 4,
+            spaceBetween: 22,
+        },
+
+        1300: {
+            slidesPerView: 4,
+            spaceBetween: 24,
+        }
+
+    }
+
+});

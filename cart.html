@@ -3,320 +3,90 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سبد خرید | Jewelry Store</title>
-
     <link rel="stylesheet" href="cart.css">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
-
-<div class="cart-page">
-
-    <!-- =========================
-         BACKGROUND
-    ========================== -->
-
-    <div class="background-glow glow-1"></div>
-    <div class="background-glow glow-2"></div>
-
-
-    <!-- =========================
-         HEADER
-    ========================== -->
-
-    <header class="cart-header">
-
-        <a href="../index.html" class="logo">
-
-            <div class="logo-icon">
-                <i class="fa-solid fa-gem"></i>
+    <div class="cart-page"> <!-- ========================= HEADER ========================== -->
+        <header class="cart-header">
+            <div class="brand"> <i class="fa-solid fa-gem"></i>
+                <div> <strong>JEWELRY</strong> <span>بدلیجات</span> </div>
             </div>
-
-            <div>
-                <span>JEWELRY</span>
-                <strong>بدلیجات</strong>
-            </div>
-
-        </a>
-
-
-        <a href="../index.html" class="continue-shopping">
-
-            <i class="fa-solid fa-arrow-right"></i>
-
-            ادامه خرید
-
-        </a>
-
-    </header>
-
-
-    <!-- =========================
-         MAIN
-    ========================== -->
-
-    <main class="cart-container">
-
-
-        <!-- =========================
-             PAGE TITLE
-        ========================== -->
-
-        <section class="cart-title">
-
-            <span>SHOPPING CART</span>
-
-            <h1>
-                سبد خرید شما
-            </h1>
-
-            <p>
-                محصولات انتخابی خود را بررسی و سفارش خود را تکمیل کنید.
-            </p>
-
-        </section>
-
-
-        <!-- =========================
-             CART CONTENT
-        ========================== -->
-
-        <section class="cart-layout">
-
-
-            <!-- =========================
-                 PRODUCTS
-            ========================== -->
-
-            <div class="cart-products">
-
+            <div class="cart-title"> <span>SHOPPING CART</span>
+                <h1> سبد خرید </h1>
+            </div> <button class="close-cart"> <i class="fa-solid fa-xmark"></i> </button>
+        </header> <!-- ========================= MAIN ========================== -->
+        <main class="cart-container"> <!-- ========================= PRODUCTS ========================== -->
+            <section class="cart-products">
                 <div class="products-header">
-
-                    <h2>
-                        محصولات سبد خرید
-                    </h2>
-
-                    <span id="cart-count">
-                        0 محصول
-                    </span>
-
-                </div>
-
-
-                <!-- PRODUCTS -->
-
-                <div id="cart-items"></div>
-
-
-                <!-- EMPTY CART -->
-
-                <div id="empty-cart"
-                     class="empty-cart">
-
-                    <div class="empty-icon">
-
-                        <i class="fa-solid fa-bag-shopping"></i>
-
+                    <div> <span>YOUR CART</span>
+                        <h2> محصولات شما </h2>
+                    </div> <strong id="cart-count"> 4 محصول </strong>
+                </div> <!-- Scroll Container -->
+                <div class="products-list" id="products-list"> <!-- PRODUCT -->
+                    <div class="cart-item" data-id="1" data-price="850000">
+                        <div class="product-image"> <i class="fa-solid fa-gem"></i> </div>
+                        <div class="product-info"> <strong> گردنبند مرواریدی </strong> <span> Pearl Necklace </span>
+                            <small> نقره‌ای </small> </div>
+                        <div class="product-price"> <strong> ۸۵۰,۰۰۰ </strong> <span> تومان </span> </div>
+                        <div class="quantity"> <button class="quantity-minus"> − </button> <span class="quantity-value">
+                                1 </span> <button class="quantity-plus"> + </button> </div> <button
+                            class="remove-product"> <i class="fa-regular fa-trash-can"></i> </button>
+                    </div> <!-- PRODUCT -->
+                    <div class="cart-item" data-id="2" data-price="620000">
+                        <div class="product-image"> <i class="fa-solid fa-ring"></i> </div>
+                        <div class="product-info"> <strong> انگشتر ظریف طلایی </strong> <span> Golden Ring </span>
+                            <small> طلایی </small> </div>
+                        <div class="product-price"> <strong> ۶۲۰,۰۰۰ </strong> <span> تومان </span> </div>
+                        <div class="quantity"> <button class="quantity-minus"> − </button> <span class="quantity-value">
+                                1 </span> <button class="quantity-plus"> + </button> </div> <button
+                            class="remove-product"> <i class="fa-regular fa-trash-can"></i> </button>
+                    </div> <!-- PRODUCT -->
+                    <div class="cart-item" data-id="3" data-price="490000">
+                        <div class="product-image"> <i class="fa-solid fa-link"></i> </div>
+                        <div class="product-info"> <strong> دستبند زنجیری </strong> <span> Chain Bracelet </span>
+                            <small> طلایی </small> </div>
+                        <div class="product-price"> <strong> ۴۹۰,۰۰۰ </strong> <span> تومان </span> </div>
+                        <div class="quantity"> <button class="quantity-minus"> − </button> <span class="quantity-value">
+                                1 </span> <button class="quantity-plus"> + </button> </div> <button
+                            class="remove-product"> <i class="fa-regular fa-trash-can"></i> </button>
+                    </div> <!-- PRODUCT -->
+                    <div class="cart-item" data-id="4" data-price="390000">
+                        <div class="product-image"> <i class="fa-solid fa-ear-listen"></i> </div>
+                        <div class="product-info"> <strong> گوشواره مینیمال </strong> <span> Minimal Earrings </span>
+                            <small> نقره‌ای </small> </div>
+                        <div class="product-price"> <strong> ۳۹۰,۰۰۰ </strong> <span> تومان </span> </div>
+                        <div class="quantity"> <button class="quantity-minus"> − </button> <span class="quantity-value">
+                                1 </span> <button class="quantity-plus"> + </button> </div> <button
+                            class="remove-product"> <i class="fa-regular fa-trash-can"></i> </button>
                     </div>
-
-                    <h3>
-                        سبد خرید شما خالی است
-                    </h3>
-
-                    <p>
-                        هنوز محصولی به سبد خرید اضافه نکرده‌اید.
-                    </p>
-
-                    <a href="../index.html"
-                       class="shop-now-btn">
-
-                        مشاهده فروشگاه
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                    </a>
-
                 </div>
-
-            </div>
-
-
-
-            <!-- =========================
-                 ORDER SUMMARY
-            ========================== -->
-
-            <aside class="order-summary">
-
-                <div class="summary-header">
-
-                    <span>
-                        ORDER SUMMARY
-                    </span>
-
-                    <h2>
-                        خلاصه سفارش
-                    </h2>
-
+            </section> <!-- ========================= SUMMARY ========================== -->
+            <aside class="cart-summary">
+                <div class="summary-header"> <span> ORDER SUMMARY </span>
+                    <h2> خلاصه سفارش </h2>
                 </div>
-
-
-                <!-- PRICE -->
-
-                <div class="summary-row">
-
-                    <span>
-                        جمع محصولات
-                    </span>
-
-                    <strong id="subtotal">
-                        ۰ تومان
-                    </strong>
-
+                <div class="summary-row"> <span> تعداد محصولات </span> <strong id="summary-count"> 4 </strong> </div>
+                <div class="summary-row"> <span> مجموع محصولات </span> <strong id="subtotal"> 2,350,000 تومان </strong>
                 </div>
-
-
-                <!-- DISCOUNT -->
-
-                <div class="summary-row discount-row">
-
-                    <span>
-                        تخفیف
-                    </span>
-
-                    <strong id="discount">
-                        ۰ تومان
-                    </strong>
-
-                </div>
-
-
-                <!-- SHIPPING -->
-
-                <div class="summary-row">
-
-                    <span>
-                        هزینه ارسال
-                    </span>
-
-                    <strong id="shipping">
-                        رایگان
-                    </strong>
-
-                </div>
-
-
-                <div class="summary-divider"></div>
-
-
-                <!-- TOTAL -->
-
-                <div class="total-row">
-
-                    <span>
-                        مبلغ نهایی
-                    </span>
-
-                    <strong id="total">
-                        ۰ تومان
-                    </strong>
-
-                </div>
-
-
-                <!-- DISCOUNT CODE -->
-
-                <div class="coupon-box">
-
-                    <label>
-                        کد تخفیف دارید؟
-                    </label>
-
-                    <div class="coupon-input">
-
-                        <input
-                            type="text"
-                            id="coupon-input"
-                            placeholder="کد تخفیف">
-
-                        <button id="coupon-btn">
-                            اعمال
-                        </button>
-
-                    </div>
-
-                    <small id="coupon-message"></small>
-
-                </div>
-
-
-                <!-- CHECKOUT -->
-
-                <button id="checkout-btn"
-                        class="checkout-btn">
-
-                    ادامه فرآیند خرید
-
-                    <i class="fa-solid fa-arrow-left"></i>
-
-                </button>
-
-
-                <!-- TRUST -->
-
-                <div class="secure-payment">
-
-                    <i class="fa-solid fa-shield-halved"></i>
-
-                    <div>
-
-                        <strong>
-                            خرید امن
-                        </strong>
-
-                        <span>
-                            اطلاعات شما محفوظ است.
-                        </span>
-
-                    </div>
-
-                </div>
-
+                <div class="summary-row"> <span> هزینه ارسال </span> <strong class="free"> رایگان </strong> </div>
+                <div class="summary-line"></div>
+                <div class="total-row"> <span> مبلغ قابل پرداخت </span> <strong id="total"> 2,350,000 تومان </strong>
+                </div> <button class="checkout-btn"> ادامه فرایند خرید <i class="fa-solid fa-arrow-left"></i> </button>
+                <div class="secure-payment"> <i class="fa-solid fa-shield-halved"></i> <span> پرداخت امن و محافظت شده
+                    </span> </div>
             </aside>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="cart-footer">
-
-        <span>
-            © 2026 Jewelry Store
-        </span>
-
-        <span>
-            ساخته شده با ♥
-        </span>
-
-    </footer>
-
-</div>
-
-
-<script src="cart.js"></script>
-
+        </main> <!-- ========================= EMPTY CART ========================== -->
+        <div class="empty-cart" id="empty-cart">
+            <div class="empty-icon"> <i class="fa-solid fa-bag-shopping"></i> </div>
+            <h2> سبد خرید شما خالی است </h2>
+            <p> هنوز محصولی به سبد خرید اضافه نکرده‌اید. </p> <button> مشاهده محصولات </button>
+        </div>
+    </div>
+    <script src="cart.js"></script>
 </body>
 
 </html>

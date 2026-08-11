@@ -1,4 +1,11 @@
+
+@font-face {
+    font-family: "vazirmatn";
+    src: url(./fonts/Vazirmatn-Medium.woff2) format("woff2");
+}
+
 * {
+    font-family: 'vazirmatn';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -97,8 +104,8 @@ body {
 
 .category-header {
 
-    min-height: 360px;
-
+    min-height: 160px;
+    max-height:270px ;
     border-radius: 35px;
 
     background:
@@ -118,7 +125,7 @@ body {
 
     justify-content: space-between;
 
-    padding: 60px 80px;
+    padding: 10px 40px;
 
     color: white;
 
@@ -127,8 +134,8 @@ body {
 
 }
 
-
 .header-content {
+
 
     position: relative;
 
@@ -156,7 +163,7 @@ body {
 
 .header-content h1 {
 
-    font-size: clamp(40px, 5vw, 72px);
+    font-size: clamp(30px, 5vw, 40px);
 
     line-height: 1.2;
 
@@ -587,7 +594,7 @@ body {
 
     overflow: hidden;
 
-    transition: .35s;
+    transition: .15s;
 
 }
 
@@ -835,6 +842,376 @@ footer {
 
         font-size: 34px;
 
+    }
+
+}
+/* =========================================
+   CATEGORY SWIPER
+========================================= */
+
+.category-slider-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+
+/* Swiper */
+
+.category-swiper {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+.category-swiper .swiper-wrapper {
+    align-items: stretch;
+}
+
+
+.category-swiper .swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+
+/* Card */
+
+.category-swiper .category-card {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.category-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+
+.category-navigation button {
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid rgba(90, 60, 40, 0.15);
+
+    background: rgba(255, 255, 255, 0.8);
+
+    color: #4a3022;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.25s ease;
+}
+
+
+.category-navigation button:hover {
+    background: #4a3022;
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+.category-navigation button:active {
+    transform: scale(0.92);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .category-navigation {
+        display: none;
+    }
+
+    .category-swiper {
+        overflow: visible;
+    }
+
+    .category-slider-wrapper {
+        overflow: hidden;
+    }
+
+}
+/* =========================================
+   PRODUCTS
+========================================= */
+
+.products-section {
+    width: 100%;
+    margin-top: 80px;
+}
+
+.product-slider-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.product-swiper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.product-swiper .swiper-slide {
+    height: auto;
+}
+
+
+/* =========================================
+   PRODUCT CARD
+========================================= */
+
+.product-card {
+    background: #fff;
+
+    border: 1px solid rgba(70, 45, 30, 0.08);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    transition: .3s ease;
+
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: 0 15px 40px rgba(60, 40, 25, .12);
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.product-image {
+    position: relative;
+
+    height: 280px;
+
+    background: #f5f1ed;
+
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: .5s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.06);
+}
+
+
+/* =========================================
+   BADGE
+========================================= */
+
+.product-badge {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    background: #4b3022;
+
+    color: white;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   LIKE
+========================================= */
+
+.product-like {
+    position: absolute;
+
+    top: 15px;
+    left: 15px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.9);
+
+    cursor: pointer;
+
+    color: #4b3022;
+
+    z-index: 2;
+
+    transition: .25s;
+}
+
+.product-like:hover {
+    transform: scale(1.1);
+}
+
+
+/* =========================================
+   PRODUCT INFO
+========================================= */
+
+.product-info {
+    padding: 20px;
+}
+
+.product-category {
+    font-size: 12px;
+
+    color: #9a806c;
+}
+
+.product-info h3 {
+    margin: 8px 0 20px;
+
+    font-size: 18px;
+
+    color: #39251b;
+}
+
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.product-bottom {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.product-bottom strong {
+    font-size: 15px;
+
+    color: #4b3022;
+}
+
+.add-cart {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #4b3022;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.add-cart:hover {
+    transform: scale(1.08);
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.product-navigation {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.product-navigation button {
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid rgba(70,45,30,.15);
+
+    background: white;
+
+    color: #4b3022;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.product-navigation button:hover {
+    background: #4b3022;
+
+    color: white;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .products-section {
+        margin-top: 50px;
+    }
+
+    .product-navigation {
+        display: none;
+    }
+
+    .product-slider-wrapper {
+        overflow: hidden;
+    }
+
+    .product-swiper {
+        overflow: visible;
+    }
+
+    .product-image {
+        height: 240px;
     }
 
 }
