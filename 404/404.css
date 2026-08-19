@@ -1,0 +1,796 @@
+/* =========================================
+   ROOT
+========================================= */
+
+:root {
+
+    --brown-dark: #2b170d;
+
+    --brown: #4a2c1b;
+
+    --brown-light: #765039;
+
+    --cream: #f8f5f0;
+
+    --cream-dark: #eee7df;
+
+    --white: #ffffff;
+
+    --gold: #b68a4a;
+
+    --gold-light: #e0c17e;
+
+    --text: #3b2a20;
+
+    --text-light: #806f61;
+
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    font-family: "Vazirmatn", sans-serif;
+
+    background: var(--cream);
+
+    color: var(--text);
+
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.error-page {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px 20px;
+
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.bg-circle {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    opacity: .45;
+
+}
+
+
+.circle-1 {
+
+    width: 450px;
+
+    height: 450px;
+
+    background: var(--cream-dark);
+
+    top: -180px;
+
+    right: -120px;
+
+}
+
+
+.circle-2 {
+
+    width: 350px;
+
+    height: 350px;
+
+    background: #eadbc8;
+
+    bottom: -160px;
+
+    left: -100px;
+
+}
+
+
+.circle-3 {
+
+    width: 120px;
+
+    height: 120px;
+
+    border: 1px solid var(--gold);
+
+    top: 20%;
+
+    left: 12%;
+
+    opacity: .25;
+
+}
+
+
+/* =========================================
+   CONTAINER
+========================================= */
+
+.error-container {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    min-height: 600px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* =========================================
+   404 NUMBER
+========================================= */
+
+.error-number {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    font-size: clamp(110px, 18vw, 190px);
+
+    font-weight: 800;
+
+    line-height: .8;
+
+    color: var(--brown-dark);
+
+    letter-spacing: -10px;
+
+    margin-bottom: 50px;
+
+    animation: numberFloat 4s ease-in-out infinite;
+
+}
+
+
+.error-number span {
+
+    display: block;
+
+}
+
+
+/* =========================================
+   RING
+========================================= */
+
+.error-ring {
+
+    width: clamp(100px, 13vw, 150px);
+
+    height: clamp(100px, 13vw, 150px);
+
+    border: 10px solid var(--gold);
+
+    border-radius: 50%;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--cream);
+
+    box-shadow:
+        inset 0 0 0 5px var(--cream),
+        0 10px 30px rgba(74, 44, 27, .12);
+
+    transform: rotate(-10deg);
+
+}
+
+
+.ring-circle {
+
+    width: 48%;
+
+    height: 48%;
+
+    border: 3px solid var(--gold-light);
+
+    border-radius: 50%;
+
+}
+
+
+.ring-diamond {
+
+    position: absolute;
+
+    top: -18px;
+
+    right: 12px;
+
+    font-size: 28px;
+
+    color: var(--gold);
+
+    transform: rotate(10deg);
+
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.error-content {
+
+    max-width: 650px;
+
+}
+
+
+.error-label {
+
+    display: inline-block;
+
+    padding: 7px 16px;
+
+    border-radius: 50px;
+
+    background: rgba(182, 138, 74, .1);
+
+    color: var(--gold);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 18px;
+
+}
+
+
+.error-content h1 {
+
+    font-size: clamp(28px, 5vw, 48px);
+
+    line-height: 1.5;
+
+    color: var(--brown-dark);
+
+    font-weight: 800;
+
+    margin-bottom: 15px;
+
+}
+
+
+.error-content p {
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 2;
+
+    max-width: 520px;
+
+    margin: 0 auto 30px;
+
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.error-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.error-actions .btn {
+
+    min-width: 160px;
+
+    height: 50px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: .3s ease;
+
+}
+
+
+/* Home */
+
+.home-btn {
+
+    background: var(--brown-dark);
+
+    color: var(--white);
+
+    border: 1px solid var(--brown-dark);
+
+}
+
+
+.home-btn:hover {
+
+    background: var(--brown);
+
+    color: var(--white);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(43, 23, 13, .18);
+
+}
+
+
+/* Back */
+
+.back-btn {
+
+    background: transparent;
+
+    color: var(--brown);
+
+    border: 1px solid #d5c7b8;
+
+}
+
+
+.back-btn:hover {
+
+    background: var(--white);
+
+    color: var(--brown-dark);
+
+    border-color: var(--gold);
+
+    transform: translateY(-3px);
+
+}
+
+
+/* =========================================
+   QUICK LINKS
+========================================= */
+
+.quick-links {
+
+    margin-top: 40px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(118, 80, 57, .12);
+
+}
+
+
+.quick-links > span {
+
+    font-size: 12px;
+
+    color: var(--text-light);
+
+}
+
+
+.links {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-top: 12px;
+
+}
+
+
+.links a {
+
+    text-decoration: none;
+
+    color: var(--brown);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    position: relative;
+
+    transition: .25s;
+
+}
+
+
+.links a::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+
+    height: 1px;
+
+    bottom: -5px;
+
+    right: 0;
+
+    background: var(--gold);
+
+    transition: .25s;
+
+}
+
+
+.links a:hover {
+
+    color: var(--gold);
+
+}
+
+
+.links a:hover::after {
+
+    width: 100%;
+
+}
+
+
+/* =========================================
+   JEWELRY DECORATIONS
+========================================= */
+
+.jewelry-decoration {
+
+    position: absolute;
+
+    color: var(--gold);
+
+    opacity: .45;
+
+    pointer-events: none;
+
+}
+
+
+.jewelry-1 {
+
+    top: 18%;
+
+    right: 10%;
+
+    font-size: 45px;
+
+    animation:
+        floatJewelry 5s ease-in-out infinite;
+
+}
+
+
+.jewelry-2 {
+
+    bottom: 18%;
+
+    right: 18%;
+
+    font-size: 25px;
+
+    animation:
+        floatJewelry 4s ease-in-out infinite 1s;
+
+}
+
+
+.jewelry-3 {
+
+    top: 25%;
+
+    left: 12%;
+
+    font-size: 50px;
+
+    animation:
+        floatJewelry 6s ease-in-out infinite 1.5s;
+
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes numberFloat {
+
+    0%,
+    100% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(-8px);
+
+    }
+
+}
+
+
+@keyframes floatJewelry {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-15px)
+            rotate(8deg);
+
+    }
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .error-page {
+
+        padding: 30px 20px;
+
+    }
+
+
+    .error-container {
+
+        min-height: 550px;
+
+    }
+
+
+    .error-number {
+
+        margin-bottom: 35px;
+
+    }
+
+
+    .jewelry-1 {
+
+        right: 4%;
+
+    }
+
+
+    .jewelry-3 {
+
+        left: 4%;
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+
+    .error-page {
+
+        padding: 25px 15px;
+
+    }
+
+
+    .error-container {
+
+        min-height: auto;
+
+        padding: 40px 10px;
+
+    }
+
+
+    .error-number {
+
+        gap: 8px;
+
+        letter-spacing: -6px;
+
+        margin-bottom: 35px;
+
+    }
+
+
+    .error-ring {
+
+        border-width: 7px;
+
+    }
+
+
+    .ring-diamond {
+
+        font-size: 20px;
+
+        top: -14px;
+
+    }
+
+
+    .error-content h1 {
+
+        font-size: 28px;
+
+        line-height: 1.6;
+
+    }
+
+
+    .error-content p {
+
+        font-size: 13px;
+
+        line-height: 2;
+
+    }
+
+
+    .error-actions {
+
+        flex-direction: column;
+
+        width: 100%;
+
+    }
+
+
+    .error-actions .btn {
+
+        width: 100%;
+
+        max-width: 280px;
+
+    }
+
+
+    .links {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .jewelry-decoration {
+
+        opacity: .2;
+
+    }
+
+
+    .circle-1 {
+
+        width: 280px;
+
+        height: 280px;
+
+    }
+
+
+    .circle-2 {
+
+        width: 220px;
+
+        height: 220px;
+
+    }
+
+}

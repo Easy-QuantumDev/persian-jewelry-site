@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تسویه حساب | Jewelry</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Vazirmatn -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./checkout.css">
+
+</head>
+
+
+<body>
+
+
+<main class="checkout-page">
+
+
+    <!-- =========================================
+         PAGE HEADER
+    ========================================== -->
+
+    <section class="checkout-header">
+
+        <div class="container">
+
+            <div class="checkout-title">
+
+                <span class="small-title">
+                    سفارش شما
+                </span>
+
+                <h1>
+                    تکمیل خرید
+                </h1>
+
+                <p>
+                    اطلاعات خود را وارد کنید تا سفارش شما ثبت شود.
+                </p>
+
+            </div>
+
+
+            <!-- Steps -->
+
+            <div class="checkout-steps">
+
+                <div class="step active">
+
+                    <span class="step-number">
+                        1
+                    </span>
+
+                    <span>
+                        اطلاعات ارسال
+                    </span>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <span class="step-number">
+                        2
+                    </span>
+
+                    <span>
+                        پرداخت
+                    </span>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <span class="step-number">
+                        3
+                    </span>
+
+                    <span>
+                        تکمیل سفارش
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         CHECKOUT CONTENT
+    ========================================== -->
+
+    <section class="checkout-content">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+
+                <!-- =================================
+                     LEFT SIDE
+                ================================== -->
+
+                <div class="col-lg-7">
+
+
+                    <!-- Receiver Information -->
+
+                    <div class="checkout-box">
+
+                        <div class="box-header">
+
+                            <div>
+
+                                <span class="box-number">
+                                    01
+                                </span>
+
+                                <div>
+
+                                    <h2>
+                                        اطلاعات گیرنده
+                                    </h2>
+
+                                    <p>
+                                        اطلاعات دریافت کننده سفارش
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    نام
+                                </label>
+
+                                <input
+                                    type="text"
+                                    placeholder="نام خود را وارد کنید">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    نام خانوادگی
+                                </label>
+
+                                <input
+                                    type="text"
+                                    placeholder="نام خانوادگی">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    شماره موبایل
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    placeholder="0912xxxxxxx">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    کد ملی
+                                </label>
+
+                                <input
+                                    type="text"
+                                    placeholder="کد ملی">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Address -->
+
+                    <div class="checkout-box">
+
+                        <div class="box-header">
+
+                            <div>
+
+                                <span class="box-number">
+                                    02
+                                </span>
+
+                                <div>
+
+                                    <h2>
+                                        آدرس ارسال
+                                    </h2>
+
+                                    <p>
+                                        آدرس تحویل سفارش را وارد کنید
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                class="add-address">
+
+                                + آدرس جدید
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="address-card selected">
+
+                            <div class="address-radio">
+
+                                <span></span>
+
+                            </div>
+
+
+                            <div class="address-content">
+
+                                <div class="address-top">
+
+                                    <h3>
+                                        خانه
+                                    </h3>
+
+                                    <span>
+                                        پیش‌فرض
+                                    </span>
+
+                                </div>
+
+
+                                <p>
+                                    تهران، خیابان ولیعصر، خیابان انقلاب،
+                                    کوچه نمونه، پلاک ۲۴
+                                </p>
+
+
+                                <div class="address-info">
+
+                                    <span>
+                                        📱 09123456789
+                                    </span>
+
+                                    <span>
+                                        📍 کد پستی: 1234567890
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <button class="edit-address">
+                                ویرایش
+                            </button>
+
+                        </div>
+
+
+                        <div class="address-card">
+
+                            <div class="address-radio">
+
+                                <span></span>
+
+                            </div>
+
+
+                            <div class="address-content">
+
+                                <div class="address-top">
+
+                                    <h3>
+                                        محل کار
+                                    </h3>
+
+                                </div>
+
+
+                                <p>
+                                    تهران، خیابان مثال، ساختمان شماره ۱۲
+                                </p>
+
+
+                                <div class="address-info">
+
+                                    <span>
+                                        📱 09123456789
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <button class="edit-address">
+                                ویرایش
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Shipping -->
+
+                    <div class="checkout-box">
+
+                        <div class="box-header">
+
+                            <div>
+
+                                <span class="box-number">
+                                    03
+                                </span>
+
+                                <div>
+
+                                    <h2>
+                                        روش ارسال
+                                    </h2>
+
+                                    <p>
+                                        روش ارسال سفارش خود را انتخاب کنید
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="shipping-options">
+
+
+                            <label class="shipping-option active">
+
+                                <input
+                                    type="radio"
+                                    name="shipping"
+                                    checked>
+
+                                <div class="shipping-icon">
+                                    🚚
+                                </div>
+
+                                <div class="shipping-info">
+
+                                    <strong>
+                                        ارسال عادی
+                                    </strong>
+
+                                    <span>
+                                        ۲ تا ۴ روز کاری
+                                    </span>
+
+                                </div>
+
+                                <strong class="shipping-price">
+                                    رایگان
+                                </strong>
+
+                            </label>
+
+
+
+                            <label class="shipping-option">
+
+                                <input
+                                    type="radio"
+                                    name="shipping">
+
+                                <div class="shipping-icon">
+                                    ⚡
+                                </div>
+
+                                <div class="shipping-info">
+
+                                    <strong>
+                                        ارسال سریع
+                                    </strong>
+
+                                    <span>
+                                        ۱ تا ۲ روز کاری
+                                    </span>
+
+                                </div>
+
+                                <strong class="shipping-price">
+                                    ۵۰,۰۰۰ تومان
+                                </strong>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Note -->
+
+                    <div class="checkout-box">
+
+                        <div class="box-header">
+
+                            <div>
+
+                                <span class="box-number">
+                                    04
+                                </span>
+
+                                <div>
+
+                                    <h2>
+                                        توضیحات سفارش
+                                    </h2>
+
+                                    <p>
+                                        در صورت نیاز توضیحی برای سفارش بنویسید
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <textarea
+                            class="order-note"
+                            placeholder="مثلاً لطفاً بسته را در ساعات اداری ارسال کنید..."></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================
+                     RIGHT SIDE
+                ================================== -->
+
+                <div class="col-lg-5">
+
+
+                    <div class="order-summary">
+
+
+                        <div class="summary-header">
+
+                            <div>
+
+                                <span>
+                                    خلاصه سفارش
+                                </span>
+
+                                <h2>
+                                    سفارش شما
+                                </h2>
+
+                            </div>
+
+
+                            <span class="items-count">
+                                ۳ کالا
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- Products -->
+
+                        <div class="summary-products">
+
+
+                            <div class="summary-product">
+
+                                <div class="summary-image">
+
+                                    <img
+                                        src="./image/necklace-1.jpg"
+                                        alt="گردنبند">
+
+                                    <span>
+                                        1
+                                    </span>
+
+                                </div>
+
+
+                                <div class="summary-product-info">
+
+                                    <h3>
+                                        گردنبند مینیمال
+                                    </h3>
+
+                                    <span>
+                                        طلایی
+                                    </span>
+
+                                </div>
+
+
+                                <strong>
+                                    ۳۵۰,۰۰۰
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="summary-product">
+
+                                <div class="summary-image">
+
+                                    <img
+                                        src="./image/necklace-2.jpg"
+                                        alt="گردنبند">
+
+                                    <span>
+                                        2
+                                    </span>
+
+                                </div>
+
+
+                                <div class="summary-product-info">
+
+                                    <h3>
+                                        گردنبند ظریف
+                                    </h3>
+
+                                    <span>
+                                        طلایی
+                                    </span>
+
+                                </div>
+
+
+                                <strong>
+                                    ۵۰۰,۰۰۰
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="summary-product">
+
+                                <div class="summary-image">
+
+                                    <img
+                                        src="./image/necklace-4.jpg"
+                                        alt="دستبند">
+
+                                    <span>
+                                        1
+                                    </span>
+
+                                </div>
+
+
+                                <div class="summary-product-info">
+
+                                    <h3>
+                                        دستبند کلاسیک
+                                    </h3>
+
+                                    <span>
+                                        نقره‌ای
+                                    </span>
+
+                                </div>
+
+
+                                <strong>
+                                    ۲۵۰,۰۰۰
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Discount -->
+
+                        <div class="discount-box">
+
+                            <input
+                                type="text"
+                                id="discountCode"
+                                placeholder="کد تخفیف دارید؟">
+
+                            <button
+                                id="discountBtn">
+
+                                اعمال
+
+                            </button>
+
+                        </div>
+
+
+
+                        <div
+                            id="discountMessage"
+                            class="discount-message">
+                        </div>
+
+
+
+                        <!-- Prices -->
+
+                        <div class="summary-prices">
+
+                            <div>
+
+                                <span>
+                                    جمع محصولات
+                                </span>
+
+                                <strong>
+                                    ۱,۱۰۰,۰۰۰ تومان
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    هزینه ارسال
+                                </span>
+
+                                <strong class="free">
+                                    رایگان
+                                </strong>
+
+                            </div>
+
+
+                            <div
+                                class="discount-row"
+                                id="discountRow">
+
+                                <span>
+                                    تخفیف
+                                </span>
+
+                                <strong>
+                                    - ۰ تومان
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Total -->
+
+                        <div class="summary-total">
+
+                            <span>
+                                مبلغ قابل پرداخت
+                            </span>
+
+                            <strong>
+                                ۱,۱۰۰,۰۰۰
+                                <small>
+                                    تومان
+                                </small>
+                            </strong>
+
+                        </div>
+
+
+
+                        <!-- Payment -->
+
+                        <button
+                            class="payment-btn"
+                            id="paymentBtn">
+
+                            <span>
+                                ادامه و پرداخت
+                            </span>
+
+                            <span>
+                                ←
+                            </span>
+
+                        </button>
+
+
+                        <div class="secure-payment">
+
+                            🔒
+
+                            پرداخت امن از طریق درگاه بانکی
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<script src="./checkout.js"></script>
+
+</body>
+
+</html>
