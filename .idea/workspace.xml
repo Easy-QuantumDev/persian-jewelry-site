@@ -3,39 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="72190073-9133-4fc4-ad73-02b2f88e3d97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/favorite/favorite.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/favorite/favorite.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/templates/profile/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/signup-signin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/signup-signin/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/signup-signin/singup.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/signup-signin/singup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/templates/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/cart/templates/cart/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/templates/checkout/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/orders/templates/checkout/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/templates/orders/order-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/orders/templates/orders/order-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/templates/orders/order-success.html" beforeDir="false" afterPath="$PROJECT_DIR$/orders/templates/orders/order-success.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/templates/404/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/404/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/templates/about/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/about/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/base/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/templates/contact/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/contact/contact.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/home/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/templates/category/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/category/category.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/templates/category/single-category/single-category.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/category/single-category/single-category.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/templates/category/single-product-category/single_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/category/single-product-category/single_product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/templates/product-list/product-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/product-list/product-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/products/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/profile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fastapi-course" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -83,6 +54,7 @@
       <workItem from="1787512639055" duration="5241000" />
       <workItem from="1787663542788" duration="6194000" />
       <workItem from="1787736108953" duration="48000" />
+      <workItem from="1787779103038" duration="3804000" />
     </task>
     <servers />
   </component>

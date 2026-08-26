@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 
 
 /* =========================================
-   VARIABLES
+   DESIGN TOKENS
 ========================================= */
 
 :root {
 
+    /* Brand palette — warm brass jewelry tones */
     --brown-dark: #2b170d;
     --brown: #4a2c1b;
     --brown-light: #765039;
@@ -18,12 +19,27 @@
 
     --gold: #b68a4a;
     --gold-light: #e0c17e;
+    --gold-soft: #f1e2c2;
 
     --text: #2b211b;
     --text-light: #806f63;
 
     --border: #e8ded4;
 
+    /* Elevation */
+    --shadow-sm: 0 4px 14px rgba(43, 23, 13, .06);
+    --shadow-md: 0 14px 34px rgba(43, 23, 13, .12);
+    --shadow-lg: 0 24px 55px rgba(43, 23, 13, .18);
+    --shadow-gold: 0 10px 26px rgba(182, 138, 74, .28);
+
+    /* Motion */
+    --ease: cubic-bezier(.4, 0, .2, 1);
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+
+    /* Radius */
+    --r-sm: 10px;
+    --r-md: 18px;
+    --r-lg: 28px;
 }
 
 
@@ -47,11 +63,14 @@ body {
 
     font-family: "Vazirmatn", sans-serif;
 
-    background: #fff;
+    background: var(--white);
 
     color: var(--text);
 
     overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+
 }
 
 
@@ -65,6 +84,34 @@ button {
     font-family: inherit;
     border: none;
     cursor: pointer;
+    background: none;
+}
+
+
+img {
+    max-width: 100%;
+}
+
+
+:focus-visible {
+
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    *, *::before, *::after {
+
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+
+    }
+
 }
 
 
@@ -89,7 +136,9 @@ button {
 
     overflow: hidden;
 
-    border-radius: 30px;
+    border-radius: var(--r-lg);
+
+    box-shadow: var(--shadow-lg);
 
 }
 
@@ -103,6 +152,8 @@ button {
     object-fit: cover;
 
     display: block;
+
+    transform: scale(1.02);
 
 }
 
@@ -118,8 +169,9 @@ button {
     background:
         linear-gradient(
             90deg,
-            rgba(43, 23, 13, .75),
-            rgba(43, 23, 13, .05)
+            rgba(43, 23, 13, .82) 0%,
+            rgba(43, 23, 13, .35) 45%,
+            rgba(43, 23, 13, .05) 75%
         );
 
 }
@@ -137,7 +189,7 @@ button {
 
     transform: translateY(-50%);
 
-    color: white;
+    color: var(--white);
 
     max-width: 450px;
 
@@ -146,22 +198,53 @@ button {
 
 .hero-overlay span {
 
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
     font-size: 13px;
 
-    letter-spacing: 3px;
+    font-weight: 600;
+
+    letter-spacing: 4px;
 
     color: var(--gold-light);
 
 }
 
 
+.hero-overlay span::before {
+
+    content: "";
+
+    display: inline-block;
+
+    width: 7px;
+
+    height: 7px;
+
+    background: var(--gold-light);
+
+    transform: rotate(45deg);
+
+    border-radius: 2px;
+
+}
+
+
 .hero-overlay h1 {
 
-    font-size: 52px;
+    font-size: 54px;
 
     font-weight: 800;
 
-    margin: 15px 0;
+    line-height: 1.25;
+
+    margin: 18px 0;
+
+    text-shadow: 0 6px 24px rgba(0, 0, 0, .25);
 
 }
 
@@ -170,14 +253,18 @@ button {
 
     font-size: 18px;
 
-    color: #eee;
+    font-weight: 300;
 
-    margin-bottom: 30px;
+    color: #ecece7;
+
+    margin-bottom: 32px;
 
 }
 
 
 .main-btn {
+
+    position: relative;
 
     display: inline-flex;
 
@@ -187,13 +274,38 @@ button {
 
     background: var(--gold);
 
-    color: white;
+    color: var(--white);
 
-    padding: 13px 28px;
+    font-weight: 600;
 
-    border-radius: 10px;
+    font-size: 15px;
 
-    transition: .3s;
+    padding: 14px 32px;
+
+    border-radius: var(--r-sm);
+
+    box-shadow: var(--shadow-gold);
+
+    overflow: hidden;
+
+    transition: transform .35s var(--ease-out), box-shadow .35s var(--ease-out), background .35s var(--ease);
+
+}
+
+
+.main-btn::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,.35) 45%, transparent 70%);
+
+    transform: translateX(-120%);
+
+    transition: transform .7s var(--ease-out);
 
 }
 
@@ -203,6 +315,15 @@ button {
     background: var(--brown);
 
     transform: translateY(-3px);
+
+    box-shadow: var(--shadow-lg);
+
+}
+
+
+.main-btn:hover::before {
+
+    transform: translateX(120%);
 
 }
 
@@ -215,7 +336,7 @@ button {
 
     text-align: center;
 
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 
 }
 
@@ -223,20 +344,52 @@ button {
 .section-title span,
 .products-header span {
 
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
     color: var(--gold);
 
     font-size: 13px;
 
-    font-weight: 600;
+    font-weight: 700;
+
+    letter-spacing: 2.5px;
+
+}
+
+
+.section-title span::before,
+.products-header span::before {
+
+    content: "";
+
+    display: inline-block;
+
+    width: 6px;
+
+    height: 6px;
+
+    background: var(--gold);
+
+    transform: rotate(45deg);
+
+    border-radius: 1px;
 
 }
 
 
 .section-title h2 {
 
-    margin-top: 8px;
+    margin-top: 10px;
 
-    font-size: 28px;
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: var(--brown-dark);
 
 }
 
@@ -259,20 +412,20 @@ button {
     grid-template-columns:
         repeat(7, 1fr);
 
-    gap: 15px;
+    gap: 16px;
 
 }
 
 
 .category-card {
 
-    height: 140px;
+    height: 150px;
 
     background: var(--cream);
 
     border: 1px solid var(--border);
 
-    border-radius: 18px;
+    border-radius: var(--r-md);
 
     display: flex;
 
@@ -282,18 +435,42 @@ button {
 
     justify-content: center;
 
-    gap: 15px;
+    gap: 14px;
 
-    transition: .3s;
+    transition: background .35s var(--ease), border-color .35s var(--ease),
+                transform .35s var(--ease-out), box-shadow .35s var(--ease-out);
+
+}
+
+
+.category-card .icon-wrap {
+
+    width: 52px;
+
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--white);
+
+    transition: background .35s var(--ease);
 
 }
 
 
 .category-card img {
 
-    width: 48px;
+    width: 26px;
 
-    height: 48px;
+    height: 26px;
+
+    transition: filter .35s var(--ease);
 
 }
 
@@ -304,6 +481,10 @@ button {
 
     font-weight: 500;
 
+    color: var(--text);
+
+    transition: color .35s var(--ease);
+
 }
 
 
@@ -311,9 +492,25 @@ button {
 
     background: var(--brown);
 
-    color: white;
+    border-color: var(--brown);
 
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+
+    box-shadow: var(--shadow-md);
+
+}
+
+
+.category-card:hover .icon-wrap {
+
+    background: rgba(255, 255, 255, .12);
+
+}
+
+
+.category-card:hover span {
+
+    color: var(--white);
 
 }
 
@@ -331,13 +528,13 @@ button {
 
 .features {
 
-    margin-top: 80px;
+    margin-top: 85px;
 
     background: var(--cream);
 
-    border-radius: 22px;
+    border-radius: var(--r-lg);
 
-    padding: 25px;
+    padding: 30px;
 
     display: grid;
 
@@ -355,20 +552,20 @@ button {
 
     align-items: center;
 
-    gap: 15px;
+    gap: 16px;
 
 }
 
 
 .feature-icon {
 
-    min-width: 55px;
+    min-width: 56px;
 
-    height: 55px;
+    height: 56px;
 
     border-radius: 50%;
 
-    background: white;
+    background: var(--white);
 
     display: flex;
 
@@ -376,14 +573,16 @@ button {
 
     justify-content: center;
 
+    box-shadow: var(--shadow-sm);
+
 }
 
 
 .feature-icon img {
 
-    width: 28px;
+    width: 26px;
 
-    height: 28px;
+    height: 26px;
 
 }
 
@@ -392,14 +591,18 @@ button {
 
     font-size: 15px;
 
-    margin-bottom: 5px;
+    font-weight: 700;
+
+    color: var(--brown-dark);
+
+    margin-bottom: 6px;
 
 }
 
 
 .feature p {
 
-    font-size: 12px;
+    font-size: 12.5px;
 
     color: var(--text-light);
 
@@ -412,7 +615,7 @@ button {
 
 .products-section {
 
-    margin-top: 100px;
+    margin-top: 105px;
 
 }
 
@@ -425,27 +628,39 @@ button {
 
     align-items: end;
 
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 
 }
 
 
 .products-header h2 {
 
-    margin-top: 6px;
+    margin-top: 8px;
 
     font-size: 28px;
+
+    font-weight: 700;
+
+    color: var(--brown-dark);
 
 }
 
 
 .products-header > a {
 
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
     color: var(--gold);
 
     font-size: 14px;
 
-    transition: .3s;
+    font-weight: 600;
+
+    transition: color .3s var(--ease), gap .3s var(--ease);
 
 }
 
@@ -453,6 +668,8 @@ button {
 .products-header > a:hover {
 
     color: var(--brown);
+
+    gap: 10px;
 
 }
 
@@ -465,43 +682,36 @@ button {
 
     width: 100%;
 
-    padding: 5px 5px 25px;
+    padding: 8px 5px 30px;
 
 }
 
 
 .products-section .swiper-slide {
 
-    height: auto;
+    height: 200px;
 
 }
 
 
 /*
-   این قسمت مهمه
-
-   دسکتاپ:
-   4 محصول کنار هم
-
-   تبلت:
-   3 محصول
-
-   موبایل:
-   2 محصول
+   دسکتاپ: 4 محصول کنار هم
+   تبلت:   3 محصول
+   موبایل: 2 محصول
 */
 
 
 .product-card {
 
-    background: white;
+    background: var(--white);
 
     border: 1px solid var(--border);
 
-    border-radius: 18px;
+    border-radius: var(--r-md);
 
     overflow: hidden;
 
-    transition: .35s;
+    transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out), border-color .4s var(--ease);
 
     height: 100%;
 
@@ -510,10 +720,11 @@ button {
 
 .product-card:hover {
 
-    transform: translateY(-6px);
+    transform: translateY(-8px);
 
-    box-shadow:
-        0 15px 35px rgba(43, 23, 13, .12);
+    border-color: transparent;
+
+    box-shadow: var(--shadow-lg);
 
 }
 
@@ -547,7 +758,7 @@ button {
 
     display: block;
 
-    transition: .5s;
+    transition: transform .6s var(--ease-out);
 
 }
 
@@ -555,7 +766,7 @@ button {
 .product-card:hover
 .product-image img {
 
-    transform: scale(1.05);
+    transform: scale(1.08);
 
 }
 
@@ -578,11 +789,13 @@ button {
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,.9);
+    background: rgba(255, 255, 255, .92);
+
+    backdrop-filter: blur(4px);
 
     color: var(--brown);
 
-    font-size: 22px;
+    font-size: 20px;
 
     display: flex;
 
@@ -592,7 +805,9 @@ button {
 
     z-index: 2;
 
-    transition: .3s;
+    box-shadow: var(--shadow-sm);
+
+    transition: background .3s var(--ease), color .3s var(--ease), transform .3s var(--ease-out);
 
 }
 
@@ -601,7 +816,18 @@ button {
 
     background: var(--brown);
 
-    color: white;
+    color: var(--white);
+
+    transform: scale(1.1);
+
+}
+
+
+.favorite.active {
+
+    background: var(--gold);
+
+    color: var(--white);
 
 }
 
@@ -612,7 +838,7 @@ button {
 
 .product-info {
 
-    padding: 16px;
+    padding: 18px;
 
 }
 
@@ -623,7 +849,9 @@ button {
 
     font-weight: 600;
 
-    margin-bottom: 18px;
+    color: var(--text);
+
+    margin-bottom: 20px;
 
 }
 
@@ -652,11 +880,11 @@ button {
 
 .cart-btn {
 
-    width: 40px;
+    width: 42px;
 
-    height: 40px;
+    height: 42px;
 
-    border-radius: 10px;
+    border-radius: var(--r-sm);
 
     background: var(--cream);
 
@@ -666,23 +894,27 @@ button {
 
     justify-content: center;
 
-    transition: .3s;
+    transition: background .3s var(--ease), transform .3s var(--ease-out);
 
 }
 
 
 .cart-btn img {
 
-    width: 21px;
+    width: 20px;
 
-    height: 21px;
+    height: 20px;
+
+    transition: filter .3s var(--ease);
 
 }
 
 
 .cart-btn:hover {
 
-    background: var(--brown);
+    background: var(--gold);
+
+    transform: scale(1.06);
 
 }
 
@@ -701,17 +933,19 @@ button {
 .products-section .swiper-button-next,
 .products-section .swiper-button-prev {
 
-    width: 42px;
+    width: 44px;
 
-    height: 42px;
+    height: 44px;
 
-    background: white;
+    background: var(--white);
 
     border: 1px solid var(--border);
 
     border-radius: 50%;
 
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    box-shadow: var(--shadow-sm);
+
+    transition: background .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease-out);
 
 }
 
@@ -719,11 +953,13 @@ button {
 .products-section .swiper-button-next::after,
 .products-section .swiper-button-prev::after {
 
-    font-size: 16px;
+    font-size: 15px;
 
     font-weight: bold;
 
     color: var(--brown);
+
+    transition: color .3s var(--ease);
 
 }
 
@@ -733,13 +969,17 @@ button {
 
     background: var(--brown);
 
+    border-color: var(--brown);
+
+    transform: scale(1.05);
+
 }
 
 
 .products-section .swiper-button-next:hover::after,
 .products-section .swiper-button-prev:hover::after {
 
-    color: white;
+    color: var(--white);
 
 }
 
@@ -756,9 +996,11 @@ button {
 
     height: 430px;
 
-    margin-top: 100px;
+    margin-top: 105px;
 
     overflow: hidden;
+
+    border-radius: var(--r-lg);
 
 }
 
@@ -785,8 +1027,9 @@ button {
     background:
         linear-gradient(
             90deg,
-            rgba(43,23,13,.85),
-            rgba(43,23,13,.1)
+            rgba(43, 23, 13, .88) 0%,
+            rgba(43, 23, 13, .4) 50%,
+            rgba(43, 23, 13, .05) 80%
         );
 
 }
@@ -804,7 +1047,7 @@ button {
 
     transform: translateY(-50%);
 
-    color: white;
+    color: var(--white);
 
     max-width: 430px;
 
@@ -813,11 +1056,36 @@ button {
 
 .banner-text span {
 
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
     color: var(--gold-light);
 
     font-size: 12px;
 
-    letter-spacing: 2px;
+    font-weight: 600;
+
+    letter-spacing: 2.5px;
+
+}
+
+
+.banner-text span::before {
+
+    content: "";
+
+    width: 6px;
+
+    height: 6px;
+
+    background: var(--gold-light);
+
+    transform: rotate(45deg);
+
+    border-radius: 1px;
 
 }
 
@@ -826,7 +1094,9 @@ button {
 
     font-size: 36px;
 
-    margin: 12px 0;
+    font-weight: 700;
+
+    margin: 14px 0;
 
 }
 
@@ -835,9 +1105,11 @@ button {
 
     color: #eee;
 
+    font-weight: 300;
+
     line-height: 2;
 
-    margin-bottom: 25px;
+    margin-bottom: 26px;
 
 }
 
@@ -962,7 +1234,7 @@ button {
 
     .category-card {
 
-        height: 110px;
+        height: 115px;
 
         border-radius: 14px;
 
@@ -971,11 +1243,20 @@ button {
     }
 
 
+    .category-card .icon-wrap {
+
+        width: 40px;
+
+        height: 40px;
+
+    }
+
+
     .category-card img {
 
-        width: 35px;
+        width: 20px;
 
-        height: 35px;
+        height: 20px;
 
     }
 
@@ -992,9 +1273,9 @@ button {
         grid-template-columns:
             repeat(2, 1fr);
 
-        padding: 15px;
+        padding: 16px;
 
-        gap: 15px;
+        gap: 16px;
 
     }
 
@@ -1045,11 +1326,7 @@ button {
     }
 
 
-    /*
-       مهم:
-
-       روی موبایل 2 محصول کنار هم
-    */
+    /* موبایل: 2 محصول کنار هم */
 
     .product-image {
 
@@ -1060,7 +1337,7 @@ button {
 
     .product-info {
 
-        padding: 11px;
+        padding: 12px;
 
     }
 
@@ -1069,32 +1346,32 @@ button {
 
         font-size: 12px;
 
-        margin-bottom: 12px;
+        margin-bottom: 14px;
 
     }
 
 
     .price {
 
-        font-size: 10px;
+        font-size: 10.5px;
 
     }
 
 
     .cart-btn {
 
-        width: 32px;
+        width: 34px;
 
-        height: 32px;
+        height: 34px;
 
     }
 
 
     .cart-btn img {
 
-        width: 17px;
+        width: 16px;
 
-        height: 17px;
+        height: 16px;
 
     }
 
@@ -1105,7 +1382,7 @@ button {
 
         height: 30px;
 
-        font-size: 17px;
+        font-size: 16px;
 
     }
 
@@ -1113,9 +1390,9 @@ button {
     .products-section .swiper-button-next,
     .products-section .swiper-button-prev {
 
-        width: 34px;
+        width: 36px;
 
-        height: 34px;
+        height: 36px;
 
     }
 
@@ -1133,6 +1410,8 @@ button {
         height: 360px;
 
         margin-top: 65px;
+
+        border-radius: 16px;
 
     }
 
