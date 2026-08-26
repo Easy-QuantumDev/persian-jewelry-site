@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+{% extends 'base/base.html' %}
+{% load static %}
 
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,6 @@
     >
 
     <!-- CSS -->
-    <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
@@ -40,7 +40,7 @@
             <div class="hero-content">
 
                 <img
-                    src="./image/ChatGPT Image Jul 28, 2026, 02_22_59 PM.png"
+                    src="{% static 'image/ChatGPT Image Jul 28, 2026, 02_22_59 PM.png' %}"
                     alt="کلکسیون جدید"
                     class="hero-image"
                 >
@@ -86,37 +86,37 @@
             <div class="categories-grid">
 
                 <a href="#" class="category-card">
-                    <img src="./icons/neckles.svg" alt="گردنبند">
+                    <img src="{% static 'icons/neckles.svg' %}" alt="گردنبند">
                     <span>گردنبند</span>
                 </a>
 
                 <a href="#" class="category-card">
-                    <img src="./icons/dastband.svg" alt="دستبند">
+                    <img src="{% static 'icons/dastband.svg' %}" alt="دستبند">
                     <span>دستبند</span>
                 </a>
 
                 <a href="#" class="category-card">
-                    <img src="./icons/eare.svg" alt="گوشواره">
+                    <img src="{% static 'icons/eare.svg' %}" alt="گوشواره">
                     <span>گوشواره</span>
                 </a>
 
                 <a href="#" class="category-card">
-                    <img src="./icons/ring.svg" alt="انگشتر">
+                    <img src="{% static 'icons/ring.svg' %}" alt="انگشتر">
                     <span>انگشتر</span>
                 </a>
 
                 <a href="#" class="category-card">
-                    <img src="./icons/set.svg" alt="ست">
+                    <img src="{% static 'icons/set.svg' %}" alt="ست">
                     <span>ست‌ها</span>
                 </a>
 
                 <a href="#" class="category-card">
-                    <img src="./icons/papand.svg" alt="پابند">
+                    <img src="{% static 'icons/papand.svg' %}" alt="پابند">
                     <span>پابند</span>
                 </a>
 
                 <a href="#" class="category-card">
-                    <img src="./icons/sanjagh.svg" alt="سنجاق">
+                    <img src="{% static 'icons/sanjagh.svg' %}" alt="سنجاق">
                     <span>سنجاق و گیره</span>
                 </a>
 
@@ -132,7 +132,7 @@
             <div class="feature">
 
                 <div class="feature-icon">
-                    <img src="./icons/mail-car.svg" alt="">
+                    <img src="{% static 'icons/mail-car.svg' %}" alt="">
                 </div>
 
                 <div>
@@ -146,7 +146,7 @@
             <div class="feature">
 
                 <div class="feature-icon">
-                    <img src="./icons/headphone.svg" alt="">
+                    <img src="{% static 'icons/headphone.svg' %}" alt="">
                 </div>
 
                 <div>
@@ -160,7 +160,7 @@
             <div class="feature">
 
                 <div class="feature-icon">
-                    <img src="./icons/credit-card.svg" alt="">
+                    <img src="{% static 'icons/credit-card.svg' %}" alt="">
                 </div>
 
                 <div>
@@ -174,7 +174,7 @@
             <div class="feature">
 
                 <div class="feature-icon">
-                    <img src="./icons/trust.svg" alt="">
+                    <img src="{% static 'icons/trust.svg' %}" alt="">
                 </div>
 
                 <div>
@@ -223,7 +223,7 @@
                                 <div class="product-image">
 
                                     <img
-                                        src="./image/necklace-1.jpg"
+                                        src="{% static 'image/necklace-1.jpg' %}"
                                         alt="گردنبند"
                                     >
 
@@ -247,7 +247,7 @@
 
                                         <button class="cart-btn">
                                             <img
-                                                src="./icons/cart2.svg"
+                                                src="{% static 'icons/cart2.svg' %}"
                                                 alt="افزودن به سبد"
                                             >
                                         </button>
@@ -269,7 +269,7 @@
                                 <div class="product-image">
 
                                     <img
-                                        src="./image/necklace-2.jpg"
+                                        src="{% static 'image/necklace-2.jpg' %}"
                                         alt="گردنبند"
                                     >
 
@@ -292,7 +292,7 @@
                                         </span>
 
                                         <button class="cart-btn">
-                                            <img src="./icons/cart2.svg" alt="">
+                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
                                         </button>
 
                                     </div>
@@ -312,7 +312,7 @@
                                 <div class="product-image">
 
                                     <img
-                                        src="./image/necklace-5.jpg"
+                                        src="{% static 'image/necklace-5.jpg' %}"
                                         alt="گردنبند"
                                     >
 
@@ -335,7 +335,7 @@
                                         </span>
 
                                         <button class="cart-btn">
-                                            <img src="./icons/cart2.svg" alt="">
+                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
                                         </button>
 
                                     </div>
@@ -355,7 +355,7 @@
                                 <div class="product-image">
 
                                     <img
-                                        src="./image/necklace-3jpg.jpg"
+                                        src="{% static 'image/necklace-3jpg.jpg' %}"
                                         alt="گردنبند"
                                     >
 
@@ -378,7 +378,7 @@
                                         </span>
 
                                         <button class="cart-btn">
-                                            <img src="./icons/cart2.svg" alt="">
+                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
                                         </button>
 
                                     </div>
@@ -398,7 +398,7 @@
                                 <div class="product-image">
 
                                     <img
-                                        src="./image/necklace-4.jpg"
+                                        src="{% static 'image/necklace-4.jpg' %}"
                                         alt="گردنبند"
                                     >
 
@@ -421,7 +421,7 @@
                                         </span>
 
                                         <button class="cart-btn">
-                                            <img src="./icons/cart2.svg" alt="">
+                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
                                         </button>
 
                                     </div>
@@ -441,7 +441,7 @@
                                 <div class="product-image">
 
                                     <img
-                                        src="./image/necklace-5.jpg"
+                                        src="{% static 'image/necklace-5.jpg' %}"
                                         alt="گردنبند"
                                     >
 
@@ -464,7 +464,7 @@
                                         </span>
 
                                         <button class="cart-btn">
-                                            <img src="./icons/cart2.svg" alt="">
+                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
                                         </button>
 
                                     </div>
@@ -507,7 +507,7 @@
                                         </span>
 
                                         <button class="cart-btn">
-                                            <img src="./icons/cart2.svg" alt="">
+                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
                                         </button>
 
                                     </div>
@@ -527,7 +527,7 @@
                                 <div class="product-image">
 
                                     <img
-                                        src="./image/necklace-2.jpg"
+                                        src="{% static 'image/necklace-2.jpg' %}"
                                         alt="گردنبند"
                                     >
 
@@ -668,7 +668,7 @@
         <section class="collection-banner">
 
             <img
-                src="./image/917488f1-5698-4712-b84f-af6c65b2fe70.png"
+                src="{% static 'image/917488f1-5698-4712-b84f-af6c65b2fe70.png' %}"
                 alt=""
             >
 
@@ -948,7 +948,7 @@
         <section class="collection-banner">
 
             <img
-                src="./image/917488f1-5698-4712-b84f-af6c65b2fe70.png"
+                src="{% static 'image/917488f1-5698-4712-b84f-af6c65b2fe70.png' %}"
                 alt=""
             >
 
@@ -1461,10 +1461,4 @@
 
     <!-- JS -->
 
-    <script src="./swiper.js"></script>
-
-    <script src="./home.js"></script>
-
-</body>
-
-</html>
+{% endblock %}

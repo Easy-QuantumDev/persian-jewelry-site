@@ -11,3 +11,5 @@ def about(request):
 
 def contact(request):
     return render(request, 'contact/contact.html')
+def notfound(request):
+    return render(request, '404/404.html')

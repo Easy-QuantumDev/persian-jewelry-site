@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -11,7 +12,7 @@
     <title>جزئیات سفارش | Jewelry Store</title>
 
     <link rel="stylesheet"
-          href="order-detail.css">
+          href="{% static 'css/order-detail.css' %}">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -733,7 +734,7 @@
 </div>
 
 
-<script src="order-detail.js"></script>
+<script src="{% static 'order-detail.js' %}"></script>
 
 </body>
 

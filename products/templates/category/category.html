@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
 
 <head>
 
@@ -16,8 +17,6 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet"
-          href="category.css">
 
 </head>
 
@@ -95,7 +94,7 @@
 
         <div class="hero-visual">
 
-            <img src="images/category-hero.jpg"
+            <img src="{% static 'images/category-hero.jpg' %}"
                  alt="مجموعه بدلیجات">
 
 
@@ -207,7 +206,7 @@
             <a href="#"
                class="gender-card women-card">
 
-                <img src="images/women-jewelry.jpg"
+                <img src="{% static  'image/women-jewelry.jpg' %}"
                      alt="بدلیجات زنانه">
 
 
@@ -246,7 +245,7 @@
             <a href="#"
                class="gender-card men-card">
 
-                <img src="images/men-jewelry.jpg"
+                <img src="{% static  'image/men-jewelry.jpg' %}"
                      alt="بدلیجات مردانه">
 
 
@@ -708,7 +707,7 @@
                                 </button>
 
 
-                                <img src="images/necklace-1.jpg"
+                                <img src="{% static  'images/necklace-1.jpg' %}"
                                      alt="گردنبند ظریف">
 
                             </div>
@@ -972,8 +971,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<script src="category.js"></script>
-
-</body>
-
-</html>
+{% endblock %}

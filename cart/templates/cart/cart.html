@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سبد خرید | Jewelry Store</title>
-    <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
@@ -86,7 +85,4 @@
             <p> هنوز محصولی به سبد خرید اضافه نکرده‌اید. </p> <button> مشاهده محصولات </button>
         </div>
     </div>
-    <script src="cart.js"></script>
-</body>
-
-</html>
+{% endblock %}

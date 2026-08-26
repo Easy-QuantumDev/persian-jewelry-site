@@ -8,7 +8,7 @@
 // DOM ELEMENTS
 // =====================================================
 
-const navItems = document.querySelectorAll(".nav-item");
+const navItems = document.querySelectorAll(".profile-nav .nav-item");
 
 
 // Main sections

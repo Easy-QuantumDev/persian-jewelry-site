@@ -2,102 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72190073-9133-4fc4-ad73-02b2f88e3d97" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/404/404.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/404/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/about/about.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/about/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai-product-preivew.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-for-ai-generator/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend-for-ai-generator/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/base.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/base.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/cart.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/cart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/cart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/category/category.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/category/category.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/category/category.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/category/single-category/single-category.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/category/single-category/single-category.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/category/single-category/single-category.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/category/single-product-category/single_product.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/category/single-product-category/single_product.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/category/single-product-category/single_product.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/checkout.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/checkout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkout/checkout.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/contact/contact.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/contact/contact.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/contact/contact.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/favorite/favorite.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/favorite/favorite.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/favorite/favorite.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn-Black.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn-Bold.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn-ExtraBold.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn-ExtraLight.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn-Light.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn-Medium.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn-Regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn-SemiBold.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn-Thin.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/Vazirmatn[wght].woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/home.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/home.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/swiper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/card-cart.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/cart.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/cart2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/credit-card.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/dastband.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/eare.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/headphone.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/location.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/locationiconformap.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/mai.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/mail-car.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/neckles.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/papand.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/phone.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/profile.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/ring.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/sanjagh.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/search.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/send.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/set.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/support.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/telegram.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/trust.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/whatsapp.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/917488f1-5698-4712-b84f-af6c65b2fe70.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ChatGPT Image Jul 28, 2026, 02_22_59 PM.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/ChatGPT Image Jul 29, 2026, 02_40_22 AM.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/necklace-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/necklace-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/necklace-3jpg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/necklace-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/necklace-5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-detail.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-detail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-success.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-success.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders/order-success.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-list/product-list.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-list/product-list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-list/product-list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile/profile.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile/profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/profile/profile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/singup/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/singup/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/singup/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/singup/signup.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/singup/signup.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/singup/singup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/favorite/favorite.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/favorite/favorite.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/profile/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/signup-signin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/signup-signin/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/signup-signin/singup.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/signup-signin/singup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/templates/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/cart/templates/cart/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/templates/checkout/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/orders/templates/checkout/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/templates/orders/order-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/orders/templates/orders/order-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/templates/orders/order-success.html" beforeDir="false" afterPath="$PROJECT_DIR$/orders/templates/orders/order-success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/templates/404/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/404/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/templates/about/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/about/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/base/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/templates/contact/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/contact/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/templates/category/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/category/category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/templates/category/single-category/single-category.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/category/single-category/single-category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/templates/category/single-product-category/single_product.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/category/single-product-category/single_product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/templates/product-list/product-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/products/templates/product-list/product-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/profile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +67,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fastapi-course" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -139,7 +78,11 @@
       <option name="presentableId" value="Default" />
       <updated>1787400151490</updated>
       <workItem from="1787400154930" duration="260000" />
-      <workItem from="1787400451056" duration="3395000" />
+      <workItem from="1787400451056" duration="3476000" />
+      <workItem from="1787488092093" duration="34000" />
+      <workItem from="1787512639055" duration="5241000" />
+      <workItem from="1787663542788" duration="6194000" />
+      <workItem from="1787736108953" duration="48000" />
     </task>
     <servers />
   </component>

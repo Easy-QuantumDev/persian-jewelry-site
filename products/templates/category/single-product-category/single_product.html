@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
 <head>
 
     <meta charset="UTF-8">
@@ -8,7 +8,6 @@
 
     <title>گردنبند مرواریدی رزگلد | Jewelry Store</title>
 
-    <link rel="stylesheet" href="single_product.css">
 
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
@@ -70,7 +69,7 @@
 
                         <img
                             id="mainProductImage"
-                            src="./images/necklace-1.jpg"
+                            src=" {% static 'images/necklace-1.jpg' %}"
                             alt="گردنبند مرواریدی رزگلد">
 
                     </div>
@@ -108,7 +107,7 @@
                         data-image="./images/necklace-1.jpg">
 
                         <img
-                            src="./images/necklace-1.jpg"
+                            src="{% static 'images/necklace-1.jpg' %}"
                             alt="تصویر محصول">
 
                     </button>
@@ -937,49 +936,10 @@
 
 
 
-    <!-- =================================================
-         FOOTER
-    ================================================== -->
-
-    <footer class="product-footer">
-
-        <div class="container">
-
-            <div class="footer-content">
-
-                <div>
-
-                    <h3>
-                        Jewelry Store
-                    </h3>
-
-                    <p>
-                        ظرافتی برای هر لحظه.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <span>
-                        © 2026 Jewelry Store
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
 </div>
 
 
 
-<script src="./single_product.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -987,7 +947,4 @@
 
 
 
-
-</body>
-
-</html>
+{% endblock %}
