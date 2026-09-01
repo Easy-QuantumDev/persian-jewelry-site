@@ -207,7 +207,7 @@
                     <span>2</span>
 
                     <small>
-                        امنیت
+                        تایید شماره
                     </small>
 
                 </div>
@@ -221,6 +221,20 @@
                     <span>3</span>
 
                     <small>
+                        امنیت
+                    </small>
+
+                </div>
+
+
+                <div class="progress-line"></div>
+
+
+                <div class="progress-step">
+
+                    <span>4</span>
+
+                    <small>
                         تکمیل
                     </small>
 
@@ -231,8 +245,8 @@
 
             <!-- FORM -->
 
-            <form id="signupForm">
-
+            <form id="signupForm" method="post" >
+            {% csrf_token %}
 
                 <!-- STEP 1 -->
 
@@ -259,6 +273,8 @@
                                 type="text"
                                 id="name"
                                 placeholder="نام خود را وارد کنید"
+                                name="first-and-last-name"
+                                required
                             >
 
                         </div>
@@ -284,6 +300,7 @@
                                 type="email"
                                 id="email"
                                 placeholder="example@email.com"
+                                name="email"
                             >
 
                         </div>
@@ -309,11 +326,133 @@
 
 
 
-                <!-- STEP 2 -->
+                <!-- STEP 2 - PHONE VERIFICATION -->
 
                 <div
                     class="form-step"
                     data-step="2"
+                >
+
+                    <!-- PHONE -->
+
+                    <div class="input-group">
+
+                        <label>
+                            شماره موبایل
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                ☎
+                            </span>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="09xxxxxxxxx"
+                                name="phone"
+                                maxlength="11"
+                                inputmode="numeric"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="send-code-btn"
+                        id="sendCodeBtn"
+                    >
+                        ارسال کد تایید
+                    </button>
+
+
+                    <!-- OTP -->
+
+                    <div
+                        class="input-group otp-group"
+                        id="otpGroup"
+                    >
+
+                        <label>
+                            کد تایید
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+                                ✦
+                            </span>
+
+                            <input
+                                type="text"
+                                id="otpCode"
+                                placeholder="کد ۵ رقمی"
+                                name="otp-code"
+                                maxlength="5"
+                                inputmode="numeric"
+                            >
+
+                        </div>
+
+                        <div class="resend-row">
+
+                            <small id="resendTimer">
+                                ارسال مجدد تا ۰۰:۶۰
+                            </small>
+
+                            <button
+                                type="button"
+                                class="resend-btn"
+                                id="resendBtn"
+                                disabled
+                            >
+                                ارسال مجدد
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="step-buttons">
+
+                        <button
+                            type="button"
+                            class="back-btn"
+                            id="backToStep1"
+                        >
+                            → بازگشت
+                        </button>
+
+                        <button
+                            type="button"
+                            class="next-btn"
+                            id="nextStep2"
+                        >
+
+                            ادامه
+
+                            <strong>
+                                ←
+                            </strong>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STEP 3 -->
+
+                <div
+                    class="form-step"
+                    data-step="3"
                 >
 
                     <!-- PASSWORD -->
@@ -334,12 +473,14 @@
                                 type="password"
                                 id="password"
                                 placeholder="رمز عبور"
+                                name="password"
                             >
 
                             <button
                                 type="button"
                                 class="show-password"
                                 data-target="password"
+
                             >
                                 ◉
                             </button>
@@ -367,6 +508,7 @@
                                 type="password"
                                 id="confirmPassword"
                                 placeholder="رمز عبور را دوباره وارد کنید"
+                                name="password-repeat"
                             >
 
                             <button
@@ -410,7 +552,7 @@
                         </button>
 
                         <button
-                            type="button"
+                            type="submit"
                             class="next-btn"
                             id="createAccount"
                         >
@@ -429,11 +571,11 @@
 
 
 
-                <!-- STEP 3 -->
+                <!-- STEP 4 -->
 
                 <div
                     class="form-step success-step"
-                    data-step="3"
+                    data-step="4"
                 >
 
                     <div class="success-icon">

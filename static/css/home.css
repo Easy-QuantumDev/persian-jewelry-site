@@ -274,7 +274,7 @@ img {
 
     background: var(--gold);
 
-    color: var(--white);
+    color: var(--white) !important;
 
     font-weight: 600;
 
@@ -1131,7 +1131,12 @@ img {
     .hero-overlay h1 {
 
         font-size: 40px;
+        color: white !important;
 
+
+    }
+    .hero-title{
+        color: white;
     }
 
 

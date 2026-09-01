@@ -131,13 +131,14 @@ select {
     font-size: clamp(32px, 5vw, 55px);
 
     margin: 15px 0;
+    color: white !important;
 
 }
 
 
 .hero-content h1 strong {
 
-    color: var(--gold-light);
+    color: white;
 
 }
 

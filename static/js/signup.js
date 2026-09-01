@@ -102,12 +102,175 @@ nextStep.addEventListener("click", () => {
 
 
 /* =========================
-   BACK
+   STEP 2 - PHONE VERIFICATION
+========================= */
+
+const phoneInput =
+    document.querySelector("#phone");
+
+const sendCodeBtn =
+    document.querySelector("#sendCodeBtn");
+
+const otpGroup =
+    document.querySelector("#otpGroup");
+
+const otpCodeInput =
+    document.querySelector("#otpCode");
+
+const resendBtn =
+    document.querySelector("#resendBtn");
+
+const resendTimer =
+    document.querySelector("#resendTimer");
+
+const backToStep1 =
+    document.querySelector("#backToStep1");
+
+const nextStep2 =
+    document.querySelector("#nextStep2");
+
+
+let generatedCode = null;
+
+let codeVerified = false;
+
+let resendInterval = null;
+
+
+function isValidPhone(value) {
+
+    return /^09\d{9}$/.test(value.trim());
+
+}
+
+
+function startResendCountdown() {
+
+    let seconds = 60;
+
+    sendCodeBtn.disabled = true;
+
+    resendBtn.disabled = true;
+
+
+    clearInterval(resendInterval);
+
+    resendInterval = setInterval(() => {
+
+        seconds--;
+
+        const mm =
+            String(Math.floor(seconds / 60)).padStart(2, "0");
+
+        const ss =
+            String(seconds % 60).padStart(2, "0");
+
+        resendTimer.textContent =
+            `ارسال مجدد تا ${mm}:${ss}`;
+
+
+        if (seconds <= 0) {
+
+            clearInterval(resendInterval);
+
+            resendBtn.disabled = false;
+
+            resendTimer.textContent =
+                "کد رو دریافت نکردید؟";
+
+        }
+
+    }, 1000);
+
+}
+
+
+function sendCode() {
+
+    if (!isValidPhone(phoneInput.value)) {
+
+        alert("شماره موبایل معتبر نیست. مثال: 09123456789");
+
+        return;
+
+    }
+
+    // TODO: به‌جای این بخش، باید یک درخواست واقعی به بک‌اند/سرویس پیامک زده بشه
+    // مثال: fetch("/accounts/send-code/", { method: "POST", body: ... })
+    generatedCode =
+        String(Math.floor(10000 + Math.random() * 90000));
+
+    codeVerified = false;
+
+    alert(`(نسخه‌ی تستی) کد ارسال‌شده: ${generatedCode}`);
+
+    otpGroup.classList.add("visible");
+
+    otpCodeInput.value = "";
+
+    otpCodeInput.focus();
+
+    startResendCountdown();
+
+}
+
+
+sendCodeBtn.addEventListener("click", sendCode);
+
+
+resendBtn.addEventListener("click", sendCode);
+
+
+nextStep2.addEventListener("click", () => {
+
+    if (!isValidPhone(phoneInput.value)) {
+
+        alert("لطفاً یک شماره موبایل معتبر وارد کنید.");
+
+        return;
+
+    }
+
+
+    if (generatedCode === null) {
+
+        alert("ابتدا روی «ارسال کد تایید» بزنید.");
+
+        return;
+
+    }
+
+
+    if (otpCodeInput.value.trim() !== generatedCode) {
+
+        alert("کد وارد شده صحیح نیست.");
+
+        return;
+
+    }
+
+
+    codeVerified = true;
+
+    changeStep(3);
+
+});
+
+
+backToStep1.addEventListener("click", () => {
+
+    changeStep(1);
+
+});
+
+
+/* =========================
+   BACK (from password step)
 ========================= */
 
 backStep.addEventListener("click", () => {
 
-    changeStep(1);
+    changeStep(2);
 
 });
 
@@ -217,7 +380,9 @@ password.addEventListener("input", () => {
    CREATE ACCOUNT
 ========================= */
 
-createAccount.addEventListener("click", () => {
+createAccount.addEventListener("click", (event) => {
+
+    event.preventDefault();
 
     const passwordValue =
         password.value;
@@ -252,7 +417,7 @@ createAccount.addEventListener("click", () => {
     }
 
 
-    changeStep(3);
+    changeStep(4);
 
 });
 
@@ -299,25 +464,3 @@ showPasswordButtons.forEach(button => {
     });
 
 });
-
-
-/* =========================
-   SUBMIT
-========================= */
-
-signupForm.addEventListener(
-    "submit",
-    event => {
-
-        event.preventDefault();
-
-        console.log(
-            "Account created successfully"
-        );
-
-        // اینجا بعداً API ثبت‌نام
-        // یا بک‌اند Django/Node
-        // را وصل می‌کنیم.
-
-    }
-);
