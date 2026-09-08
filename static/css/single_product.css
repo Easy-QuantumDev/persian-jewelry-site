@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
 /* =========================================================
    VARIABLES
 ========================================================= */
 
 :root {
 
-    --brown-dark: #2d1806;
+    --brown-dark: #532c0b;
     --brown: #8b4309;
     --brown-light: #a96832;
 

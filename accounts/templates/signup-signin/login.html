@@ -144,7 +144,17 @@
                 </div>
 
 
-                <form id="loginForm">
+                <form id="loginForm" method="post" action="{% url 'accounts:login' %}">
+
+                    {% csrf_token %}
+
+                    {% if error %}
+
+                        <p class="form-error">
+                            {{ error }}
+                        </p>
+
+                    {% endif %}
 
                     <!-- Email -->
 
@@ -163,6 +173,7 @@
                             <input
                                 type="email"
                                 id="email"
+                                name="email"
                                 placeholder="example@email.com"
                                 required
                             >
@@ -189,17 +200,19 @@
                             <input
                                 type="password"
                                 id="password"
+                                name="password"
                                 placeholder="رمز عبور خود را وارد کنید"
                                 required
                             >
 
                             <button
-                                type="button"
+                                type="submit"
                                 class="show-password"
                                 id="showPassword"
                             >
                                 ◉
                             </button>
+
 
                         </div>
 
@@ -210,7 +223,7 @@
 
                         <label class="remember">
 
-                            <input type="checkbox">
+                            <input type="checkbox" name="remember_me">
 
                             <span>
                                 مرا به خاطر بسپار
@@ -225,18 +238,19 @@
                     </div>
 
 
-                    <button
-                        type="submit"
-                        class="login-btn"
-                    >
-
-                        <span>
-                            ورود به حساب
-                        </span>
-
-                        <strong>←</strong>
-
-                    </button>
+{#                    <button#}
+{#                        type="submit"#}
+{#                        class="login-btn"#}
+{#                    >#}
+{##}
+{#                        <span>#}
+{#                            ورود به حساب#}
+{#                        </span>#}
+{##}
+{#                        <strong>←</strong>#}
+{##}
+{#                    </button>#}
+                <input type="submit" value="ثبت نام" class="submit_btn">
 
 
                 </form>
@@ -281,7 +295,7 @@
     </div>
 
 
-    <script src="{% static 'js/login.js' %}"></script>
+    <!-- <script src="{% static 'js/login.js' %}"></script> -->
 
 </body>
 

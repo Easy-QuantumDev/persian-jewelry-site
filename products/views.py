@@ -1,4 +1,11 @@
 from django.shortcuts import render
+from .models import  Product
+def products(request):
+    product =Product.objects.all()
+    query = request.POST.get('q')
+    if query:
+        product = product.objects.filter(name__icontains=query)
+        return render(request,'product-list.html',{product:"product"})
 
 
 def product_list(request):

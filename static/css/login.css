@@ -1,11 +1,5 @@
-@font-face {
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 
-    font-family: "vazirmatn";
-
-    src: url("./fonts/Vazirmatn-Medium.woff2")
-    format("woff2");
-
-}
 
 
 :root {
@@ -1491,4 +1485,16 @@ body {
 
     }
 
+}
+.submit_btn{
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    background-color: #532C0BFF;
+    color: white;
+    cursor: pointer;
 }

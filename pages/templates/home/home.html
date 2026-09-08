@@ -1,7 +1,14 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+{% endblock %}
+
 {% block content %}
+
+
 
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -16,6 +23,11 @@
 <link
     rel="stylesheet"
     href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 >
 
     <main>
@@ -214,13 +226,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند ظریف
@@ -228,15 +244,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۱۰۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img
-                                                src="{% static 'icons/cart2.svg' %}"
-                                                alt="افزودن به سبد"
-                                            >
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -260,13 +274,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند مینیمال
@@ -274,12 +292,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۱۵۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -303,13 +322,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند کلاسیک
@@ -317,12 +340,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۱۸۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -346,13 +370,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند طلایی
@@ -360,12 +388,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۲۰۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -389,13 +418,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند سنگی
@@ -403,12 +436,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۲۲۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -432,13 +466,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند مرواریدی
@@ -446,12 +484,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۲۵۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -475,13 +514,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند قلب
@@ -489,12 +532,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۲۸۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -518,13 +562,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند نگین‌دار
@@ -532,12 +580,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۳۰۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -561,13 +610,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند ساده
@@ -575,12 +628,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۳۲۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -604,13 +658,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند جدید
@@ -618,12 +676,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۳۵۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -713,17 +772,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-1.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند ظریف</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۱۵۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۱۵۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -734,17 +802,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-2.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند کلاسیک</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۱۸۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۱۸۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -755,17 +832,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-5.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند سنگی</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۲۰۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۲۰۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -776,17 +862,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-3jpg.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند نگین‌دار</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۲۵۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۲۵۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -797,17 +892,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-4.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند طلایی</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۳۰۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۳۰۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -818,17 +922,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-5.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند مرواریدی</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۳۲۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۳۲۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -839,17 +952,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-1.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند مینیمال</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۳۵۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۳۵۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -860,17 +982,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-2.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند قلب</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۳۸۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۳۸۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -881,17 +1012,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-3jpg.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند مدرن</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۴۰۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۴۰۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -902,17 +1042,26 @@
                         <article class="product-card">
                             <div class="product-image">
                                 <img src="{% static 'image/necklace-4.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
+                                <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                             </div>
 
                             <div class="product-info">
+                                <span class="product-category">
+                                    دستبند
+                                </span>
+
                                 <h3>دستبند ویژه</h3>
 
                                 <div class="product-bottom">
-                                    <span class="price">۴۵۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
+                                    <strong>
+                                            ۴۵۰,۰۰۰ تومان
+                                        </strong>
+                                    <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
                                 </div>
                             </div>
                         </article>
@@ -994,13 +1143,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند ظریف
@@ -1008,15 +1161,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۱۰۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img
-                                                src="{% static 'icons/cart2.svg' %}"
-                                                alt="افزودن به سبد"
-                                            >
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1040,13 +1191,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند مینیمال
@@ -1054,12 +1209,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۱۵۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1083,13 +1239,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند کلاسیک
@@ -1097,12 +1257,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۱۸۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1126,13 +1287,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند طلایی
@@ -1140,12 +1305,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۲۰۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1169,13 +1335,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند سنگی
@@ -1183,12 +1353,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۲۲۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1212,13 +1383,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند مرواریدی
@@ -1226,12 +1401,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۲۵۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1255,13 +1431,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند قلب
@@ -1269,12 +1449,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۲۸۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1298,13 +1479,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند نگین‌دار
@@ -1312,12 +1497,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۳۰۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1341,13 +1527,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند ساده
@@ -1355,12 +1545,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۳۲۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1384,13 +1575,17 @@
                                         alt="گردنبند"
                                     >
 
-                                    <button class="favorite">
-                                        ♡
+                                    <button class="product-like">
+                                        <i class="fa-regular fa-heart"></i>
                                     </button>
 
                                 </div>
 
                                 <div class="product-info">
+
+                                    <span class="product-category">
+                                        گردنبند
+                                    </span>
 
                                     <h3>
                                         گردنبند جدید
@@ -1398,12 +1593,13 @@
 
                                     <div class="product-bottom">
 
-                                        <span class="price">
+                                        <strong>
                                             ۳۵۰,۰۰۰ تومان
-                                        </span>
+                                        </strong>
 
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
+                                        <button class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
                                         </button>
 
                                     </div>
@@ -1428,12 +1624,21 @@
 
         </section>
 
-        
+
 
     </main>
 
 
 
-    <!-- JS -->
+{% endblock %}
+
+
+{% block extra_js %}
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script src="{% static 'js/home.js' %}"></script>
 
 {% endblock %}

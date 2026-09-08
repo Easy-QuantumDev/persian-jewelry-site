@@ -1,7 +1,4 @@
-@font-face {
-    font-family: "vazirmatn";
-    src: url(../fonts/Vazirmatn-Medium.woff2) format("woff2");
-}
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 
 
 :root{

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 
 /* =========================================
                 VARIABLES
@@ -398,7 +399,8 @@ a {
 ========================================= */
 
 .login-btn {
-
+    outline: none;
+    border: none;
     height: 40px;
 
     padding: 0 22px;
@@ -1942,3 +1944,6 @@ body.search-open {
     }
 
 }
+.exit_btn{
+}
+

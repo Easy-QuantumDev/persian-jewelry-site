@@ -18,11 +18,113 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
+       PRODUCT SLIDERS (SWIPER)
+       این بخش قبلاً وجود نداشت و باعث می‌شد
+       اسلایدرهای محصولات به‌صورت لیست بهم‌ریخته
+       (زیر هم / تمام‌عرض) نمایش داده بشن.
+    ========================================= */
+
+    if (typeof Swiper !== "undefined") {
+
+        // تنظیمات مشترک برای اسلایدرهای محصول
+        // دسکتاپ: 4 محصول کنار هم
+        // تبلت:   3 محصول
+        // موبایل: 2 محصول
+        const productSliderBreakpoints = {
+
+            0: {
+                slidesPerView: 2,
+                spaceBetween: 12
+            },
+
+            600: {
+                slidesPerView: 3,
+                spaceBetween: 16
+            },
+
+            992: {
+                slidesPerView: 4,
+                spaceBetween: 20
+            }
+
+        };
+
+
+        // اسلایدر گردنبند (بخش اول)
+
+        if (document.querySelector(".necklace-swiper")) {
+
+            new Swiper(".necklace-swiper", {
+
+                slidesPerView: 2,
+                spaceBetween: 12,
+                breakpoints: productSliderBreakpoints,
+
+                navigation: {
+                    nextEl: ".necklace-next",
+                    prevEl: ".necklace-prev"
+                }
+
+            });
+
+        }
+
+
+        // اسلایدر دستبند
+
+        if (document.querySelector(".bracelet-swiper")) {
+
+            new Swiper(".bracelet-swiper", {
+
+                slidesPerView: 2,
+                spaceBetween: 12,
+                breakpoints: productSliderBreakpoints,
+
+                navigation: {
+                    nextEl: ".bracelet-next",
+                    prevEl: ".bracelet-prev"
+                }
+
+            });
+
+        }
+
+
+        // اسلایدر گردنبند (بخش دوم)
+
+        if (document.querySelector(".necklace-swiper-2")) {
+
+            new Swiper(".necklace-swiper-2", {
+
+                slidesPerView: 2,
+                spaceBetween: 12,
+                breakpoints: productSliderBreakpoints,
+
+                navigation: {
+                    nextEl: ".necklace-next-2",
+                    prevEl: ".necklace-prev-2"
+                }
+
+            });
+
+        }
+
+    } else {
+
+        console.warn(
+            "Swiper بارگذاری نشده — کتابخانه swiper-bundle.min.js را قبل از home.js اضافه کنید."
+        );
+
+    }
+
+
+
+    /* =========================================
        FAVORITE PRODUCTS
     ========================================= */
 
     const favoriteButtons =
-        document.querySelectorAll(".favorite");
+        document.querySelectorAll(".product-like");
 
 
     favoriteButtons.forEach((button) => {
@@ -37,9 +139,18 @@ document.addEventListener("DOMContentLoaded", () => {
             button.classList.toggle("active");
 
 
+            const icon =
+                button.querySelector("i");
+
+
             if (button.classList.contains("active")) {
 
-                button.innerHTML = "♥";
+                if (icon) {
+
+                    icon.classList.remove("fa-regular");
+                    icon.classList.add("fa-solid");
+
+                }
 
                 button.setAttribute(
                     "aria-label",
@@ -48,7 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } else {
 
-                button.innerHTML = "♡";
+                if (icon) {
+
+                    icon.classList.remove("fa-solid");
+                    icon.classList.add("fa-regular");
+
+                }
 
                 button.setAttribute(
                     "aria-label",
@@ -68,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================= */
 
     const cartButtons =
-        document.querySelectorAll(".cart-btn");
+        document.querySelectorAll(".add-cart");
 
 
     cartButtons.forEach((button) => {
@@ -233,8 +349,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // کلیک شده، وارد محصول نشو
 
             if (
-                event.target.closest(".favorite") ||
-                event.target.closest(".cart-btn")
+                event.target.closest(".product-like") ||
+                event.target.closest(".add-cart")
             ) {
 
                 return;

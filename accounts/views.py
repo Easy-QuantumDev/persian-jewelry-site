@@ -10,9 +10,19 @@ def loggin(request):
     if request.method == 'POST':
         email = request.POST.get("email")
         password = request.POST.get("password")
+        if not email or not password:
+            return render(request, 'signup-signin/login.html', context={
+                'error': 'لطفاً ایمیل و رمز عبور را وارد کنید.'
+            })
         user = authenticate(request,username=email,password=password)
+
         if user is not None:
             login(request,user)
+            if request.POST.get("remember_me"):
+                request.session.set_expiry(1209600)
+            else:
+                request.session.set_expiry(0)
+
             return redirect('pages:home')
         return render(request,'signup-signin/login.html',context={'error':'ایمیل یا پسورد اشباه است'})
     return render(request, 'signup-signin/login.html')
