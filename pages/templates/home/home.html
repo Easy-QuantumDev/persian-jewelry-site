@@ -18,6 +18,11 @@
     href="https://unpkg.com/aos@2.3.4/dist/aos.css"
 >
 
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
     <main>
 
         <!-- ================= HERO ================= -->
@@ -44,7 +49,7 @@
                         زیبایی در جزئیات است.
                     </p>
 
-                    <a href="#" class="main-btn">
+                    <a href="{% url 'products:product-list' %}" class="main-btn">
                         مشاهده محصولات
                     </a>
 
@@ -72,40 +77,18 @@
 
             <div class="categories-grid">
 
-                <a href="#" class="category-card">
-                    <div class="icon-wrap"><img src="{% static 'icons/neckles.svg' %}" alt="گردنبند"></div>
-                    <span>گردنبند</span>
+                {% for category in categories %}
+                <a href="{% url 'products:single-category' category.slug %}" class="category-card">
+                    <div class="icon-wrap">
+                        {% if category.image %}
+                            <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                        {% else %}
+                            <i class="fa-solid fa-gem"></i>
+                        {% endif %}
+                    </div>
+                    <span>{{ category.name }}</span>
                 </a>
-
-                <a href="#" class="category-card">
-                    <div class="icon-wrap"><img src="{% static 'icons/dastband.svg' %}" alt="دستبند"></div>
-                    <span>دستبند</span>
-                </a>
-
-                <a href="#" class="category-card">
-                    <div class="icon-wrap"><img src="{% static 'icons/eare.svg' %}" alt="گوشواره"></div>
-                    <span>گوشواره</span>
-                </a>
-
-                <a href="#" class="category-card">
-                    <div class="icon-wrap"><img src="{% static 'icons/ring.svg' %}" alt="انگشتر"></div>
-                    <span>انگشتر</span>
-                </a>
-
-                <a href="#" class="category-card">
-                    <div class="icon-wrap"><img src="{% static 'icons/set.svg' %}" alt="ست"></div>
-                    <span>ست‌ها</span>
-                </a>
-
-                <a href="#" class="category-card">
-                    <div class="icon-wrap"><img src="{% static 'icons/papand.svg' %}" alt="پابند"></div>
-                    <span>پابند</span>
-                </a>
-
-                <a href="#" class="category-card">
-                    <div class="icon-wrap"><img src="{% static 'icons/sanjagh.svg' %}" alt="سنجاق"></div>
-                    <span>سنجاق و گیره</span>
-                </a>
+                {% endfor %}
 
             </div>
 
@@ -176,19 +159,20 @@
 
 
         <!-- ================================================= -->
-        <!-- NECKLACE -->
+        <!-- PRODUCT SECTIONS — one per category -->
         <!-- ================================================= -->
 
+        {% for section in sections %}
         <section class="products-section container">
 
             <div class="products-header">
 
                 <div>
                     <span>محبوب‌ترین‌ها</span>
-                    <h2>گردنبند</h2>
+                    <h2>{{ section.category.name }}</h2>
                 </div>
 
-                <a href="#">
+                <a href="{% url 'products:single-category' section.category.slug %}">
                     مشاهده همه
                 </a>
 
@@ -197,22 +181,23 @@
 
             <div class="products-slider">
 
-                <div class="swiper necklace-swiper">
+                <div class="swiper category-{{ section.category.slug }}-swiper">
 
                     <div class="swiper-wrapper">
 
-
-                        <!-- PRODUCT 1 -->
+                        {% for product in section.products %}
                         <div class="swiper-slide">
 
                             <article class="product-card">
 
                                 <div class="product-image">
 
-                                    <img
-                                        src="{% static 'image/necklace-1.jpg' %}"
-                                        alt="گردنبند"
-                                    >
+                                    <a href="{% url 'products:single-product' product.slug %}">
+                                        <img
+                                            src="{{ product.image.url }}"
+                                            alt="{{ product.name }}"
+                                        >
+                                    </a>
 
                                     <button class="favorite">
                                         ♡
@@ -223,21 +208,44 @@
                                 <div class="product-info">
 
                                     <h3>
-                                        گردنبند ظریف
+                                        <a href="{% url 'products:single-product' product.slug %}">
+                                            {{ product.name }}
+                                        </a>
                                     </h3>
+
+                                    <div class="product-links">
+
+                                        <a href="{% url 'products:single-product' product.slug %}" class="link-btn">
+                                            <i class="fa-regular fa-eye"></i>
+                                            <span>مشاهده</span>
+                                        </a>
+
+                                        <a href="{% url 'products:single-category' product.category.slug %}" class="link-btn">
+                                            <i class="fa-solid fa-gem"></i>
+                                            <span>{{ product.category.name }}</span>
+                                        </a>
+
+                                    </div>
 
                                     <div class="product-bottom">
 
                                         <span class="price">
-                                            ۱۰۰,۰۰۰ تومان
+                                            {{ product.price|floatformat:0 }} تومان
                                         </span>
 
-                                        <button class="cart-btn">
-                                            <img
-                                                src="{% static 'icons/cart2.svg' %}"
-                                                alt="افزودن به سبد"
-                                            >
-                                        </button>
+                                        {% if product.stock > 0 %}
+                                        <form method="post" action="{% url 'cart:add_to_cart' product.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="cart-btn">
+                                                <img
+                                                    src="{% static 'icons/cart2.svg' %}"
+                                                    alt="افزودن به سبد"
+                                                >
+                                            </button>
+                                        </form>
+                                        {% else %}
+                                        <span class="out-of-stock">ناموجود</span>
+                                        {% endif %}
 
                                     </div>
 
@@ -246,1194 +254,57 @@
                             </article>
 
                         </div>
-
-
-                        <!-- PRODUCT 2 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-2.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند مینیمال
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۱۵۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 3 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-5.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند کلاسیک
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۱۸۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 4 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-3jpg.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند طلایی
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۲۰۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 5 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-4.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند سنگی
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۲۲۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 6 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-5.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند مرواریدی
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۲۵۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 7 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-1.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند قلب
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۲۸۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 8 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-2.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند نگین‌دار
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۳۰۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 9 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-3jpg.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند ساده
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۳۲۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 10 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-4.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند جدید
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۳۵۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
+                        {% endfor %}
 
                     </div>
 
 
                     <!-- Navigation -->
 
-                    <div class="swiper-button-prev necklace-prev"></div>
-                    <div class="swiper-button-next necklace-next"></div>
+                    <div class="swiper-button-prev category-{{ section.category.slug }}-prev"></div>
+                    <div class="swiper-button-next category-{{ section.category.slug }}-next"></div>
 
                 </div>
 
             </div>
 
         </section>
-
-
-
-        <!-- ================= BANNER ================= -->
-
-        <section class="collection-banner">
-
-            <img
-                src="{% static 'image/917488f1-5698-4712-b84f-af6c65b2fe70.png' %}"
-                alt=""
-            >
-
-            <div class="banner-text">
-
-                <span>NEW COLLECTION</span>
-
-                <h2>
-                    ظرافتی که دیده می‌شود
-                </h2>
-
-                <p>
-                    طراحی مینیمال، استیل ضد حساسیت
-                    و مناسب استفاده روزمره
-                </p>
-
-                <a href="#" class="main-btn">
-                    مشاهده محصولات
-                </a>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================================================= -->
-        <!-- BRACELET -->
-        <!-- ================================================= -->
-
-        <section class="products-section container">
-
-            <div class="products-header">
-
-                <div>
-                    <span>انتخاب کاربران</span>
-                    <h2>دستبند</h2>
-                </div>
-
-                <a href="#">
-                    مشاهده همه
-                </a>
-
-            </div>
-
-
-            <div class="swiper bracelet-swiper">
-
-                <div class="swiper-wrapper">
-
-
-                    <!-- 10 PRODUCT -->
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-1.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند ظریف</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۱۵۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-2.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند کلاسیک</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۱۸۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-5.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند سنگی</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۲۰۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-3jpg.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند نگین‌دار</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۲۵۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-4.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند طلایی</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۳۰۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-5.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند مرواریدی</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۳۲۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-1.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند مینیمال</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۳۵۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-2.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند قلب</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۳۸۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-3jpg.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند مدرن</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۴۰۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <article class="product-card">
-                            <div class="product-image">
-                                <img src="{% static 'image/necklace-4.jpg' %}" alt="">
-                                <button class="favorite">♡</button>
-                            </div>
-
-                            <div class="product-info">
-                                <h3>دستبند ویژه</h3>
-
-                                <div class="product-bottom">
-                                    <span class="price">۴۵۰,۰۰۰ تومان</span>
-                                    <button class="cart-btn">
-                                        <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-
-                </div>
-
-                <div class="swiper-button-prev bracelet-prev"></div>
-                <div class="swiper-button-next bracelet-next"></div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ================= ANOTHER BANNER ================= -->
-
-        <section class="collection-banner">
-
-            <img
-                src="{% static 'image/917488f1-5698-4712-b84f-af6c65b2fe70.png' %}"
-                alt=""
-            >
-
-            <div class="banner-text">
-
-                <span>LIMITED EDITION</span>
-
-                <h2>
-                    برای استایل خاص شما
-                </h2>
-
-                <p>
-                    انتخابی متفاوت برای هر روز
-                </p>
-
-                <a href="#" class="main-btn">
-                    مشاهده مجموعه
-                </a>
-
-            </div>
-
-        </section>
-
-        <section class="products-section container">
-
-            <div class="products-header">
-
-                <div>
-                    <span>محبوب‌ترین‌ها</span>
-                    <h2>گردنبند</h2>
-                </div>
-
-                <a href="#">
-                    مشاهده همه
-                </a>
-
-            </div>
-
-
-            <div class="products-slider">
-
-                <div class="swiper necklace-swiper-2">
-
-                    <div class="swiper-wrapper">
-
-
-                        <!-- PRODUCT 1 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-1.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند ظریف
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۱۰۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img
-                                                src="{% static 'icons/cart2.svg' %}"
-                                                alt="افزودن به سبد"
-                                            >
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 2 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-2.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند مینیمال
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۱۵۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 3 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-5.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند کلاسیک
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۱۸۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 4 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-3jpg.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند طلایی
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۲۰۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 5 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-4.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند سنگی
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۲۲۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 6 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-5.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند مرواریدی
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۲۵۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 7 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-1.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند قلب
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۲۸۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 8 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-2.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند نگین‌دار
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۳۰۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 9 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-3jpg.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند ساده
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۳۲۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-
-                        <!-- PRODUCT 10 -->
-                        <div class="swiper-slide">
-
-                            <article class="product-card">
-
-                                <div class="product-image">
-
-                                    <img
-                                        src="{% static 'image/necklace-4.jpg' %}"
-                                        alt="گردنبند"
-                                    >
-
-                                    <button class="favorite">
-                                        ♡
-                                    </button>
-
-                                </div>
-
-                                <div class="product-info">
-
-                                    <h3>
-                                        گردنبند جدید
-                                    </h3>
-
-                                    <div class="product-bottom">
-
-                                        <span class="price">
-                                            ۳۵۰,۰۰۰ تومان
-                                        </span>
-
-                                        <button class="cart-btn">
-                                            <img src="{% static 'icons/cart2.svg' %}" alt="">
-                                        </button>
-
-                                    </div>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Navigation -->
-
-                    <div class="swiper-button-prev necklace-prev-2"></div>
-                    <div class="swiper-button-next necklace-next-2"></div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        
+        {% endfor %}
 
     </main>
 
 
 
     <!-- JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ once: true });
+
+            document.querySelectorAll('.swiper').forEach(swiperContainer => {
+                const categorySlug = swiperContainer.classList.contains('category-all') 
+                    ? 'all' 
+                    : swiperContainer.classList[1]?.replace('category-', '') || 'all';
+
+                const swiper = new Swiper(swiperContainer, {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                    loop: true,
+                    autoplay: { delay: 2500, disableOnInteraction: false },
+                    navigation: {
+                        nextEl: `.category-${categorySlug}-next`,
+                        prevEl: `.category-${categorySlug}-prev`
+                    },
+                    breakpoints: {
+                        320: { slidesPerView: 2 },
+                        480: { slidesPerView: 3 },
+                        768: { slidesPerView: 4 }
+                    }
+                });
+            });
+        });
+    </script>
 
 {% endblock %}

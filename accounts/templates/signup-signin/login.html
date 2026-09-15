@@ -40,7 +40,6 @@
             <span></span>
         </div>
 
-
         <!-- Model Section -->
 
         <div class="model-section">
@@ -111,7 +110,6 @@
 
         </div>
 
-
         <!-- Login -->
 
         <div class="login-wrapper">
@@ -130,7 +128,6 @@
 
                 </div>
 
-
                 <div class="login-title">
 
                     <span>خوش آمدید</span>
@@ -143,11 +140,20 @@
 
                 </div>
 
+                {% if messages %}
+                <div class="form-errors">
+                    {% for message in messages %}
+                    <p class="error-message" style="color:#e0364b; background:#fdeaec; border:1px solid #f3b6bd; border-radius:8px; padding:10px 14px; font-size:14px; margin-bottom:16px;">
+                        {{ message }}
+                    </p>
+                    {% endfor %}
+                </div>
+                {% endif %}
 
-                <form id="loginForm">
+                <form id="loginForm" method="post">
+                    {% csrf_token %}
 
                     <!-- Email -->
-
                     <div class="input-group">
 
                         <label for="email">
@@ -163,6 +169,7 @@
                             <input
                                 type="email"
                                 id="email"
+                                name="email"
                                 placeholder="example@email.com"
                                 required
                             >
@@ -171,9 +178,7 @@
 
                     </div>
 
-
                     <!-- Password -->
-
                     <div class="input-group">
 
                         <label for="password">
@@ -189,6 +194,7 @@
                             <input
                                 type="password"
                                 id="password"
+                                name="password"
                                 placeholder="رمز عبور خود را وارد کنید"
                                 required
                             >
@@ -204,7 +210,6 @@
                         </div>
 
                     </div>
-
 
                     <div class="login-options">
 
@@ -224,23 +229,9 @@
 
                     </div>
 
-
-                    <button
-                        type="submit"
-                        class="login-btn"
-                    >
-
-                        <span>
-                            ورود به حساب
-                        </span>
-
-                        <strong>←</strong>
-
-                    </button>
-
+                    <input type="submit" value="ورود" class="login-btn">
 
                 </form>
-
 
                 <div class="divider">
 
@@ -252,7 +243,6 @@
 
                 </div>
 
-
                 <div class="register">
 
                     حساب کاربری ندارید؟
@@ -262,7 +252,6 @@
                     </a>
 
                 </div>
-
 
                 <div class="security">
 
@@ -280,8 +269,7 @@
 
     </div>
 
-
-    <script src="{% static 'js/login.js' %}"></script>
+    {% comment %} <script src="{% static 'js/login.js' %}"></script> {% endcomment %}
 
 </body>
 

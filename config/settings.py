@@ -37,11 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # اپ‌های اصلی
     'accounts',
     'products',
     'orders',
     'cart',
-    'pages'
+    'pages',
+
+    # اپ‌های اضافی
+                      # <--- اضافه شد
 ]
 
 MIDDLEWARE = [

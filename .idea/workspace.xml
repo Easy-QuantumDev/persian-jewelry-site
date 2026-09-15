@@ -3,17 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="72190073-9133-4fc4-ad73-02b2f88e3d97" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/profile/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/templates/signup-signin/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/signup-signin/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/templates/signup-signin/singup.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/signup-signin/singup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/base/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/templates/home/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/product-list.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/product-list.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/signup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +37,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../portofilio site" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -64,6 +57,8 @@
       <workItem from="1787787162064" duration="55000" />
       <workItem from="1787849535211" duration="1189000" />
       <workItem from="1788291854068" duration="6654000" />
+      <workItem from="1788871772355" duration="1298000" />
+      <workItem from="1788891828352" duration="24000" />
     </task>
     <servers />
   </component>

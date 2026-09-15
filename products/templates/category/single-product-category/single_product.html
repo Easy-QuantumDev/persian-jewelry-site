@@ -1,950 +1,249 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-<head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>گردنبند مرواریدی رزگلد | Jewelry Store</title>
-
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-</head>
-
-
-<body>
-
-
-<!-- =====================================================
-     PAGE
-===================================================== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <div class="product-page">
 
-
-
-
-    <!-- =================================================
-         PRODUCT MAIN
-    ================================================== -->
-
     <main class="container">
-
         <section class="product-main">
-
 
             <!-- =========================================
                  PRODUCT GALLERY
             ========================================== -->
-
             <div class="product-gallery">
-
-
-                <!-- MAIN IMAGE -->
 
                 <div class="main-image-wrapper">
 
-                    <span class="product-label">
-                        محبوب
-                    </span>
-
-
-                    <button class="gallery-like">
-
-                        <i class="fa-regular fa-heart"></i>
-
-                    </button>
-
+                    <button class="gallery-like"><i class="fa-regular fa-heart"></i></button>
 
                     <div class="main-product-image">
-
-                        <img
-                            id="mainProductImage"
-                            src=" {% static 'images/necklace-1.jpg' %}"
-                            alt="گردنبند مرواریدی رزگلد">
-
+                        <img id="mainProductImage" src="{{ product.image.url }}" alt="{{ product.name }}">
                     </div>
 
-
-                    <!-- IMAGE COUNTER -->
-
+                    {% if gallery_images %}
                     <div class="image-counter">
-
-                        <span id="currentImage">
-                            01
-                        </span>
-
-                        <span>
-                            /
-                        </span>
-
-                        <span>
-                            04
-                        </span>
-
+                        <span id="currentImage">01</span>
+                        <span>/</span>
+                        <span>{{ gallery_images.count|add:1 }}</span>
                     </div>
-
+                    {% endif %}
 
                 </div>
 
-
-
-                <!-- THUMBNAILS -->
-
+                {% if gallery_images %}
                 <div class="product-thumbnails">
 
-
-                    <button class="thumbnail active"
-                        data-image="./images/necklace-1.jpg">
-
-                        <img
-                            src="{% static 'images/necklace-1.jpg' %}"
-                            alt="تصویر محصول">
-
+                    <button class="thumbnail active" data-image="{{ product.image.url }}">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
                     </button>
 
-
-                    <button class="thumbnail"
-                        data-image="./images/necklace-2.jpg">
-
-                        <img
-                            src="./images/necklace-2.jpg"
-                            alt="تصویر محصول">
-
+                    {% for img in gallery_images %}
+                    <button class="thumbnail" data-image="{{ img.image.url }}">
+                        <img src="{{ img.image.url }}" alt="{{ img.alt_text|default:product.name }}">
                     </button>
-
-
-                    <button class="thumbnail"
-                        data-image="./images/necklace-3.jpg">
-
-                        <img
-                            src="./images/necklace-3.jpg"
-                            alt="تصویر محصول">
-
-                    </button>
-
-
-                    <button class="thumbnail"
-                        data-image="./images/necklace-4.jpg">
-
-                        <img
-                            src="./images/necklace-4.jpg"
-                            alt="تصویر محصول">
-
-                    </button>
-
+                    {% endfor %}
 
                 </div>
-
+                {% endif %}
 
             </div>
-
-
 
             <!-- =========================================
                  PRODUCT INFORMATION
             ========================================== -->
-
             <div class="product-information">
 
+                <span class="product-category">{{ product.category.name }}</span>
 
-                <span class="product-category">
-                    گردنبند
-                </span>
-
-
-                <h1>
-                    گردنبند مرواریدی رزگلد
-                </h1>
-
-
-                <div class="product-rating">
-
-                    <div class="stars">
-
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
-
-                    </div>
-
-                    <span>
-                        4.8
-                    </span>
-
-                    <span class="rating-divider">
-                        |
-                    </span>
-
-                    <span>
-                        ۲۳ نظر
-                    </span>
-
-                </div>
-
-
+                <h1>{{ product.name }}</h1>
 
                 <div class="product-description-short">
-
-                    گردنبندی ظریف و خاص با طراحی مینیمال،
-                    ترکیب مروارید درخشان و رنگ رزگلد که
-                    انتخابی مناسب برای استایل‌های روزمره
-                    و مراسم‌های خاص است.
-
+                    {{ product.description|truncatewords:30 }}
                 </div>
-
-
 
                 <div class="product-price">
-
-                    <span>
-                        قیمت محصول
-                    </span>
-
-                    <strong>
-                        ۱,۹۵۰,۰۰۰
-                    </strong>
-
-                    <small>
-                        تومان
-                    </small>
-
+                    <span>قیمت محصول</span>
+                    <strong>{{ product.price|floatformat:0 }}</strong>
+                    <small>تومان</small>
                 </div>
 
+                {% if product.stock > 0 %}
 
+                <form method="post" action="{% url 'cart:add_to_cart' product.id %}" id="addToCartForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="quantity" id="quantityInput" value="1">
 
-                <!-- =====================================
-                     COLOR
-                ====================================== -->
-
-                <div class="option-section">
-
-                    <div class="option-title">
-
-                        <h3>
-                            انتخاب رنگ
-                        </h3>
-
-                        <span id="selectedColor">
-                            رزگلد
-                        </span>
-
+                    <!-- =====================================
+                         QUANTITY
+                    ====================================== -->
+                    <div class="quantity-section">
+                        <h3>تعداد</h3>
+                        <div class="quantity-control">
+                            <button type="button" class="qty-btn" id="minusBtn"><i class="fa-solid fa-minus"></i></button>
+                            <span id="quantity">1</span>
+                            <button type="button" class="qty-btn" id="plusBtn"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <small>{{ product.stock }} عدد موجود</small>
                     </div>
 
-
-                    <div class="color-options">
-
-
-                        <label class="color-option active">
-
-                            <input
-                                type="radio"
-                                name="color"
-                                value="طلایی">
-
-                            <span class="color-circle gold"></span>
-
-                            <span>
-                                طلایی
-                            </span>
-
-                        </label>
-
-
-                        <label class="color-option">
-
-                            <input
-                                type="radio"
-                                name="color"
-                                value="نقره‌ای">
-
-                            <span class="color-circle silver"></span>
-
-                            <span>
-                                نقره‌ای
-                            </span>
-
-                        </label>
-
-
-                        <label class="color-option active-rose">
-
-                            <input
-                                type="radio"
-                                name="color"
-                                value="رزگلد"
-                                checked>
-
-                            <span class="color-circle rose"></span>
-
-                            <span>
-                                رزگلد
-                            </span>
-
-                        </label>
-
-
-                        <label class="color-option">
-
-                            <input
-                                type="radio"
-                                name="color"
-                                value="مشکی">
-
-                            <span class="color-circle black"></span>
-
-                            <span>
-                                مشکی
-                            </span>
-
-                        </label>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =====================================
-                     QUANTITY
-                ====================================== -->
-
-                <div class="quantity-section">
-
-                    <h3>
-                        تعداد
-                    </h3>
-
-
-                    <div class="quantity-control">
-
-                        <button
-                            class="qty-btn"
-                            id="minusBtn">
-
-                            <i class="fa-solid fa-minus"></i>
-
+                    <!-- =====================================
+                         ACTIONS
+                    ====================================== -->
+                    <div class="product-actions">
+                        <button type="submit" class="add-cart-btn">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            افزودن به سبد خرید
                         </button>
 
-
-                        <span id="quantity">
-                            1
-                        </span>
-
-
-                        <button
-                            class="qty-btn"
-                            id="plusBtn">
-
-                            <i class="fa-solid fa-plus"></i>
-
+                        <button type="submit" name="buy_now" value="1" class="buy-now-btn">
+                            خرید فوری
+                            <i class="fa-solid fa-arrow-left"></i>
                         </button>
-
                     </div>
 
-                </div>
+                </form>
 
-
-
-                <!-- =====================================
-                     ACTIONS
-                ====================================== -->
-
+                {% else %}
                 <div class="product-actions">
-
-
-                    <button class="add-cart-btn">
-
-                        <i class="fa-solid fa-bag-shopping"></i>
-
-                        افزودن به سبد خرید
-
-                    </button>
-
-
-                    <button class="buy-now-btn">
-
-                        خرید فوری
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                    </button>
-
-
+                    <button type="button" class="add-cart-btn" disabled>ناموجود</button>
                 </div>
-
-
+                {% endif %}
 
                 <!-- =====================================
-                     FEATURES
+                     FEATURES (static)
                 ====================================== -->
-
                 <div class="product-features">
 
-
                     <div class="feature-item">
-
-                        <div class="feature-icon">
-
-                            <i class="fa-solid fa-truck"></i>
-
-                        </div>
-
+                        <div class="feature-icon"><i class="fa-solid fa-truck"></i></div>
                         <div>
-
-                            <strong>
-                                ارسال رایگان
-                            </strong>
-
-                            <span>
-                                سفارش‌های بالای ۵۰۰ هزار تومان
-                            </span>
-
+                            <strong>ارسال رایگان</strong>
+                            <span>سفارش‌های بالای ۵۰۰ هزار تومان</span>
                         </div>
-
                     </div>
 
-
-
                     <div class="feature-item">
-
-                        <div class="feature-icon">
-
-                            <i class="fa-solid fa-gem"></i>
-
-                        </div>
-
+                        <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
                         <div>
-
-                            <strong>
-                                تضمین کیفیت
-                            </strong>
-
-                            <span>
-                                ضمانت اصالت و کیفیت
-                            </span>
-
+                            <strong>تضمین کیفیت</strong>
+                            <span>ضمانت اصالت و کیفیت</span>
                         </div>
-
                     </div>
 
-
-
                     <div class="feature-item">
-
-                        <div class="feature-icon">
-
-                            <i class="fa-solid fa-shield-halved"></i>
-
-                        </div>
-
+                        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
                         <div>
-
-                            <strong>
-                                پرداخت امن
-                            </strong>
-
-                            <span>
-                                پرداخت کاملاً امن
-                            </span>
-
+                            <strong>پرداخت امن</strong>
+                            <span>پرداخت کاملاً امن</span>
                         </div>
-
                     </div>
-
 
                 </div>
-
 
             </div>
 
         </section>
-
-
 
         <!-- =================================================
              PRODUCT DETAILS
         ================================================== -->
-
         <section class="product-details-section">
 
-
             <div class="section-heading">
-
-                <span>
-                    PRODUCT DETAILS
-                </span>
-
-                <h2>
-                    جزئیات محصول
-                </h2>
-
-                <p>
-                    ظرافت، کیفیت و طراحی خاص در یک انتخاب
-                    ماندگار
-                </p>
-
+                <span>PRODUCT DETAILS</span>
+                <h2>جزئیات محصول</h2>
             </div>
-
-
 
             <div class="details-wrapper">
-
-
                 <div class="details-text">
-
-                    <h3>
-                        طراحی شده برای استایل‌های خاص
-                    </h3>
-
-                    <p>
-
-                        گردنبند مرواریدی رزگلد با طراحی ظریف
-                        و مینیمال، ترکیبی از زیبایی کلاسیک
-                        و طراحی مدرن است.
-
-                    </p>
-
-                    <p>
-
-                        این محصول برای استفاده روزمره،
-                        مهمانی‌ها و استایل‌های رسمی انتخابی
-                        مناسب است و به راحتی با انواع
-                        لباس‌ها هماهنگ می‌شود.
-
-                    </p>
-
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.description|linebreaksbr }}</p>
                 </div>
-
-
-
-                <div class="details-table">
-
-
-                    <div class="detail-row">
-
-                        <span>
-                            جنس
-                        </span>
-
-                        <strong>
-                            استیل ضد حساسیت
-                        </strong>
-
-                    </div>
-
-
-                    <div class="detail-row">
-
-                        <span>
-                            رنگ
-                        </span>
-
-                        <strong>
-                            رزگلد
-                        </strong>
-
-                    </div>
-
-
-                    <div class="detail-row">
-
-                        <span>
-                            سبک
-                        </span>
-
-                        <strong>
-                            مینیمال
-                        </strong>
-
-                    </div>
-
-
-                    <div class="detail-row">
-
-                        <span>
-                            طول زنجیر
-                        </span>
-
-                        <strong>
-                            ۴۵ سانتی‌متر
-                        </strong>
-
-                    </div>
-
-
-                    <div class="detail-row">
-
-                        <span>
-                            ضمانت
-                        </span>
-
-                        <strong>
-                            ۱۲ ماه
-                        </strong>
-
-                    </div>
-
-
-                </div>
-
-
             </div>
-
 
         </section>
-
-
-
-        <!-- =================================================
-             AI PREVIEW
-        ================================================== -->
-
-        <section class="ai-section">
-
-
-            <div class="ai-header">
-
-                <span>
-                    AI EXPERIENCE
-                </span>
-
-                <h2>
-                    قبل از خرید، روی مدل ببینید
-                </h2>
-
-                <p>
-                    ظاهر محصول را با استایل‌های مختلف
-                    مشاهده کنید.
-                </p>
-
-            </div>
-
-
-
-            <div class="ai-content">
-
-
-                <div class="ai-model">
-
-                    <img
-                        src="./images/model-necklace.jpg"
-                        alt="AI Jewelry Preview">
-
-                    <div class="ai-badge">
-
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-
-                        AI Preview
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="ai-controls">
-
-
-                    <h3>
-                        انتخاب استایل
-                    </h3>
-
-
-                    <div class="ai-buttons">
-
-
-                        <button class="active">
-                            لوکس
-                        </button>
-
-
-                        <button>
-                            روزمره
-                        </button>
-
-
-                        <button>
-                            مجلسی
-                        </button>
-
-
-                    </div>
-
-
-
-                    <h3>
-                        انتخاب مدل
-                    </h3>
-
-
-                    <div class="model-buttons">
-
-
-                        <button class="active">
-                            مدل ۱
-                        </button>
-
-
-                        <button>
-                            مدل ۲
-                        </button>
-
-
-                        <button>
-                            مدل ۳
-                        </button>
-
-
-                    </div>
-
-
-
-                    <button class="generate-ai">
-
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-
-                        نمایش روی مدل
-
-                    </button>
-
-
-                </div>
-
-
-            </div>
-
-
-        </section>
-
-
 
         <!-- =================================================
              SIMILAR PRODUCTS
         ================================================== -->
-
+        {% if similar_products %}
         <section class="similar-products">
 
-
             <div class="section-heading">
-
-                <span>
-                    YOU MAY ALSO LIKE
-                </span>
-
-                <h2>
-                    شاید این‌ها را هم دوست داشته باشید
-                </h2>
-
-                <p>
-                    انتخاب‌هایی نزدیک به این محصول
-                </p>
-
+                <span>YOU MAY ALSO LIKE</span>
+                <h2>شاید این‌ها را هم دوست داشته باشید</h2>
+                <p>انتخاب‌هایی نزدیک به این محصول</p>
             </div>
-
-
 
             <div class="similar-grid">
-
-
-                <!-- PRODUCT -->
-
+                {% for item in similar_products %}
                 <article class="similar-card">
 
-
                     <div class="similar-image">
-
-                        <button class="similar-like">
-
-                            <i class="fa-regular fa-heart"></i>
-
-                        </button>
-
-
-                        <img
-                            src="./images/product2.jpg"
-                            alt="دستبند رزگلد">
-
+                        <button class="similar-like"><i class="fa-regular fa-heart"></i></button>
+                        <a href="{% url 'products:single-product' item.slug %}">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        </a>
                     </div>
-
 
                     <div class="similar-info">
-
-                        <span>
-                            دستبند
-                        </span>
-
-                        <h3>
-                            دستبند رزگلد
-                        </h3>
-
-                        <strong>
-                            ۸۹۰,۰۰۰ تومان
-                        </strong>
-
+                        <span>{{ item.category.name }}</span>
+                        <h3><a href="{% url 'products:single-product' item.slug %}">{{ item.name }}</a></h3>
+                        <strong>{{ item.price|floatformat:0 }} تومان</strong>
                     </div>
-
 
                 </article>
-
-
-
-                <!-- PRODUCT -->
-
-                <article class="similar-card">
-
-
-                    <div class="similar-image">
-
-                        <button class="similar-like">
-
-                            <i class="fa-regular fa-heart"></i>
-
-                        </button>
-
-
-                        <img
-                            src="./images/product3.jpg"
-                            alt="انگشتر مرواریدی">
-
-                    </div>
-
-
-                    <div class="similar-info">
-
-                        <span>
-                            انگشتر
-                        </span>
-
-                        <h3>
-                            انگشتر مرواریدی
-                        </h3>
-
-                        <strong>
-                            ۷۲۰,۰۰۰ تومان
-                        </strong>
-
-                    </div>
-
-
-                </article>
-
-
-
-                <!-- PRODUCT -->
-
-                <article class="similar-card">
-
-
-                    <div class="similar-image">
-
-                        <button class="similar-like">
-
-                            <i class="fa-regular fa-heart"></i>
-
-                        </button>
-
-
-                        <img
-                            src="./images/product4.jpg"
-                            alt="گوشواره طلایی">
-
-                    </div>
-
-
-                    <div class="similar-info">
-
-                        <span>
-                            گوشواره
-                        </span>
-
-                        <h3>
-                            گوشواره طلایی
-                        </h3>
-
-                        <strong>
-                            ۶۵۰,۰۰۰ تومان
-                        </strong>
-
-                    </div>
-
-
-                </article>
-
-
-
-                <!-- PRODUCT -->
-
-                <article class="similar-card">
-
-
-                    <div class="similar-image">
-
-                        <button class="similar-like">
-
-                            <i class="fa-regular fa-heart"></i>
-
-                        </button>
-
-
-                        <img
-                            src="./images/product5.jpg"
-                            alt="گردنبند مینیمال">
-
-                    </div>
-
-
-                    <div class="similar-info">
-
-                        <span>
-                            گردنبند
-                        </span>
-
-                        <h3>
-                            گردنبند مینیمال
-                        </h3>
-
-                        <strong>
-                            ۹۹۰,۰۰۰ تومان
-                        </strong>
-
-                    </div>
-
-
-                </article>
-
-
+                {% endfor %}
             </div>
 
-
         </section>
-
+        {% endif %}
 
     </main>
 
-
-
 </div>
 
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // quantity stepper
+        const qtyEl = document.getElementById('quantity');
+        const qtyInput = document.getElementById('quantityInput');
+        const minusBtn = document.getElementById('minusBtn');
+        const plusBtn = document.getElementById('plusBtn');
+        const maxStock = {{ product.stock|default:0 }};
 
+        function syncQty(val) {
+            qtyEl.textContent = val;
+            if (qtyInput) qtyInput.value = val;
+        }
+
+        if (qtyEl && minusBtn && plusBtn) {
+            minusBtn.addEventListener('click', function () {
+                let val = parseInt(qtyEl.textContent, 10);
+                if (val > 1) syncQty(val - 1);
+            });
+            plusBtn.addEventListener('click', function () {
+                let val = parseInt(qtyEl.textContent, 10);
+                if (val < maxStock) syncQty(val + 1);
+            });
+        }
+
+        // thumbnail gallery swap
+        document.querySelectorAll('.thumbnail').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.thumbnail').forEach(function (b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                document.getElementById('mainProductImage').src = btn.dataset.image;
+            });
+        });
+    });
+</script>
 
 {% endblock %}

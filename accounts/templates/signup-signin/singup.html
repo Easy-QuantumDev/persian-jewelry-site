@@ -6,17 +6,11 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ثبت نام | Persian Jewelry</title>
 
-    <link
-        rel="stylesheet"
-        href="{% static 'css/signup.css' %}"
-    >
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 
 </head>
 
@@ -131,7 +125,6 @@
 
         </div>
 
-
         <div class="model-caption">
 
             <span>WEAR YOUR</span>
@@ -198,9 +191,7 @@
 
                 </div>
 
-
                 <div class="progress-line"></div>
-
 
                 <div class="progress-step">
 
@@ -212,9 +203,7 @@
 
                 </div>
 
-
                 <div class="progress-line"></div>
-
 
                 <div class="progress-step">
 
@@ -226,9 +215,7 @@
 
                 </div>
 
-
                 <div class="progress-line"></div>
-
 
                 <div class="progress-step">
 
@@ -245,18 +232,13 @@
 
             <!-- FORM -->
 
-            <form id="signupForm" method="post" >
-            {% csrf_token %}
+            <form id="signupForm" method="post">
+                {% csrf_token %}
 
                 <!-- STEP 1 -->
-
-                <div
-                    class="form-step active"
-                    data-step="1"
-                >
+                <div class="form-step active" data-step="1">
 
                     <!-- NAME -->
-
                     <div class="input-group">
 
                         <label>
@@ -281,9 +263,7 @@
 
                     </div>
 
-
                     <!-- EMAIL -->
-
                     <div class="input-group">
 
                         <label>
@@ -301,40 +281,24 @@
                                 id="email"
                                 placeholder="example@email.com"
                                 name="email"
+                                required
                             >
 
                         </div>
 
                     </div>
 
-
-                    <button
-                        type="button"
-                        class="next-btn"
-                        id="nextStep"
-                    >
-
+                    <button type="button" class="next-btn" id="nextStep">
                         ادامه
-
-                        <strong>
-                            ←
-                        </strong>
-
+                        <strong>←</strong>
                     </button>
 
                 </div>
 
-
-
                 <!-- STEP 2 - PHONE VERIFICATION -->
-
-                <div
-                    class="form-step"
-                    data-step="2"
-                >
+                <div class="form-step" data-step="2">
 
                     <!-- PHONE -->
-
                     <div class="input-group">
 
                         <label>
@@ -360,309 +324,105 @@
 
                     </div>
 
-
-                    <button
-                        type="button"
-                        class="send-code-btn"
-                        id="sendCodeBtn"
-                    >
+                    <button type="button" class="send-code-btn" id="sendCodeBtn">
                         ارسال کد تایید
                     </button>
 
-
                     <!-- OTP -->
-
-                    <div
-                        class="input-group otp-group"
-                        id="otpGroup"
-                    >
-
+                    <div class="input-group otp-group" id="otpGroup">
                         <label>
                             کد تایید
                         </label>
-
                         <div class="input-box">
-
                             <span class="input-icon">
                                 ✦
                             </span>
-
-                            <input
-                                type="text"
-                                id="otpCode"
-                                placeholder="کد ۵ رقمی"
-                                name="otp-code"
-                                maxlength="5"
-                                inputmode="numeric"
-                            >
-
+                            <input type="text" id="otpCode" placeholder="کد ۵ رقمی" name="otp-code" maxlength="5" inputmode="numeric">
                         </div>
-
                         <div class="resend-row">
-
-                            <small id="resendTimer">
-                                ارسال مجدد تا ۰۰:۶۰
-                            </small>
-
-                            <button
-                                type="button"
-                                class="resend-btn"
-                                id="resendBtn"
-                                disabled
-                            >
+                            <small id="resendTimer">ارسال مجدد تا 00:00</small>
+                            <button type="button" class="resend-btn" id="resendBtn" disabled>
                                 ارسال مجدد
                             </button>
-
                         </div>
-
                     </div>
 
-
                     <div class="step-buttons">
-
-                        <button
-                            type="button"
-                            class="back-btn"
-                            id="backToStep1"
-                        >
-                            → بازگشت
-                        </button>
-
-                        <button
-                            type="button"
-                            class="next-btn"
-                            id="nextStep2"
-                        >
-
-                            ادامه
-
-                            <strong>
-                                ←
-                            </strong>
-
-                        </button>
-
+                        <button type="button" class="back-btn" id="backToStep1">بازگشت</button>
+                        <button type="button" class="next-btn" id="nextStep2">ادامه</button>
                     </div>
 
                 </div>
 
-
-
-                <!-- STEP 3 -->
-
-                <div
-                    class="form-step"
-                    data-step="3"
-                >
+                <!-- STEP 3 - PASSWORD -->
+                <div class="form-step" data-step="3">
 
                     <!-- PASSWORD -->
-
                     <div class="input-group">
-
-                        <label>
-                            رمز عبور
-                        </label>
-
+                        <label>رمز عبور</label>
                         <div class="input-box">
-
-                            <span class="input-icon">
-                                ♢
-                            </span>
-
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="رمز عبور"
-                                name="password"
-                            >
-
-                            <button
-                                type="button"
-                                class="show-password"
-                                data-target="password"
-
-                            >
-                                ◉
-                            </button>
-
+                            <span class="input-icon">♢</span>
+                            <input type="password" id="password" name="password" placeholder="رمز عبور">
+                            <button type="button" class="show-password" data-target="password">◉</button>
                         </div>
-
                     </div>
-
 
                     <!-- CONFIRM PASSWORD -->
-
                     <div class="input-group">
-
-                        <label>
-                            تکرار رمز عبور
-                        </label>
-
+                        <label>تکرار رمز عبور</label>
                         <div class="input-box">
-
-                            <span class="input-icon">
-                                ♢
-                            </span>
-
-                            <input
-                                type="password"
-                                id="confirmPassword"
-                                placeholder="رمز عبور را دوباره وارد کنید"
-                                name="password-repeat"
-                            >
-
-                            <button
-                                type="button"
-                                class="show-password"
-                                data-target="confirmPassword"
-                            >
-                                ◉
-                            </button>
-
+                            <span class="input-icon">♢</span>
+                            <input type="password" id="confirmPassword" name="password-repeat" placeholder="رمز عبور را دوباره وارد کنید">
+                            <button type="button" class="show-password" data-target="confirmPassword">◉</button>
                         </div>
-
                     </div>
-
-
-                    <!-- PASSWORD STRENGTH -->
 
                     <div class="password-strength">
-
-                        <div class="strength-bar">
-
-                            <span></span>
-
-                        </div>
-
-                        <small id="strengthText">
-                            قدرت رمز عبور
-                        </small>
-
+                        <div class="strength-bar"></div>
+                        <small id="strengthText">قدرت رمز عبور</small>
                     </div>
-
 
                     <div class="step-buttons">
-
-                        <button
-                            type="button"
-                            class="back-btn"
-                            id="backStep"
-                        >
-                            → بازگشت
-                        </button>
-
-                        <button
-                            type="submit"
-                            class="next-btn"
-                            id="createAccount"
-                        >
-
-                            ایجاد حساب
-
-                            <strong>
-                                ←
-                            </strong>
-
-                        </button>
-
+                        <button type="button" class="back-btn" id="backStep">بازگشت</button>
+                        <button type="submit" class="create-account-btn" id="createAccount">ایجاد حساب</button>
                     </div>
 
                 </div>
 
-
-
-                <!-- STEP 4 -->
-
-                <div
-                    class="form-step success-step"
-                    data-step="4"
-                >
-
-                    <div class="success-icon">
-
-                        ✦
-
-                    </div>
-
-
-                    <h3>
-                        خوش آمدید!
-                    </h3>
-
-
-                    <p>
-                        حساب کاربری شما با موفقیت ایجاد شد.
-                    </p>
-
-
-                    <button
-                        type="submit"
-                        class="login-btn"
-                    >
-
-                        ورود به فروشگاه
-
-                        <strong>
-                            ←
-                        </strong>
-
-                    </button>
-
+                <!-- STEP 4 - SUCCESS -->
+                <div class="form-step success-step" data-step="4">
+                    <div class="success-icon">✦</div>
+                    <h3>خوش آمدید!</h3>
+                    <p>حساب کاربری شما با موفقیت ایجاد شد.</p>
+                    <button type="button" class="shop-btn" onclick="window.location.href='{% url 'pages:home' %}'">ورود به فروشگاه</button>
                 </div>
-
 
             </form>
 
-
             <!-- DIVIDER -->
-
             <div class="divider">
-
                 <span></span>
-
-                <p>
-                    یا
-                </p>
-
+                <p>یا</p>
                 <span></span>
-
             </div>
-
 
             <!-- LOGIN -->
-
             <div class="login-link">
-
                 قبلاً حساب دارید؟
-
-                <a href="./login.html">
-                    وارد شوید
-                </a>
-
+                <a href="{% url 'accounts:login' %}">وارد شوید</a>
             </div>
-
 
             <!-- SECURITY -->
-
             <div class="security">
-
-                <span>
-                    🔒
-                </span>
-
-                <p>
-                    اطلاعات شما با امنیت کامل محافظت می‌شود
-                </p>
-
+                <span>🔒</span>
+                <p>اطلاعات شما با امنیت کامل محافظت می‌شود</p>
             </div>
-
 
         </div>
 
     </div>
 
 </div>
-
 
 <script src="{% static 'js/signup.js' %}"></script>
 

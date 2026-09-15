@@ -1,427 +1,150 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>دسته‌بندی | Jewelry Store</title>
-
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-</head>
-
-<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <div class="category-page">
-
-    <!-- =========================
-         BACKGROUND
-    ========================== -->
 
     <div class="bg-glow glow-one"></div>
     <div class="bg-glow glow-two"></div>
 
-
-
-
-    <!-- =========================
-         CATEGORY HERO
-    ========================== -->
-
     <main>
 
+        <!-- =========================
+             CATEGORY HERO
+        ========================== -->
         <section class="category-hero">
 
             <div class="hero-content">
 
-                <span class="hero-label">
-                    COLLECTION 2026
-                </span>
+                <span class="hero-label">COLLECTION 2026</span>
 
+                <h1>{{ category.name }}</h1>
 
-                <h1 id="category-title">
-                    مردانه
-                </h1>
+                {% if category.description %}
+                <p>{{ category.description }}</p>
+                {% endif %}
 
-
-                <h2 id="category-subtitle">
-                    استایل قدرتمند، جزئیات ماندگار
-                </h2>
-
-
-                <p id="category-description">
-
-                    مجموعه‌ای از اکسسوری‌های مینیمال و خاص
-                    برای آقایانی که به جزئیات اهمیت می‌دهند.
-
-                </p>
-
-
-                <button class="hero-btn">
-
+                <a href="#category-products" class="hero-btn">
                     مشاهده محصولات
-
                     <i class="fa-solid fa-arrow-left"></i>
-
-                </button>
+                </a>
 
             </div>
 
-
-
-            <!-- CHARACTER -->
-
+            <!-- CHARACTER (decorative, not tied to data) -->
             <div class="character-container">
-
                 <div class="character-glow"></div>
-
                 <div class="character-circle">
-
                     <div class="character">
-
                         <div class="character-head">
-
                             <div class="hair"></div>
-
                             <div class="face"></div>
-
                         </div>
-
-
                         <div class="character-body">
-
                             <div class="necklace"></div>
-
                             <div class="shirt"></div>
-
                         </div>
-
                     </div>
-
                 </div>
-
-
-                <div class="floating-jewel jewel-one">
-                    <i class="fa-solid fa-gem"></i>
-                </div>
-
-                <div class="floating-jewel jewel-two">
-                    <i class="fa-solid fa-ring"></i>
-                </div>
-
-                <div class="floating-jewel jewel-three">
-                    <i class="fa-solid fa-star"></i>
-                </div>
-
+                <div class="floating-jewel jewel-one"><i class="fa-solid fa-gem"></i></div>
+                <div class="floating-jewel jewel-two"><i class="fa-solid fa-ring"></i></div>
+                <div class="floating-jewel jewel-three"><i class="fa-solid fa-star"></i></div>
             </div>
 
         </section>
 
-
-
-
-
-        
-
-
-
         <!-- =========================
-             SUB CATEGORIES
+             OTHER CATEGORIES
         ========================== -->
-
+        {% if other_categories %}
         <section class="subcategories">
 
             <div class="section-heading">
-
                 <div>
-
-                    <span>
-                        EXPLORE COLLECTION
-                    </span>
-
-                    <h2>
-                        دسته‌بندی‌های مرتبط
-                    </h2>
-
+                    <span>EXPLORE COLLECTION</span>
+                    <h2>دسته‌بندی‌های مرتبط</h2>
                 </div>
-
             </div>
 
-
             <div class="subcategory-grid">
-
-                <a href="#" class="subcategory-card">
-
-                    <div class="subcategory-icon">
-                        <i class="fa-solid fa-ring"></i>
-                    </div>
-
-                    <strong>
-                        انگشتر
-                    </strong>
-
-                    <span>
-                        مشاهده مجموعه
-                    </span>
-
+                {% for cat in other_categories %}
+                <a href="{% url 'products:single-category' cat.slug %}" class="subcategory-card">
+                    <div class="subcategory-icon"><i class="fa-solid fa-gem"></i></div>
+                    <strong>{{ cat.name }}</strong>
+                    <span>مشاهده مجموعه</span>
                 </a>
-
-
-                <a href="#" class="subcategory-card">
-
-                    <div class="subcategory-icon">
-                        <i class="fa-solid fa-link"></i>
-                    </div>
-
-                    <strong>
-                        دستبند
-                    </strong>
-
-                    <span>
-                        مشاهده مجموعه
-                    </span>
-
-                </a>
-
-
-                <a href="#" class="subcategory-card">
-
-                    <div class="subcategory-icon">
-                        <i class="fa-solid fa-gem"></i>
-                    </div>
-
-                    <strong>
-                        گردنبند
-                    </strong>
-
-                    <span>
-                        مشاهده مجموعه
-                    </span>
-
-                </a>
-
-
-                <a href="#" class="subcategory-card">
-
-                    <div class="subcategory-icon">
-                        <i class="fa-solid fa-layer-group"></i>
-                    </div>
-
-                    <strong>
-                        ست‌ها
-                    </strong>
-
-                    <span>
-                        مشاهده مجموعه
-                    </span>
-
-                </a>
-
+                {% endfor %}
             </div>
 
         </section>
-
-
+        {% endif %}
 
         <!-- =========================
              PRODUCTS
         ========================== -->
-
-        <section class="products-section">
+        <section class="products-section" id="category-products">
 
             <div class="section-heading">
-
                 <div>
-
-                    <span>
-                        OUR COLLECTION
-                    </span>
-
-                    <h2>
-                        محصولات منتخب
-                    </h2>
-
+                    <span>OUR COLLECTION</span>
+                    <h2>محصولات منتخب</h2>
                 </div>
-
-
-                <a href="#">
+                <a href="{% url 'products:product-list' %}">
                     مشاهده همه
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-
             </div>
 
-
             <div class="products-grid">
-
-                <article class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-badge">
-                            جدید
-                        </span>
-
-                        <i class="fa-solid fa-ring"></i>
-
-                        <button class="favorite">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-
-                    </div>
-
-
-                    <div class="product-info">
-
-                        <span>
-                            انگشتر مردانه
-                        </span>
-
-                        <h3>
-                            انگشتر مینیمال
-                        </h3>
-
-                        <strong>
-                            ۸۹۰,۰۰۰ تومان
-                        </strong>
-
-                    </div>
-                    <button class="buy-btn">خرید</button>
-
-                </article>
-
-
-
-                <article class="product-card">
+                {% for product in products %}
+                <article class="product-card product-card--tall">
 
                     <div class="product-image">
-
-                        <i class="fa-solid fa-link"></i>
-
-                        <button class="favorite">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <button class="favorite"><i class="fa-regular fa-heart"></i></button>
                     </div>
-
 
                     <div class="product-info">
+                        <span>{{ category.name }}</span>
+                        <h3>{{ product.name }}</h3>
+                        <strong>{{ product.price|floatformat:0 }} تومان</strong>
+                    </div>
 
-                        <span>
-                            دستبند مردانه
-                        </span>
+                    <div class="product-card-actions">
 
-                        <h3>
-                            دستبند کلاسیک
-                        </h3>
+                        <a href="{% url 'products:single-product' product.slug %}" class="buy-btn">مشاهده</a>
 
-                        <strong>
-                            ۶۹۰,۰۰۰ تومان
-                        </strong>
+                        {% if product.stock > 0 %}
+                        <form method="post" action="{% url 'cart:add_to_cart' product.id %}" class="quick-add-form">
+                            {% csrf_token %}
+                            <button type="submit" class="add-cart">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span>افزودن</span>
+                            </button>
+                        </form>
+                        {% else %}
+                        <span class="out-of-stock">ناموجود</span>
+                        {% endif %}
 
                     </div>
-<button class="buy-btn">خرید</button>
+
                 </article>
-
-
-
-                <article class="product-card">
-
-                    <div class="product-image">
-
-                        <i class="fa-solid fa-gem"></i>
-
-                        <button class="favorite">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-
-                    </div>
-
-
-                    <div class="product-info">
-
-                        <span>
-                            گردنبند مردانه
-                        </span>
-
-                        <h3>
-                            گردنبند استیل
-                        </h3>
-
-                        <strong>
-                            ۱,۲۹۰,۰۰۰ تومان
-                        </strong>
-
-                    </div>
-<button class="buy-btn">خرید</button>
-                </article>
-
-
-
-                <article class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-badge">
-                            ویژه
-                        </span>
-
-                        <i class="fa-solid fa-layer-group"></i>
-
-                        <button class="favorite">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-
-                    </div>
-
-
-                    <div class="product-info">
-
-                        <span>
-                            ست مردانه
-                        </span>
-
-                        <h3>
-                            ست لوکس
-                        </h3>
-
-                        <strong>
-                            ۱,۸۹۰,۰۰۰ تومان
-                        </strong>
-
-                    </div>
-<button class="buy-btn">خرید</button>
-                </article>
-
+                {% empty %}
+                <p>محصولی در این دسته‌بندی ثبت نشده است.</p>
+                {% endfor %}
             </div>
 
         </section>
 
     </main>
 
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
     <footer>
-
-        <span>
-            © 2026 Jewelry Store
-        </span>
-
-        <span>
-            ساخته شده با ♥
-        </span>
-
+        <span>© 2026 Jewelry Store</span>
+        <span>ساخته شده با ♥</span>
     </footer>
 
 </div>
-
 
 {% endblock %}

@@ -2,10 +2,37 @@ from django.urls import path
 
 from . import views
 
-app_name = "orders"
+
+app_name = 'orders'
+
 
 urlpatterns = [
-    path('checkout/', views.checkout, name='checkout'),
-    path('detail/', views.order_detail, name='order-detail'),
-    path('success/', views.order_success, name='order-success'),
+
+    # Checkout
+    path(
+        'checkout/',
+        views.checkout,
+        name='checkout'
+    ),
+
+    # لیست سفارش‌های کاربر
+    path(
+        'my-orders/',
+        views.my_orders,
+        name='my_orders'
+    ),
+
+    # سفارش موفق
+    path(
+        'success/<str:order_number>/',
+        views.order_success,
+        name='order_success'
+    ),
+
+    # جزئیات سفارش
+    path(
+        '<str:order_number>/',
+        views.order_detail,
+        name='order_detail'
+    ),
 ]

@@ -1,308 +1,92 @@
-// ========================================
-// CART
-// ========================================
-
-const productsList =
-    document.getElementById("products-list");
-
-const cartCount =
-    document.getElementById("cart-count");
-
-const summaryCount =
-    document.getElementById("summary-count");
-
-const subtotal =
-    document.getElementById("subtotal");
-
-const total =
-    document.getElementById("total");
-
-const emptyCart =
-    document.getElementById("empty-cart");
-
-
-// ========================================
-// FORMAT PRICE
-// ========================================
-
-function formatPrice(number) {
-
-    return new Intl.NumberFormat("fa-IR")
-        .format(number);
-
-}
-
-
-// ========================================
-// UPDATE CART
-// ========================================
-
-function updateCart() {
-
-    const items =
-        document.querySelectorAll(".cart-item");
-
-
-    let totalPrice = 0;
-
-    let totalProducts = 0;
-
-
-    items.forEach((item) => {
-
-        const price =
-            Number(item.dataset.price);
-
-
-        const quantity =
-            Number(
-                item.querySelector(".quantity-value").textContent
-            );
-
-
-        totalPrice += price * quantity;
-
-        totalProducts += quantity;
-
-    });
-
-
-    // Count
-
-    cartCount.textContent =
-        `${totalProducts.toLocaleString("fa-IR")} محصول`;
-
-
-    summaryCount.textContent =
-        totalProducts.toLocaleString("fa-IR");
-
-
-    // Price
-
-    const priceText =
-        `${formatPrice(totalPrice)} تومان`;
-
-
-    subtotal.textContent =
-        priceText;
-
-
-    total.textContent =
-        priceText;
-
-
-    // Empty
-
-    if (items.length === 0) {
-
-        document.querySelector(".cart-container")
-            .style.display = "none";
-
-        emptyCart.style.display = "block";
-
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
     }
-
+    return cookieValue;
 }
 
+const csrftoken = getCookie('csrftoken');
 
-// ========================================
-// QUANTITY
-// ========================================
+function formatNumber(num) {
+    return Number(num).toLocaleString('en-US');
+}
 
-document.querySelectorAll(".cart-item")
-    .forEach((item) => {
+document.addEventListener('DOMContentLoaded', function () {
+    const list = document.getElementById('products-list');
+    if (!list) return;
 
-        const plus =
-            item.querySelector(".quantity-plus");
+    list.addEventListener('click', function (e) {
+        const plusBtn = e.target.closest('.quantity-plus');
+        const minusBtn = e.target.closest('.quantity-minus');
+        const removeBtn = e.target.closest('.remove-product');
 
-        const minus =
-            item.querySelector(".quantity-minus");
+        if (plusBtn) handleQuantity(plusBtn.dataset.item, 'increase');
+        if (minusBtn) handleQuantity(minusBtn.dataset.item, 'decrease');
+        if (removeBtn) handleRemove(removeBtn.dataset.item);
+    });
+});
 
-        const value =
-            item.querySelector(".quantity-value");
+function handleQuantity(itemId, action) {
+    fetch(`${CART_UPDATE_BASE}${itemId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `action=${action}`,
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            const row = document.querySelector(`.cart-item[data-id="${itemId}"]`);
+            if (!row) return;
 
-
-        plus.addEventListener("click", () => {
-
-            let quantity =
-                Number(value.textContent);
-
-            quantity++;
-
-            value.textContent =
-                quantity.toLocaleString("fa-IR");
-
-            updateCart();
-
-        });
-
-
-        minus.addEventListener("click", () => {
-
-            let quantity =
-                Number(value.textContent);
-
-
-            if (quantity <= 1) {
-
-                return;
-
+            if (data.deleted) {
+                row.remove();
+            } else {
+                row.querySelector('.quantity-value').textContent = data.quantity;
             }
 
-
-            quantity--;
-
-            value.textContent =
-                quantity.toLocaleString("fa-IR");
-
-            updateCart();
-
-        });
-
-    });
-
-
-// ========================================
-// REMOVE PRODUCT
-// ========================================
-
-document.querySelectorAll(".remove-product")
-    .forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-            const item =
-                button.closest(".cart-item");
-
-
-            if (!item) return;
-
-
-            item.style.opacity = "0";
-
-            item.style.transform =
-                "translateX(20px)";
-
-
-            setTimeout(() => {
-
-                item.remove();
-
-                updateCart();
-
-            }, 150);
-
-        });
-
-    });
-
-
-// ========================================
-// CHECKOUT
-// ========================================
-
-const checkoutBtn =
-    document.querySelector(".checkout-btn");
-
-
-checkoutBtn.addEventListener("click", () => {
-
-    const items =
-        document.querySelectorAll(".cart-item");
-
-
-    if (items.length === 0) {
-
-        return;
-
-    }
-
-
-    showNotification(
-        "در حال انتقال به صفحه پرداخت..."
-    );
-
-});
-
-
-// ========================================
-// CLOSE CART
-// ========================================
-
-const closeCart =
-    document.querySelector(".close-cart");
-
-
-closeCart.addEventListener("click", () => {
-
-    window.history.back();
-
-});
-
-
-// ========================================
-// NOTIFICATION
-// ========================================
-
-function showNotification(message) {
-
-    const old =
-        document.querySelector(".cart-notification");
-
-
-    if (old) {
-
-        old.remove();
-
-    }
-
-
-    const notification =
-        document.createElement("div");
-
-
-    notification.className =
-        "cart-notification";
-
-
-    notification.textContent =
-        message;
-
-
-    document.body.appendChild(
-        notification
-    );
-
-
-    Object.assign(
-        notification.style,
-        {
-            position: "fixed",
-            bottom: "25px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            background: "#3a291e",
-            color: "#fff",
-            padding: "12px 22px",
-            borderRadius: "10px",
-            fontSize: "12px",
-            zIndex: "9999",
-            boxShadow: "0 10px 30px rgba(0,0,0,.15)"
-        }
-    );
-
-
-    setTimeout(() => {
-
-        notification.remove();
-
-    }, 2500);
-
+            updateSummary(data);
+        })
+        .catch((err) => console.error('cart update failed', err));
 }
 
+function handleRemove(itemId) {
+    fetch(`${CART_REMOVE_BASE}${itemId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+            'X-Requested-With': 'XMLHttpRequest',
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            const row = document.querySelector(`.cart-item[data-id="${itemId}"]`);
+            if (row) row.remove();
+            updateSummary(data);
+        })
+        .catch((err) => console.error('cart remove failed', err));
+}
 
-// ========================================
-// START
-// ========================================
+function updateSummary(data) {
+    const count = document.getElementById('products-list').children.length;
 
-updateCart();
+    document.getElementById('cart-count').textContent = `${count} محصول`;
+    document.getElementById('summary-count').textContent = count;
+    document.getElementById('subtotal').textContent = `${formatNumber(data.cart_total)} تومان`;
+    document.getElementById('total').textContent = `${formatNumber(data.cart_total)} تومان`;
+
+    if (count === 0) {
+        document.querySelector('.cart-container').style.display = 'none';
+        document.getElementById('empty-cart').style.display = 'flex';
+    }
+}

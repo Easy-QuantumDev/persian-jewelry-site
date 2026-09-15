@@ -2,972 +2,225 @@
 {% load static %}
 {% block content %}
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>دسته‌بندی محصولات | Jewelry Store</title>
-
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-
-</head>
-
-
-<body>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <main class="categories-page">
 
-
-    <!-- =========================================
-         BACKGROUND
-    ========================================== -->
-
+    <!-- BACKGROUND -->
     <div class="page-glow glow-one"></div>
     <div class="page-glow glow-two"></div>
-
 
     <!-- =========================================
          HERO
     ========================================== -->
-
     <section class="luxury-hero">
 
-
         <div class="hero-copy">
-
-            <span class="hero-overline">
-                THE 2026 COLLECTION
-            </span>
-
-
-            <h1>
-
-                زیبایی‌ای که
-
-                <span>
-                    ماندگار می‌شود
-                </span>
-
-            </h1>
-
-
-            <p>
-
-                مجموعه‌ای از قطعات ظریف و خاص،
-                برای لحظه‌هایی که ارزش به یاد ماندن دارند.
-
-            </p>
-
+            <span class="hero-overline">THE 2026 COLLECTION</span>
+            <h1>زیبایی‌ای که <span>ماندگار می‌شود</span></h1>
+            <p>مجموعه‌ای از قطعات ظریف و خاص، برای لحظه‌هایی که ارزش به یاد ماندن دارند.</p>
 
             <div class="hero-actions">
-
-                <a href="#collections"
-                   class="primary-btn">
-
+                <a href="#collections" class="primary-btn">
                     کشف مجموعه
-
                     <i class="fa-solid fa-arrow-left"></i>
-
                 </a>
-
-
-                <a href="#products"
-                   class="text-btn">
-
-                    محصولات جدید
-
-                </a>
-
+                <a href="#products" class="text-btn">محصولات جدید</a>
             </div>
-
         </div>
-
 
         <div class="hero-visual">
-
-            <img src="{% static 'images/category-hero.jpg' %}"
-                 alt="مجموعه بدلیجات">
-
-
+            <img src="{% static 'images/category-hero.jpg' %}" alt="مجموعه بدلیجات">
             <div class="hero-shade"></div>
-
-
             <div class="hero-number">
-
-                <span>
-                    COLLECTION
-                </span>
-
-                <strong>
-                    01
-                </strong>
-
+                <span>COLLECTION</span>
+                <strong>01</strong>
             </div>
-
-
             <div class="hero-caption">
-
-                <span>
-                    Timeless
-                </span>
-
+                <span>Timeless</span>
                 <i class="fa-solid fa-arrow-left"></i>
-
             </div>
-
         </div>
 
     </section>
 
-
-
-    <!-- =========================================
-         INTRO
-    ========================================== -->
-
+    <!-- INTRO -->
     <section class="intro-section">
-
-        <div class="intro-number">
-            01
-        </div>
-
-
+        <div class="intro-number">01</div>
         <div class="intro-title">
-
-            <span>
-                EXPLORE
-            </span>
-
-            <h2>
-                چیزی برای
-                <strong>هر سلیقه</strong>
-            </h2>
-
+            <span>EXPLORE</span>
+            <h2>چیزی برای <strong>هر سلیقه</strong></h2>
         </div>
-
-
-        <p>
-
-            از طراحی‌های ظریف و مینیمال
-            تا قطعات چشمگیر و خاص؛
-            مجموعه‌ای برای ساختن استایل شخصی تو.
-
-        </p>
-
+        <p>از طراحی‌های ظریف و مینیمال تا قطعات چشمگیر و خاص؛ مجموعه‌ای برای ساختن استایل شخصی تو.</p>
     </section>
 
-
-
     <!-- =========================================
-         GENDER
+         GENDER (static — no model backs this yet)
     ========================================== -->
-
-    <section class="gender-section"
-             id="collections">
-
+    <section class="gender-section" id="collections">
 
         <div class="section-heading">
-
             <div>
-
-                <span>
-                    COLLECTIONS
-                </span>
-
-                <h2>
-                    انتخاب کن
-                </h2>
-
+                <span>COLLECTIONS</span>
+                <h2>انتخاب کن</h2>
             </div>
-
-
-            <a href="#">
+            <a href="{% url 'products:product-list' %}">
                 مشاهده همه
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
-
         </div>
-
 
         <div class="gender-grid">
 
-
-            <!-- WOMEN -->
-
-            <a href="#"
-               class="gender-card women-card">
-
-                <img src="{% static  'image/women-jewelry.jpg' %}"
-                     alt="بدلیجات زنانه">
-
-
+            <a href="{% url 'products:product-list' %}" class="gender-card women-card">
+                <img src="{% static 'image/women-jewelry.jpg' %}" alt="بدلیجات زنانه">
                 <div class="gender-overlay"></div>
-
-
                 <div class="gender-content">
-
-                    <span>
-                        WOMEN'S
-                    </span>
-
-                    <h3>
-                        زنانه
-                    </h3>
-
-                    <p>
-                        ظریف، درخشان و متفاوت
-                    </p>
-
-
-                    <div class="circle-arrow">
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                    </div>
-
+                    <span>WOMEN'S</span>
+                    <h3>زنانه</h3>
+                    <p>ظریف، درخشان و متفاوت</p>
+                    <div class="circle-arrow"><i class="fa-solid fa-arrow-left"></i></div>
                 </div>
-
             </a>
 
-
-
-            <!-- MEN -->
-
-            <a href="#"
-               class="gender-card men-card">
-
-                <img src="{% static  'image/men-jewelry.jpg' %}"
-                     alt="بدلیجات مردانه">
-
-
+            <a href="{% url 'products:product-list' %}" class="gender-card men-card">
+                <img src="{% static 'image/men-jewelry.jpg' %}" alt="بدلیجات مردانه">
                 <div class="gender-overlay"></div>
-
-
                 <div class="gender-content">
-
-                    <span>
-                        MEN'S
-                    </span>
-
-                    <h3>
-                        مردانه
-                    </h3>
-
-                    <p>
-                        ساده، قدرتمند و مینیمال
-                    </p>
-
-
-                    <div class="circle-arrow">
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                    </div>
-
+                    <span>MEN'S</span>
+                    <h3>مردانه</h3>
+                    <p>ساده، قدرتمند و مینیمال</p>
+                    <div class="circle-arrow"><i class="fa-solid fa-arrow-left"></i></div>
                 </div>
-
             </a>
 
         </div>
 
     </section>
 
-
-
     <!-- =========================================
-         CATEGORY
+         CATEGORY SLIDER (dynamic)
     ========================================== -->
-
     <section class="categories-section">
 
-
         <div class="section-heading">
-
             <div>
-
-                <span>
-                    SHOP BY CATEGORY
-                </span>
-
-                <h2>
-                    دسته‌بندی محصولات
-                </h2>
-
+                <span>SHOP BY CATEGORY</span>
+                <h2>دسته‌بندی محصولات</h2>
             </div>
-
-
-            <p>
-                محصول مورد علاقه‌ات را پیدا کن.
-            </p>
-
+            <p>محصول مورد علاقه‌ات را پیدا کن.</p>
         </div>
 
-
-
         <div class="category-slider-wrapper">
-
-
             <div class="swiper category-swiper">
-
                 <div class="swiper-wrapper">
 
-
-                    <!-- 1 -->
-
+                    {% for cat in categories %}
                     <div class="swiper-slide">
-
-                        <a href="#"
-                           class="category-card featured">
+                        <a href="{% url 'products:single-category' cat.slug %}" class="category-card {% if forloop.first %}featured{% endif %}">
 
                             <div class="category-icon">
-                                <i class="fa-solid fa-gem"></i>
+                                {% if cat.image %}
+                                    <img src="{{ cat.image.url }}" alt="{{ cat.name }}">
+                                {% else %}
+                                    <i class="fa-solid fa-gem"></i>
+                                {% endif %}
                             </div>
 
                             <div>
-
-                                <span>
-                                    COLLECTION
-                                </span>
-
-                                <h3>
-                                    ست‌ها
-                                </h3>
-
+                                <span>JEWELRY</span>
+                                <h3>{{ cat.name }}</h3>
                             </div>
 
                             <i class="fa-solid fa-arrow-left card-arrow"></i>
 
                         </a>
-
                     </div>
-
-
-                    <!-- 2 -->
-
-                    <div class="swiper-slide">
-
-                        <a href="#"
-                           class="category-card">
-
-                            <div class="category-icon">
-                                <i class="fa-solid fa-link"></i>
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    JEWELRY
-                                </span>
-
-                                <h3>
-                                    گردنبند
-                                </h3>
-
-                            </div>
-
-                            <i class="fa-solid fa-arrow-left card-arrow"></i>
-
-                        </a>
-
-                    </div>
-
-
-                    <!-- 3 -->
-
-                    <div class="swiper-slide">
-
-                        <a href="#"
-                           class="category-card">
-
-                            <div class="category-icon">
-                                <i class="fa-solid fa-circle-notch"></i>
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    JEWELRY
-                                </span>
-
-                                <h3>
-                                    دستبند
-                                </h3>
-
-                            </div>
-
-                            <i class="fa-solid fa-arrow-left card-arrow"></i>
-
-                        </a>
-
-                    </div>
-
-
-                    <!-- 4 -->
-
-                    <div class="swiper-slide">
-
-                        <a href="#"
-                           class="category-card">
-
-                            <div class="category-icon">
-                                <i class="fa-solid fa-ring"></i>
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    JEWELRY
-                                </span>
-
-                                <h3>
-                                    انگشتر
-                                </h3>
-
-                            </div>
-
-                            <i class="fa-solid fa-arrow-left card-arrow"></i>
-
-                        </a>
-
-                    </div>
-
-
-                    <!-- 5 -->
-
-                    <div class="swiper-slide">
-
-                        <a href="#"
-                           class="category-card">
-
-                            <div class="category-icon">
-                                <i class="fa-solid fa-circle"></i>
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    JEWELRY
-                                </span>
-
-                                <h3>
-                                    گوشواره
-                                </h3>
-
-                            </div>
-
-                            <i class="fa-solid fa-arrow-left card-arrow"></i>
-
-                        </a>
-
-                    </div>
-
-
-                    <!-- 6 -->
-
-                    <div class="swiper-slide">
-
-                        <a href="#"
-                           class="category-card">
-
-                            <div class="category-icon">
-                                <i class="fa-solid fa-shoe-prints"></i>
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    JEWELRY
-                                </span>
-
-                                <h3>
-                                    پابند
-                                </h3>
-
-                            </div>
-
-                            <i class="fa-solid fa-arrow-left card-arrow"></i>
-
-                        </a>
-
-                    </div>
-
-
-                    <!-- 7 -->
-
-                    <div class="swiper-slide">
-
-                        <a href="#"
-                           class="category-card">
-
-                            <div class="category-icon">
-                                <i class="fa-solid fa-thumbtack"></i>
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    ACCESSORIES
-                                </span>
-
-                                <h3>
-                                    سنجاق
-                                </h3>
-
-                            </div>
-
-                            <i class="fa-solid fa-arrow-left card-arrow"></i>
-
-                        </a>
-
-                    </div>
-
-
-                    <!-- 8 -->
-
-                    <div class="swiper-slide">
-
-                        <a href="#"
-                           class="category-card">
-
-                            <div class="category-icon">
-                                <i class="fa-solid fa-paperclip"></i>
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    ACCESSORIES
-                                </span>
-
-                                <h3>
-                                    گیره
-                                </h3>
-
-                            </div>
-
-                            <i class="fa-solid fa-arrow-left card-arrow"></i>
-
-                        </a>
-
-                    </div>
+                    {% endfor %}
 
                 </div>
-
             </div>
-
 
             <div class="slider-navigation category-navigation">
-
-                <button class="category-prev">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-
-                <button class="category-next">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-
+                <button class="category-prev"><i class="fa-solid fa-arrow-right"></i></button>
+                <button class="category-next"><i class="fa-solid fa-arrow-left"></i></button>
             </div>
-
         </div>
 
     </section>
 
-
-
     <!-- =========================================
-         PRODUCTS
+         NEW ARRIVALS (dynamic)
     ========================================== -->
-
-    <section class="products-section"
-             id="products">
-
+    <section class="products-section" id="products">
 
         <div class="section-heading">
-
             <div>
-
-                <span>
-                    NEW ARRIVALS
-                </span>
-
-                <h2>
-                    محصولات جدید
-                </h2>
-
+                <span>NEW ARRIVALS</span>
+                <h2>محصولات جدید</h2>
             </div>
-
-
-            <a href="#">
+            <a href="{% url 'products:product-list' %}">
                 مشاهده همه
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
-
         </div>
 
-
-
         <div class="product-slider-wrapper">
-
-
             <div class="swiper product-swiper">
-
                 <div class="swiper-wrapper">
 
-
-                    <!-- PRODUCT -->
-
+                    {% for product in new_products %}
                     <div class="swiper-slide">
-
                         <article class="product-card">
 
                             <div class="product-image">
-
-                                <span class="product-badge">
-                                    جدید
-                                </span>
-
-
-                                <button class="product-like">
-
-                                    <i class="fa-regular fa-heart"></i>
-
-                                </button>
-
-
-                                <img src="images/ring-1.jpg"
-                                     alt="انگشتر نگین دار">
-
+                                <button class="product-like"><i class="fa-regular fa-heart"></i></button>
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}">
                             </div>
 
-
                             <div class="product-info">
-
-                                <span class="product-category">
-                                    انگشتر
-                                </span>
-
-                                <h3>
-                                    انگشتر نگین‌دار
-                                </h3>
-
+                                <span class="product-category">{{ product.category.name }}</span>
+                                <h3><a href="{% url 'products:single-product' product.slug %}">{{ product.name }}</a></h3>
 
                                 <div class="product-bottom">
+                                    <strong>{{ product.price|floatformat:0 }} تومان</strong>
 
-                                    <strong>
-                                        ۸۹۰,۰۰۰ تومان
-                                    </strong>
-
-
-                                    <button class="add-cart">
-
-                                        <i class="fa-solid fa-cart-shopping"></i>
-
-                                        <span>
-                                            افزودن
-                                        </span>
-
-                                    </button>
-
+                                    {% if product.stock > 0 %}
+                                    <form method="post" action="{% url 'cart:add_to_cart' product.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="add-cart">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <span>افزودن</span>
+                                        </button>
+                                    </form>
+                                    {% else %}
+                                    <span class="out-of-stock">ناموجود</span>
+                                    {% endif %}
                                 </div>
-
                             </div>
 
                         </article>
-
                     </div>
-
-
-
-                    <!-- PRODUCT -->
-
-                    <div class="swiper-slide">
-
-                        <article class="product-card">
-
-                            <div class="product-image">
-
-                                <span class="product-badge popular">
-                                    محبوب
-                                </span>
-
-
-                                <button class="product-like">
-
-                                    <i class="fa-regular fa-heart"></i>
-
-                                </button>
-
-
-                                <img src="{% static  'images/necklace-1.jpg' %}"
-                                     alt="گردنبند ظریف">
-
-                            </div>
-
-
-                            <div class="product-info">
-
-                                <span class="product-category">
-                                    گردنبند
-                                </span>
-
-                                <h3>
-                                    گردنبند ظریف
-                                </h3>
-
-
-                                <div class="product-bottom">
-
-                                    <strong>
-                                        ۱,۲۵۰,۰۰۰ تومان
-                                    </strong>
-
-
-                                    <button class="add-cart">
-
-                                        <i class="fa-solid fa-cart-shopping"></i>
-
-                                        <span>
-                                            افزودن
-                                        </span>
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    </div>
-
-
-
-                    <!-- PRODUCT -->
-
-                    <div class="swiper-slide">
-
-                        <article class="product-card">
-
-                            <div class="product-image">
-
-                                <button class="product-like">
-
-                                    <i class="fa-regular fa-heart"></i>
-
-                                </button>
-
-
-                                <img src="images/bracelet-1.jpg"
-                                     alt="دستبند زنجیری">
-
-                            </div>
-
-
-                            <div class="product-info">
-
-                                <span class="product-category">
-                                    دستبند
-                                </span>
-
-                                <h3>
-                                    دستبند زنجیری
-                                </h3>
-
-
-                                <div class="product-bottom">
-
-                                    <strong>
-                                        ۷۵۰,۰۰۰ تومان
-                                    </strong>
-
-
-                                    <button class="add-cart">
-
-                                        <i class="fa-solid fa-cart-shopping"></i>
-
-                                        <span>
-                                            افزودن
-                                        </span>
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    </div>
-
-
-
-                    <!-- PRODUCT -->
-
-                    <div class="swiper-slide">
-
-                        <article class="product-card">
-
-                            <div class="product-image">
-
-                                <button class="product-like">
-
-                                    <i class="fa-regular fa-heart"></i>
-
-                                </button>
-
-
-                                <img src="images/earring-1.jpg"
-                                     alt="گوشواره نگین دار">
-
-                            </div>
-
-
-                            <div class="product-info">
-
-                                <span class="product-category">
-                                    گوشواره
-                                </span>
-
-                                <h3>
-                                    گوشواره نگین‌دار
-                                </h3>
-
-
-                                <div class="product-bottom">
-
-                                    <strong>
-                                        ۶۹۰,۰۰۰ تومان
-                                    </strong>
-
-
-                                    <button class="add-cart">
-
-                                        <i class="fa-solid fa-cart-shopping"></i>
-
-                                        <span>
-                                            افزودن
-                                        </span>
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    </div>
-
-
-
-                    <!-- PRODUCT -->
-
-                    <div class="swiper-slide">
-
-                        <article class="product-card">
-
-                            <div class="product-image">
-
-                                <button class="product-like">
-
-                                    <i class="fa-regular fa-heart"></i>
-
-                                </button>
-
-
-                                <img src="images/ring-2.jpg"
-                                     alt="انگشتر کلاسیک">
-
-                            </div>
-
-
-                            <div class="product-info">
-
-                                <span class="product-category">
-                                    انگشتر
-                                </span>
-
-                                <h3>
-                                    انگشتر کلاسیک
-                                </h3>
-
-
-                                <div class="product-bottom">
-
-                                    <strong>
-                                        ۹۵۰,۰۰۰ تومان
-                                    </strong>
-
-
-                                    <button class="add-cart">
-
-                                        <i class="fa-solid fa-cart-shopping"></i>
-
-                                        <span>
-                                            افزودن
-                                        </span>
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    </div>
+                    {% endfor %}
 
                 </div>
-
             </div>
-
 
             <div class="slider-navigation product-navigation">
-
-                <button class="product-prev">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-
-                <button class="product-next">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-
+                <button class="product-prev"><i class="fa-solid fa-arrow-right"></i></button>
+                <button class="product-next"><i class="fa-solid fa-arrow-left"></i></button>
             </div>
-
         </div>
 
     </section>
 
-
-
-    <!-- =========================================
-         FOOTER
-    ========================================== -->
-
     <footer>
-
-        <span>
-            © 2026 Jewelry Store
-        </span>
-
-        <span>
-            ساخته شده با ♥
-        </span>
-
+        <span>© 2026 Jewelry Store</span>
+        <span>ساخته شده با ♥</span>
     </footer>
 
-
 </main>
-
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 

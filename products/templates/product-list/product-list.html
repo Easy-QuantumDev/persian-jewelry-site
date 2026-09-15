@@ -2,364 +2,185 @@
 {% load static %}
 {% block content %}
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>محصولات | Jewelry Store</title>
-
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
-</head>
-
-
-<body>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <main class="products-page">
-
 
     <!-- =========================================
          HERO
     ========================================== -->
-
     <section class="products-hero">
 
         <div class="hero-content">
-
-            <span>
-                JEWELRY COLLECTION
-            </span>
-
-            <h1>
-                مجموعه <strong>محصولات</strong>
-            </h1>
-
-            <p>
-                انتخابی از زیباترین اکسسوری‌ها
-                برای کامل کردن استایل شما.
-            </p>
-
+            <span>JEWELRY COLLECTION</span>
+            <h1>مجموعه <strong>محصولات</strong></h1>
+            <p>انتخابی از زیباترین اکسسوری‌ها برای کامل کردن استایل شما.</p>
         </div>
 
         <div class="hero-decoration">
-
             <div></div>
             <span>✦</span>
-
         </div>
 
     </section>
 
-
-
     <!-- =========================================
          PRODUCTS AREA
     ========================================== -->
-
     <section class="products-area">
 
-
         <!-- SIDEBAR -->
-
         <aside class="filter-sidebar">
 
-            <div class="filter-header">
+            <form method="get" id="filterForm">
 
-                <div>
-
-                    <span>
-                        FILTER
-                    </span>
-
-                    <h2>
-                        فیلتر
-                    </h2>
-
+                <div class="filter-header">
+                    <div>
+                        <span>FILTER</span>
+                        <h2>فیلتر</h2>
+                    </div>
+                    <button type="button" class="close-filter" id="closeFilter">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
 
-                <button
-                    class="close-filter"
-                    id="closeFilter"
-                >
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <!-- CATEGORY -->
+                <div class="filter-group">
+                    <h3>دسته‌بندی</h3>
 
-            </div>
+                    <label class="filter-option">
+                        <input type="radio" name="category" value="all"
+                               {% if selected_category == 'all' %}checked{% endif %}
+                               onchange="this.form.submit()">
+                        <span>همه محصولات</span>
+                    </label>
 
-
-            <!-- CATEGORY -->
-
-            <div class="filter-group">
-
-                <h3>
-                    دسته‌بندی
-                </h3>
-
-
-                <label class="filter-option">
-
-                    <input
-                        type="radio"
-                        name="category"
-                        value="all"
-                        checked
-                    >
-
-                    <span>
-                        همه محصولات
-                    </span>
-
-                </label>
-
-
-                <label class="filter-option">
-
-                    <input
-                        type="radio"
-                        name="category"
-                        value="ring"
-                    >
-
-                    <span>
-                        انگشتر
-                    </span>
-
-                </label>
-
-
-                <label class="filter-option">
-
-                    <input
-                        type="radio"
-                        name="category"
-                        value="necklace"
-                    >
-
-                    <span>
-                        گردنبند
-                    </span>
-
-                </label>
-
-
-                <label class="filter-option">
-
-                    <input
-                        type="radio"
-                        name="category"
-                        value="bracelet"
-                    >
-
-                    <span>
-                        دستبند
-                    </span>
-
-                </label>
-
-
-                <label class="filter-option">
-
-                    <input
-                        type="radio"
-                        name="category"
-                        value="earring"
-                    >
-
-                    <span>
-                        گوشواره
-                    </span>
-
-                </label>
-
-
-                <label class="filter-option">
-
-                    <input
-                        type="radio"
-                        name="category"
-                        value="anklet"
-                    >
-
-                    <span>
-                        پابند
-                    </span>
-
-                </label>
-
-            </div>
-
-
-
-            <!-- PRICE -->
-
-            <div class="filter-group">
-
-                <h3>
-                    محدوده قیمت
-                </h3>
-
-                <div class="price-inputs">
-
-                    <input
-                        type="number"
-                        id="minPrice"
-                        placeholder="حداقل"
-                    >
-
-                    <input
-                        type="number"
-                        id="maxPrice"
-                        placeholder="حداکثر"
-                    >
-
+                    {% for cat in categories %}
+                    <label class="filter-option">
+                        <input type="radio" name="category" value="{{ cat.slug }}"
+                               {% if selected_category == cat.slug %}checked{% endif %}
+                               onchange="this.form.submit()">
+                        <span>{{ cat.name }}</span>
+                    </label>
+                    {% endfor %}
                 </div>
 
-            </div>
+                <!-- PRICE -->
+                <div class="filter-group">
+                    <h3>محدوده قیمت</h3>
+                    <div class="price-inputs">
+                        <input type="number" name="min" id="minPrice" placeholder="حداقل" value="{{ request.GET.min }}">
+                        <input type="number" name="max" id="maxPrice" placeholder="حداکثر" value="{{ request.GET.max }}">
+                    </div>
+                </div>
 
+                <!-- keep current sort when filters are applied -->
+                <input type="hidden" name="sort" value="{{ sort }}">
 
+                <button type="submit" class="apply-filter" id="applyFilter">اعمال فیلتر</button>
 
-            <button
-                class="apply-filter"
-                id="applyFilter"
-            >
-                اعمال فیلتر
-            </button>
+            </form>
 
         </aside>
 
-
-
         <!-- PRODUCTS -->
-
         <div class="products-main">
 
-
             <!-- TOOLBAR -->
-
             <div class="products-toolbar">
 
                 <div>
-
-                    <span class="result-label">
-                        محصولات
-                    </span>
-
-                    <strong id="productCount">
-                        ۶ محصول
-                    </strong>
-
+                    <span class="result-label">محصولات</span>
+                    <strong id="productCount">{{ page_obj.paginator.count }} محصول</strong>
                 </div>
-
 
                 <div class="toolbar-actions">
 
-                    <button
-                        class="mobile-filter"
-                        id="openFilter"
-                    >
-
+                    <button type="button" class="mobile-filter" id="openFilter">
                         <i class="fa-solid fa-sliders"></i>
-
                         فیلتر
-
                     </button>
 
-
-                    <div class="sort">
-
-                        <span>
-                            مرتب‌سازی:
-                        </span>
-
-                        <select id="sortSelect">
-
-                            <option value="newest">
-                                جدیدترین
-                            </option>
-
-                            <option value="cheap">
-                                ارزان‌ترین
-                            </option>
-
-                            <option value="expensive">
-                                گران‌ترین
-                            </option>
-
+                    <form method="get" class="sort">
+                        <input type="hidden" name="category" value="{{ selected_category }}">
+                        <input type="hidden" name="min" value="{{ request.GET.min }}">
+                        <input type="hidden" name="max" value="{{ request.GET.max }}">
+                        <span>مرتب‌سازی:</span>
+                        <select name="sort" id="sortSelect" onchange="this.form.submit()">
+                            <option value="newest" {% if sort == 'newest' %}selected{% endif %}>جدیدترین</option>
+                            <option value="cheap" {% if sort == 'cheap' %}selected{% endif %}>ارزان‌ترین</option>
+                            <option value="expensive" {% if sort == 'expensive' %}selected{% endif %}>گران‌ترین</option>
                         </select>
-
-                    </div>
+                    </form>
 
                 </div>
 
             </div>
-
-
 
             <!-- PRODUCT GRID -->
+            <div class="products-grid" id="productsGrid">
+                {% for product in products %}
+                <article class="product-card">
 
-            <div
-                class="products-grid"
-                id="productsGrid"
-            ></div>
+                    <div class="product-image">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <button class="favorite"><i class="fa-regular fa-heart"></i></button>
+                    </div>
 
+                    <div class="product-info">
+                        <span class="product-category">{{ product.category.name }}</span>
+                        <h3><a href="{% url 'products:single-product' product.slug %}">{{ product.name }}</a></h3>
 
+                        <div class="product-bottom">
+                            <strong>{{ product.price|floatformat:0 }} تومان</strong>
+
+                            {% if product.stock > 0 %}
+                            <form method="post" action="{% url 'cart:add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="add-cart">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <span>افزودن</span>
+                                </button>
+                            </form>
+                            {% else %}
+                            <span class="out-of-stock">ناموجود</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </article>
+                {% endfor %}
+            </div>
 
             <!-- EMPTY -->
-
-            <div
-                class="empty-products"
-                id="emptyProducts"
-            >
-
-                <div>
-
-                    <i class="fa-solid fa-box-open"></i>
-
-                </div>
-
-                <h3>
-                    محصولی پیدا نشد
-                </h3>
-
-                <p>
-                    فیلترهای دیگری را امتحان کنید.
-                </p>
-
+            <div class="empty-products" id="emptyProducts" {% if products %}style="display:none"{% endif %}>
+                <div><i class="fa-solid fa-box-open"></i></div>
+                <h3>محصولی پیدا نشد</h3>
+                <p>فیلترهای دیگری را امتحان کنید.</p>
             </div>
-
-
 
             <!-- PAGINATION -->
-
+            {% if page_obj.paginator.num_pages > 1 %}
             <div class="pagination">
 
-                <button class="active">
-                    ۱
-                </button>
+                {% if page_obj.has_previous %}
+                <a href="?{% querystring page=page_obj.previous_page_number %}">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                {% endif %}
 
-                <button>
-                    ۲
-                </button>
+                {% for num in page_obj.paginator.page_range %}
+                <a href="?{% querystring page=num %}" class="{% if num == page_obj.number %}active{% endif %}">{{ num }}</a>
+                {% endfor %}
 
-                <button>
-                    ۳
-                </button>
-
-                <button>
+                {% if page_obj.has_next %}
+                <a href="?{% querystring page=page_obj.next_page_number %}">
                     <i class="fa-solid fa-arrow-left"></i>
-                </button>
+                </a>
+                {% endif %}
 
             </div>
+            {% endif %}
 
         </div>
 
@@ -367,5 +188,3 @@
 
 </main>
 {% endblock %}
-
-
