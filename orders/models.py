@@ -59,6 +59,32 @@ class Order(models.Model):
         default="pending"
     )
 
+    # ==================================================
+    # ZARINPAL
+    # ==================================================
+
+    authority = models.CharField(
+        max_length=64,
+        blank=True,
+        null=True
+    )
+
+    ref_id = models.CharField(
+        max_length=64,
+        blank=True,
+        null=True
+    )
+
+    # ==================================================
+    # SMS
+    # ==================================================
+
+    sms_sent = models.BooleanField(default=False)
+
+    # ==================================================
+    # TIMESTAMPS
+    # ==================================================
+
     created_at = models.DateTimeField(
         auto_now_add=True
     )
@@ -72,6 +98,8 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.order_number}"
+
+
 class OrderItem(models.Model):
 
     order = models.ForeignKey(

@@ -1,361 +1,77 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block content %}
-<head>
 
-    <meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<main class="wishlist-page">
 
-    <title>علاقه‌مندی‌ها | Jewelry Store</title>
+    <section class="wishlist-header">
+        <span class="wishlist-overline">YOUR COLLECTION</span>
+        <h1>علاقه‌مندی‌های من</h1>
+        <p>محصولاتی که برای خرید بعدی ذخیره کرده‌اید.</p>
+    </section>
 
+    <section class="wishlist-toolbar">
+        <div class="wishlist-count">
+            <i class="fa-regular fa-heart"></i>
+            <span><strong id="wishlistCount">{{ favorites|length }}</strong> محصول ذخیره شده</span>
+        </div>
+    </section>
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <section class="wishlist-products" {% if not favorites %}style="display:none"{% endif %}>
+        {% for fav in favorites %}
+        <article class="wishlist-card" data-product-id="{{ fav.product.id }}">
 
-</head>
-
-
-<body>
-
-
-    <main class="wishlist-page">
-
-
-        <!-- =========================
-             HEADER
-        ========================== -->
-
-        <section class="wishlist-header">
-
-            <span class="wishlist-overline">
-                YOUR COLLECTION
-            </span>
-
-            <h1>
-                علاقه‌مندی‌های من
-            </h1>
-
-            <p>
-                محصولاتی که برای خرید بعدی ذخیره کرده‌اید.
-            </p>
-
-        </section>
-
-
-
-        <!-- =========================
-             TOOLBAR
-        ========================== -->
-
-        <section class="wishlist-toolbar">
-
-            <div class="wishlist-count">
-
-                <i class="fa-regular fa-heart"></i>
-
-                <span>
-                    <strong id="wishlistCount">4</strong>
-                    محصول ذخیره شده
-                </span>
-
+            <div class="wishlist-image">
+                <form method="post" action="{% url 'accounts:toggle-favorite' fav.product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="remove-wishlist" title="حذف از علاقه‌مندی‌ها">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                </form>
+                <a href="{% url 'products:single-product' fav.product.slug %}">
+                    <img src="{{ fav.product.image.url }}" alt="{{ fav.product.name }}">
+                </a>
             </div>
 
+            <div class="wishlist-info">
+                <span class="product-category">{{ fav.product.category.name }}</span>
+                <h2><a href="{% url 'products:single-product' fav.product.slug %}">{{ fav.product.name }}</a></h2>
 
-            <button
-                class="clear-wishlist"
-                id="clearWishlist"
-            >
+                <div class="product-bottom">
+                    <strong>{{ fav.product.price|floatformat:0 }} تومان</strong>
 
-                <i class="fa-regular fa-trash-can"></i>
-
-                پاک کردن همه
-
-            </button>
-
-        </section>
-
-
-
-        <!-- =========================
-             PRODUCTS
-        ========================== -->
-
-        <section class="wishlist-products">
-
-            <article
-                class="wishlist-card"
-                data-product-id="1"
-            >
-
-                <div class="wishlist-image">
-
-                    <span class="wishlist-badge">
-                        محبوب
-                    </span>
-
-                    <button
-                        class="remove-wishlist"
-                        title="حذف از علاقه‌مندی‌ها"
-                    >
-                        <i class="fa-solid fa-heart"></i>
-                    </button>
-
-                    <img
-                        src="./images/necklace-1.jpg"
-                        alt="گردنبند مرواریدی"
-                    >
-
-                </div>
-
-
-                <div class="wishlist-info">
-
-                    <span class="product-category">
-                        گردنبند
-                    </span>
-
-                    <h2>
-                        گردنبند مرواریدی رزگلد
-                    </h2>
-
-
-                    <div class="product-bottom">
-
-                        <strong>
-                            ۱,۹۵۰,۰۰۰ تومان
-                        </strong>
-
-
-                        <button class="add-cart">
-
+                    {% if fav.product.stock > 0 %}
+                    <form method="post" action="{% url 'cart:add_to_cart' fav.product.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="add-cart">
                             <i class="fa-solid fa-bag-shopping"></i>
-
                             افزودن
-
                         </button>
-
-                    </div>
-
+                    </form>
+                    {% else %}
+                    <span class="out-of-stock">ناموجود</span>
+                    {% endif %}
                 </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 2 -->
-
-            <article
-                class="wishlist-card"
-                data-product-id="2"
-            >
-
-                <div class="wishlist-image">
-
-                    <button
-                        class="remove-wishlist"
-                        title="حذف از علاقه‌مندی‌ها"
-                    >
-                        <i class="fa-solid fa-heart"></i>
-                    </button>
-
-                    <img
-                        src="./images/ring-1.jpg"
-                        alt="انگشتر نگین دار"
-                    >
-
-                </div>
-
-
-                <div class="wishlist-info">
-
-                    <span class="product-category">
-                        انگشتر
-                    </span>
-
-                    <h2>
-                        انگشتر نگین دار
-                    </h2>
-
-
-                    <div class="product-bottom">
-
-                        <strong>
-                            ۸۹۰,۰۰۰ تومان
-                        </strong>
-
-
-                        <button class="add-cart">
-
-                            <i class="fa-solid fa-bag-shopping"></i>
-
-                            افزودن
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 3 -->
-
-            <article
-                class="wishlist-card"
-                data-product-id="3"
-            >
-
-                <div class="wishlist-image">
-
-                    <button
-                        class="remove-wishlist"
-                        title="حذف از علاقه‌مندی‌ها"
-                    >
-                        <i class="fa-solid fa-heart"></i>
-                    </button>
-
-                    <img
-                        src="./images/bracelet-1.jpg"
-                        alt="دستبند زنجیری"
-                    >
-
-                </div>
-
-
-                <div class="wishlist-info">
-
-                    <span class="product-category">
-                        دستبند
-                    </span>
-
-                    <h2>
-                        دستبند زنجیری
-                    </h2>
-
-
-                    <div class="product-bottom">
-
-                        <strong>
-                            ۷۵۰,۰۰۰ تومان
-                        </strong>
-
-
-                        <button class="add-cart">
-
-                            <i class="fa-solid fa-bag-shopping"></i>
-
-                            افزودن
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- PRODUCT 4 -->
-
-            <article
-                class="wishlist-card"
-                data-product-id="4"
-            >
-
-                <div class="wishlist-image">
-
-                    <span class="wishlist-badge">
-                        جدید
-                    </span>
-
-                    <button
-                        class="remove-wishlist"
-                        title="حذف از علاقه‌مندی‌ها"
-                    >
-                        <i class="fa-solid fa-heart"></i>
-                    </button>
-
-                    <img
-                        src="./images/earring-1.jpg"
-                        alt="گوشواره طلایی"
-                    >
-
-                </div>
-
-
-                <div class="wishlist-info">
-
-                    <span class="product-category">
-                        گوشواره
-                    </span>
-
-                    <h2>
-                        گوشواره طلایی
-                    </h2>
-
-
-                    <div class="product-bottom">
-
-                        <strong>
-                            ۶۹۰,۰۰۰ تومان
-                        </strong>
-
-
-                        <button class="add-cart">
-
-                            <i class="fa-solid fa-bag-shopping"></i>
-
-                            افزودن
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-        </section>
-
-
-
-        <!-- =========================
-             EMPTY STATE
-        ========================== -->
-
-        <section
-            class="wishlist-empty"
-            id="wishlistEmpty"
-        >
-
-            <div class="empty-icon">
-
-                <i class="fa-regular fa-heart"></i>
-
             </div>
 
-            <h2>
-                هنوز محصولی ذخیره نکرده‌اید
-            </h2>
+        </article>
+        {% endfor %}
+    </section>
 
-            <p>
-                محصولاتی که دوست دارید را به علاقه‌مندی‌ها اضافه کنید
-                تا بعداً راحت‌تر آن‌ها را پیدا کنید.
-            </p>
+    <section class="wishlist-empty" id="wishlistEmpty" {% if favorites %}style="display:none"{% endif %}>
+        <div class="empty-icon">
+            <i class="fa-regular fa-heart"></i>
+        </div>
+        <h2>هنوز محصولی ذخیره نکرده‌اید</h2>
+        <p>محصولاتی که دوست دارید را به علاقه‌مندی‌ها اضافه کنید تا بعداً راحت‌تر آن‌ها را پیدا کنید.</p>
+        <a href="{% url 'products:product-list' %}" class="shop-btn">
+            مشاهده محصولات
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    </section>
 
-            <a href="#" class="shop-btn">
-                مشاهده محصولات
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
-
-        </section>
-
-
-    </main>
+</main>
 
 {% endblock %}

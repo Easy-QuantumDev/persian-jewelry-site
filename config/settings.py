@@ -112,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-ir'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -145,3 +145,30 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# --------------------------------------------------
+# AUTH
+# --------------------------------------------------
+# بدون این، @login_required کاربرو می‌فرسته آدرس پیش‌فرض
+# جنگو (/accounts/login/) که ممکنه با مسیر واقعی login تو
+# پروژه‌ت یکی نباشه.
+LOGIN_URL = 'accounts:login'
+
+# --------------------------------------------------
+# ZARINPAL
+# --------------------------------------------------
+
+ZARINPAL_MERCHANT_ID = "کد-مرچنت-تو"
+
+# True = Sandbox / تست
+# False = درگاه واقعی
+ZARINPAL_SANDBOX = True
+
+
+# --------------------------------------------------
+# MELIPAYAMAK
+# --------------------------------------------------
+
+MELIPAYAMAK_TOKEN = "توکن-پنل-ملی‌پیامک-تو"
+
+MELIPAYAMAK_SENDER_NUMBER = "شماره-خط-ارسالت"

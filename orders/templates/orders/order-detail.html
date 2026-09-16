@@ -5,228 +5,803 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>جزئیات سفارش | Jewelry Store</title>
+
     <link rel="stylesheet" href="{% static 'css/order-detail.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
 <div class="order-page">
 
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
     <header class="order-header">
+
         <div class="brand">
-            <div class="brand-icon"><i class="fa-solid fa-gem"></i></div>
+
+            <div class="brand-icon">
+                <i class="fa-solid fa-gem"></i>
+            </div>
+
             <div>
                 <strong>JEWELRY</strong>
                 <span>بدلیجات</span>
             </div>
+
         </div>
+
 
         <div class="page-title">
+
             <span>ORDER DETAILS</span>
+
             <h1>جزئیات سفارش</h1>
+
         </div>
 
-        <a href="{% url 'home' %}" class="back-btn" id="back-btn">
+
+        <a href="{% url 'pages:home' %}" class="back-btn">
+
             <i class="fa-solid fa-arrow-right"></i>
+
             بازگشت
+
         </a>
+
     </header>
+
 
     <main class="order-container">
 
+
+        <!-- ================================================= -->
+        <!-- ORDER STATUS HEADER -->
+        <!-- ================================================= -->
+
         <section class="order-top-card">
-            <div class="success-status">
-                <div class="status-icon"><i class="fa-solid fa-check"></i></div>
-                <div>
-                    <span>سفارش با موفقیت ثبت شد</span>
-                    <h2>ممنون از خرید شما ✨</h2>
+
+            {% if order.status == "paid" %}
+
+                <div class="success-status">
+
+                    <div class="status-icon">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            پرداخت با موفقیت انجام شد
+                        </span>
+
+                        <h2>
+                            ممنون از خرید شما ✨
+                        </h2>
+
+                    </div>
+
                 </div>
-            </div>
+
+
+            {% elif order.status == "pending" %}
+
+                <div class="success-status">
+
+                    <div class="status-icon">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            سفارش شما ثبت شده است
+                        </span>
+
+                        <h2>
+                            منتظر پرداخت شما هستیم
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            {% elif order.status == "processing" %}
+
+                <div class="success-status">
+
+                    <div class="status-icon">
+                        <i class="fa-solid fa-box"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            پرداخت انجام شده است
+                        </span>
+
+                        <h2>
+                            سفارش شما در حال پردازش است 📦
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            {% elif order.status == "shipped" %}
+
+                <div class="success-status">
+
+                    <div class="status-icon">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            سفارش شما ارسال شده است
+                        </span>
+
+                        <h2>
+                            سفارش در مسیر شماست 🚚
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            {% elif order.status == "delivered" %}
+
+                <div class="success-status">
+
+                    <div class="status-icon">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            سفارش تحویل داده شده است
+                        </span>
+
+                        <h2>
+                            از خرید شما متشکریم ❤️
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            {% elif order.status == "cancelled" %}
+
+                <div class="success-status">
+
+                    <div class="status-icon">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            پرداخت انجام نشد
+                        </span>
+
+                        <h2>
+                            پرداخت این سفارش لغو یا ناموفق شده است
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- شماره سفارش -->
 
             <div class="order-number-box">
-                <span>شماره سفارش</span>
-                <strong id="order-number">#{{ order.order_number }}</strong>
+
+                <span>
+                    شماره سفارش
+                </span>
+
+                <strong>
+                    #{{ order.order_number }}
+                </strong>
+
             </div>
+
         </section>
 
+
+        <!-- ================================================= -->
+        <!-- ORDER STATUS TIMELINE -->
+        <!-- ================================================= -->
+
         <section class="order-card">
+
             <div class="card-title">
-                <span>ORDER STATUS</span>
-                <h2>وضعیت سفارش</h2>
+
+                <span>
+                    ORDER STATUS
+                </span>
+
+                <h2>
+                    وضعیت سفارش
+                </h2>
+
             </div>
+
 
             <div class="order-timeline">
 
+
+                <!-- ثبت سفارش -->
+
                 <div class="timeline-item active">
-                    <div class="timeline-icon"><i class="fa-solid fa-check"></i></div>
-                    <div>
-                        <strong>سفارش ثبت شد</strong>
-                        <span>سفارش شما با موفقیت ثبت شده است.</span>
+
+                    <div class="timeline-icon">
+                        <i class="fa-solid fa-check"></i>
                     </div>
+
+                    <div>
+
+                        <strong>
+                            سفارش ثبت شد
+                        </strong>
+
+                        <span>
+                            سفارش شما با موفقیت ثبت شده است.
+                        </span>
+
+                    </div>
+
                 </div>
 
-                <div class="timeline-line {% if order.status != 'pending' %}active{% endif %}"></div>
 
-                <div class="timeline-item {% if order.status == 'processing' or order.status == 'shipped' or order.status == 'delivered' %}active{% endif %}">
-                    <div class="timeline-icon"><i class="fa-solid fa-box"></i></div>
-                    <div>
-                        <strong>در حال پردازش</strong>
-                        <span>سفارش شما در حال آماده‌سازی است.</span>
+                <!-- خط -->
+
+                <div class="timeline-line
+                    {% if order.status != 'pending' and order.status != 'cancelled' %}
+                        active
+                    {% endif %}
+                "></div>
+
+
+                <!-- پرداخت -->
+
+                <div class="timeline-item
+                    {% if order.status == 'paid' or order.status == 'processing' or order.status == 'shipped' or order.status == 'delivered' %}
+                        active
+                    {% endif %}
+                ">
+
+                    <div class="timeline-icon">
+
+                        {% if order.status == "cancelled" %}
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        {% elif order.status == "pending" %}
+
+                            <i class="fa-solid fa-credit-card"></i>
+
+                        {% else %}
+
+                            <i class="fa-solid fa-check"></i>
+
+                        {% endif %}
+
                     </div>
+
+                    <div>
+
+                        <strong>
+                            پرداخت
+                        </strong>
+
+                        {% if order.status == "pending" %}
+
+                            <span>
+                                منتظر پرداخت سفارش هستیم.
+                            </span>
+
+                        {% elif order.status == "cancelled" %}
+
+                            <span>
+                                پرداخت لغو یا ناموفق شده است.
+                            </span>
+
+                        {% else %}
+
+                            <span>
+                                پرداخت با موفقیت تایید شده است.
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
                 </div>
 
-                <div class="timeline-line {% if order.status == 'shipped' or order.status == 'delivered' %}active{% endif %}"></div>
 
-                <div class="timeline-item {% if order.status == 'shipped' or order.status == 'delivered' %}active{% endif %}">
-                    <div class="timeline-icon"><i class="fa-solid fa-truck"></i></div>
-                    <div>
-                        <strong>ارسال شده</strong>
-                        <span>پس از ارسال، کد رهگیری نمایش داده می‌شود.</span>
+                <!-- خط -->
+
+                <div class="timeline-line
+                    {% if order.status == 'processing' or order.status == 'shipped' or order.status == 'delivered' %}
+                        active
+                    {% endif %}
+                "></div>
+
+
+                <!-- پردازش -->
+
+                <div class="timeline-item
+                    {% if order.status == 'processing' or order.status == 'shipped' or order.status == 'delivered' %}
+                        active
+                    {% endif %}
+                ">
+
+                    <div class="timeline-icon">
+
+                        <i class="fa-solid fa-box"></i>
+
                     </div>
+
+                    <div>
+
+                        <strong>
+                            در حال پردازش
+                        </strong>
+
+                        <span>
+                            سفارش شما در حال آماده‌سازی است.
+                        </span>
+
+                    </div>
+
                 </div>
 
-                <div class="timeline-line {% if order.status == 'delivered' %}active{% endif %}"></div>
 
-                <div class="timeline-item {% if order.status == 'delivered' %}active{% endif %}">
-                    <div class="timeline-icon"><i class="fa-solid fa-house"></i></div>
-                    <div>
-                        <strong>تحویل داده شد</strong>
-                        <span>سفارش به شما تحویل داده می‌شود.</span>
+                <!-- خط -->
+
+                <div class="timeline-line
+                    {% if order.status == 'shipped' or order.status == 'delivered' %}
+                        active
+                    {% endif %}
+                "></div>
+
+
+                <!-- ارسال -->
+
+                <div class="timeline-item
+                    {% if order.status == 'shipped' or order.status == 'delivered' %}
+                        active
+                    {% endif %}
+                ">
+
+                    <div class="timeline-icon">
+
+                        <i class="fa-solid fa-truck"></i>
+
                     </div>
+
+                    <div>
+
+                        <strong>
+                            ارسال شده
+                        </strong>
+
+                        <span>
+                            پس از ارسال، کد رهگیری نمایش داده می‌شود.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- خط -->
+
+                <div class="timeline-line
+                    {% if order.status == 'delivered' %}
+                        active
+                    {% endif %}
+                "></div>
+
+
+                <!-- تحویل -->
+
+                <div class="timeline-item
+                    {% if order.status == 'delivered' %}
+                        active
+                    {% endif %}
+                ">
+
+                    <div class="timeline-icon">
+
+                        <i class="fa-solid fa-house"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            تحویل داده شد
+                        </strong>
+
+                        <span>
+                            سفارش به شما تحویل داده می‌شود.
+                        </span>
+
+                    </div>
+
                 </div>
 
             </div>
 
         </section>
 
+
+        <!-- ================================================= -->
+        <!-- ORDER ITEMS + SUMMARY -->
+        <!-- ================================================= -->
+
         <div class="order-grid">
 
+
+            <!-- محصولات -->
+
             <section class="order-card products-card">
+
                 <div class="card-title">
-                    <span>ORDER ITEMS</span>
-                    <h2>محصولات سفارش</h2>
+
+                    <span>
+                        ORDER ITEMS
+                    </span>
+
+                    <h2>
+                        محصولات سفارش
+                    </h2>
+
                 </div>
 
-                <div class="order-products" id="order-products">
+
+                <div class="order-products">
+
                     {% for item in items %}
-                    <div class="order-product">
 
-                        <div class="product-image">
-                            {% if item.product.image %}
-                                <img src="{{ item.product.image.url }}" alt="{{ item.product_name }}">
-                            {% endif %}
+                        <div class="order-product">
+
+
+                            <div class="product-image">
+
+                                {% if item.product.image %}
+
+                                    <img
+                                        src="{{ item.product.image.url }}"
+                                        alt="{{ item.product_name }}"
+                                    >
+
+                                {% else %}
+
+                                    <i class="fa-solid fa-gem"></i>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="product-info">
+
+                                <strong>
+                                    {{ item.product_name }}
+                                </strong>
+
+                                <small>
+                                    تعداد: {{ item.quantity }}
+                                </small>
+
+                            </div>
+
+
+                            <div class="product-price">
+
+                                <strong>
+                                    {{ item.total_price|floatformat:0 }}
+                                </strong>
+
+                                <span>
+                                    تومان
+                                </span>
+
+                            </div>
+
                         </div>
 
-                        <div class="product-info">
-                            <strong>{{ item.product_name }}</strong>
-                            <small>تعداد: {{ item.quantity }}</small>
-                        </div>
-
-                        <div class="product-price">
-                            <strong>{{ item.total_price|floatformat:0 }}</strong>
-                            <span>تومان</span>
-                        </div>
-
-                    </div>
                     {% endfor %}
+
                 </div>
+
             </section>
 
+
+            <!-- خلاصه سفارش -->
+
             <aside class="order-summary order-card">
+
                 <div class="card-title">
-                    <span>ORDER SUMMARY</span>
-                    <h2>خلاصه سفارش</h2>
+
+                    <span>
+                        ORDER SUMMARY
+                    </span>
+
+                    <h2>
+                        خلاصه سفارش
+                    </h2>
+
                 </div>
 
-                <div class="summary-row">
-                    <span>تعداد محصولات</span>
-                    <strong id="items-count">{{ items|length }} محصول</strong>
-                </div>
 
                 <div class="summary-row">
-                    <span>مجموع محصولات</span>
-                    <strong id="subtotal">{{ order.total_price|floatformat:0 }} تومان</strong>
+
+                    <span>
+                        تعداد محصولات
+                    </span>
+
+                    <strong>
+                        {{ items|length }} محصول
+                    </strong>
+
                 </div>
 
+
                 <div class="summary-row">
-                    <span>هزینه ارسال</span>
-                    <strong class="free">رایگان</strong>
+
+                    <span>
+                        مجموع محصولات
+                    </span>
+
+                    <strong>
+                        {{ order.total_price|floatformat:0 }}
+                        تومان
+                    </strong>
+
                 </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        هزینه ارسال
+                    </span>
+
+                    <strong class="free">
+                        رایگان
+                    </strong>
+
+                </div>
+
 
                 <div class="summary-line"></div>
 
+
                 <div class="summary-total">
-                    <span>مبلغ پرداخت شده</span>
-                    <strong id="total">{{ order.total_price|floatformat:0 }} تومان</strong>
+
+                    <span>
+                        مبلغ سفارش
+                    </span>
+
+                    <strong>
+                        {{ order.total_price|floatformat:0 }}
+                        تومان
+                    </strong>
+
                 </div>
 
+
                 <div class="payment-status">
-                    <i class="fa-solid fa-circle-check"></i>
+
+                    {% if order.status == "paid" or order.status == "processing" or order.status == "shipped" or order.status == "delivered" %}
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                    {% elif order.status == "pending" %}
+
+                        <i class="fa-solid fa-clock"></i>
+
+                    {% else %}
+
+                        <i class="fa-solid fa-circle-xmark"></i>
+
+                    {% endif %}
+
+
                     {{ order.get_status_display }}
+
                 </div>
+
             </aside>
 
         </div>
 
+
+        <!-- ================================================= -->
+        <!-- CUSTOMER INFORMATION -->
+        <!-- ================================================= -->
+
         <section class="order-card customer-card">
+
             <div class="card-title">
-                <span>CUSTOMER INFORMATION</span>
-                <h2>اطلاعات گیرنده</h2>
+
+                <span>
+                    CUSTOMER INFORMATION
+                </span>
+
+                <h2>
+                    اطلاعات گیرنده
+                </h2>
+
             </div>
+
 
             <div class="customer-grid">
 
-                <div class="customer-item">
-                    <i class="fa-regular fa-user"></i>
-                    <div>
-                        <span>نام گیرنده</span>
-                        <strong id="customer-name">{{ order.first_name }} {{ order.last_name }}</strong>
-                    </div>
-                </div>
 
                 <div class="customer-item">
-                    <i class="fa-solid fa-phone"></i>
+
+                    <i class="fa-regular fa-user"></i>
+
                     <div>
-                        <span>شماره تماس</span>
-                        <strong id="customer-phone">{{ order.phone }}</strong>
+
+                        <span>
+                            نام گیرنده
+                        </span>
+
+                        <strong>
+                            {{ order.first_name }}
+                            {{ order.last_name }}
+                        </strong>
+
                     </div>
+
                 </div>
+
+
+                <div class="customer-item">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <div>
+
+                        <span>
+                            شماره تماس
+                        </span>
+
+                        <strong>
+                            {{ order.phone }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
 
                 <div class="customer-item address">
+
                     <i class="fa-solid fa-location-dot"></i>
+
                     <div>
-                        <span>آدرس ارسال</span>
-                        <strong id="customer-address">{{ order.city }}، {{ order.address }}</strong>
+
+                        <span>
+                            آدرس ارسال
+                        </span>
+
+                        <strong>
+                            {{ order.city }}،
+                            {{ order.address }}
+                        </strong>
+
                     </div>
+
                 </div>
 
             </div>
+
         </section>
 
-        <div class="order-actions">
-            <a href="{% url 'home' %}" class="primary-btn" id="continue-shopping">
-                ادامه خرید
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
 
-            <button class="secondary-btn" id="print-order">
+        <!-- ================================================= -->
+        <!-- ACTIONS -->
+        <!-- ================================================= -->
+
+        <div class="order-actions">
+
+
+            {% if order.status == "pending" or order.status == "cancelled" %}
+
+                <a
+                    href="{% url 'orders:start_payment' order.order_number %}"
+                    class="primary-btn"
+                >
+
+                    {% if order.status == "cancelled" %}
+
+                        پرداخت مجدد
+
+                    {% else %}
+
+                        پرداخت سفارش
+
+                    {% endif %}
+
+                    <i class="fa-solid fa-credit-card"></i>
+
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{% url 'pages:home' %}"
+                    class="primary-btn"
+                >
+
+                    ادامه خرید
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                </a>
+
+            {% endif %}
+
+
+            <button
+                class="secondary-btn"
+                id="print-order"
+            >
+
                 <i class="fa-solid fa-print"></i>
+
                 چاپ فاکتور
+
             </button>
+
         </div>
+
 
     </main>
 
+
+    <!-- ================================================= -->
+    <!-- FOOTER -->
+    <!-- ================================================= -->
+
     <footer class="order-footer">
-        <span>© 2026 Jewelry Store</span>
-        <span>پرداخت امن و مطمئن <i class="fa-solid fa-shield-halved"></i></span>
+
+        <span>
+            © 2026 Jewelry Store
+        </span>
+
+        <span>
+            پرداخت امن و مطمئن
+            <i class="fa-solid fa-shield-halved"></i>
+        </span>
+
     </footer>
 
 </div>
 
-<script src="{% static 'order-detail.js' %}"></script>
+
+<script src="{% static 'js/order-detail.js' %}"></script>
 
 </body>
 

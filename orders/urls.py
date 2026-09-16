@@ -15,6 +15,20 @@ urlpatterns = [
         name='checkout'
     ),
 
+    # شروع پرداخت (ریدایرکت به درگاه زرین‌پال)
+    path(
+        'pay/<str:order_number>/',
+        views.start_payment,
+        name='start_payment'
+    ),
+
+    # کال‌بک تایید پرداخت زرین‌پال
+    path(
+        'verify/<str:order_number>/',
+        views.verify_payment,
+        name='verify_payment'
+    ),
+
     # لیست سفارش‌های کاربر
     path(
         'my-orders/',

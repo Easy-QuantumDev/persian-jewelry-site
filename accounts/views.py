@@ -1,89 +1,390 @@
+import secrets
+import re
+
+from datetime import timedelta
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.db import transaction
-from django.contrib import messages
+from django.http import JsonResponse
+from django.urls import reverse
+from django.utils import timezone
+from django.views.decorators.http import require_POST
 
 from .models import Profile
+from .sms import send_otp_sms
 
 
-# ====================== LOGIN ======================
+def _is_ajax(request):
+    return request.headers.get(
+        "x-requested-with"
+    ) == "XMLHttpRequest"
+
+
+# =========================================================
+# LOGIN
+# =========================================================
+
 def loggin(request):
 
     if request.user.is_authenticated:
-        return redirect('pages:home')
+        return redirect("pages:home")
 
-    if request.method == 'POST':
+    if request.method == "POST":
 
-        email = request.POST.get("email")
-        password = request.POST.get("password")
+        identifier = request.POST.get(
+            "identifier",
+            ""
+        ).strip()
 
-        try:
-            user = User.objects.get(
-                email__iexact=email
+        password = request.POST.get(
+            "password",
+            ""
+        )
+
+        if not identifier or not password:
+
+            messages.error(
+                request,
+                "شماره موبایل/ایمیل و رمز عبور را وارد کنید."
             )
 
-            user = authenticate(
+            return render(
+                request,
+                "signup-signin/login.html"
+            )
+
+        user = None
+
+        # -------------------------------------------------
+        # اول بررسی شماره موبایل
+        # -------------------------------------------------
+
+        if re.match(r"^09\d{9}$", identifier):
+
+            try:
+
+                profile = Profile.objects.select_related(
+                    "user"
+                ).get(
+                    phone=identifier
+                )
+
+                user = profile.user
+
+            except Profile.DoesNotExist:
+
+                user = None
+
+        # -------------------------------------------------
+        # اگر شماره پیدا نشد، ایمیل را بررسی کن
+        # برای کاربران قدیمی
+        # -------------------------------------------------
+
+        else:
+
+            try:
+
+                user = User.objects.get(
+                    email__iexact=identifier
+                )
+
+            except User.DoesNotExist:
+
+                user = None
+
+        # -------------------------------------------------
+        # احراز هویت
+        # -------------------------------------------------
+
+        if user is not None:
+
+            authenticated_user = authenticate(
                 request,
                 username=user.username,
                 password=password
             )
 
-        except User.DoesNotExist:
-            user = None
+            if authenticated_user is not None:
 
-        if user is not None:
+                login(
+                    request,
+                    authenticated_user
+                )
 
-            login(request, user)
-
-            return redirect('pages:home')
+                return redirect(
+                    "pages:home"
+                )
 
         messages.error(
             request,
-            'ایمیل یا پسورد اشتباه است'
-        )
-
-        return render(
-            request,
-            'signup-signin/login.html'
+            "شماره موبایل/ایمیل یا رمز عبور اشتباه است."
         )
 
     return render(
         request,
-        'signup-signin/login.html'
+        "signup-signin/login.html"
     )
 
 
-# ====================== SIGNUP ======================
+# =========================================================
+# CHECK EMAIL
+# =========================================================
+
+def check_email(request):
+
+    email = request.GET.get(
+        "email",
+        ""
+    ).strip()
+
+    # ایمیل اختیاری است
+    if not email:
+
+        return JsonResponse({
+            "available": True,
+            "error": None
+        })
+
+    taken = User.objects.filter(
+        email__iexact=email
+    ).exists()
+
+    return JsonResponse({
+        "available": not taken,
+        "error": (
+            None
+            if not taken
+            else "این ایمیل قبلاً ثبت شده است."
+        ),
+    })
+
+
+# =========================================================
+# SEND SIGNUP OTP
+# =========================================================
+
+@require_POST
+def send_otp(request):
+
+    phone = request.POST.get(
+        "phone",
+        ""
+    ).strip()
+
+    # بررسی شماره
+    if not re.match(
+        r"^09\d{9}$",
+        phone
+    ):
+
+        return JsonResponse({
+            "ok": False,
+            "error": "شماره موبایل معتبر نیست."
+        })
+
+    # جلوگیری از ثبت شماره تکراری
+    if Profile.objects.filter(
+        phone=phone
+    ).exists():
+
+        return JsonResponse({
+            "ok": False,
+            "error": "این شماره موبایل قبلاً ثبت شده است."
+        })
+
+    # ساخت OTP امن
+    code = str(
+        secrets.randbelow(90000) + 10000
+    )
+
+    request.session["signup_otp"] = {
+        "phone": phone,
+        "code": code,
+        "sent_at": timezone.now().isoformat(),
+        "attempts": 0,
+    }
+
+    request.session.pop(
+        "signup_otp_verified",
+        None
+    )
+
+    sent = send_otp_sms(
+        phone,
+        code
+    )
+
+    if not sent:
+
+        request.session.pop(
+            "signup_otp",
+            None
+        )
+
+        return JsonResponse({
+            "ok": False,
+            "error": (
+                "ارسال پیامک با خطا مواجه شد. "
+                "لطفاً دوباره تلاش کنید."
+            )
+        })
+
+    return JsonResponse({
+        "ok": True
+    })
+
+
+# =========================================================
+# VERIFY SIGNUP OTP
+# =========================================================
+
+@require_POST
+def verify_otp(request):
+
+    phone = request.POST.get(
+        "phone",
+        ""
+    ).strip()
+
+    code = request.POST.get(
+        "code",
+        ""
+    ).strip()
+
+    otp_data = request.session.get(
+        "signup_otp"
+    )
+
+    if not otp_data:
+
+        return JsonResponse({
+            "ok": False,
+            "error": (
+                "ابتدا روی «ارسال کد تایید» بزنید."
+            )
+        })
+
+    # بررسی شماره
+    if otp_data.get("phone") != phone:
+
+        return JsonResponse({
+            "ok": False,
+            "error": "شماره موبایل با کد ارسال‌شده مطابقت ندارد."
+        })
+
+    # بررسی زمان
+    try:
+
+        sent_at = timezone.datetime.fromisoformat(
+            otp_data["sent_at"]
+        )
+
+    except (KeyError, ValueError):
+
+        request.session.pop(
+            "signup_otp",
+            None
+        )
+
+        return JsonResponse({
+            "ok": False,
+            "error": "کد تایید نامعتبر است."
+        })
+
+    if timezone.now() - sent_at > timedelta(
+        minutes=2
+    ):
+
+        request.session.pop(
+            "signup_otp",
+            None
+        )
+
+        return JsonResponse({
+            "ok": False,
+            "error": (
+                "کد تایید منقضی شده. "
+                "دوباره درخواست کد بده."
+            )
+        })
+
+    # محدودیت تلاش
+    attempts = otp_data.get(
+        "attempts",
+        0
+    )
+
+    if attempts >= 5:
+
+        request.session.pop(
+            "signup_otp",
+            None
+        )
+
+        return JsonResponse({
+            "ok": False,
+            "error": (
+                "تعداد تلاش‌های شما بیش از حد مجاز است. "
+                "یک کد جدید دریافت کنید."
+            )
+        })
+
+    # بررسی کد
+    if otp_data.get("code") != code:
+
+        otp_data["attempts"] = attempts + 1
+
+        request.session["signup_otp"] = otp_data
+
+        return JsonResponse({
+            "ok": False,
+            "error": "کد وارد شده صحیح نیست."
+        })
+
+    # موفق
+    request.session["signup_otp_verified"] = phone
+
+    return JsonResponse({
+        "ok": True
+    })
+
+
+# =========================================================
+# SIGNUP
+# =========================================================
+
 def signup(request):
 
     if request.user.is_authenticated:
-        return redirect('pages:home')
 
-    if request.method == 'POST':
-
-        first_and_last_name = request.POST.get(
-            "first-and-last-name"
+        return redirect(
+            "pages:home"
         )
 
-        email = request.POST.get("email")
+    if request.method == "POST":
 
-        phone = request.POST.get("phone")
+        ajax = _is_ajax(request)
 
-        password = request.POST.get("password")
+        def fail(message):
 
-        password_repeat = request.POST.get(
-            "password-repeat"
-        )
+            if ajax:
 
-        # بررسی فیلدهای ضروری
-        if not first_and_last_name or not email or not password:
+                return JsonResponse(
+                    {
+                        "ok": False,
+                        "error": message
+                    },
+                    status=400
+                )
 
             messages.error(
                 request,
-                "لطفاً همه فیلدهای ضروری را پر کنید."
+                message
             )
 
             return render(
@@ -91,144 +392,296 @@ def signup(request):
                 "signup-signin/singup.html"
             )
 
-        # بررسی تکرار پسورد
+        # -------------------------------------------------
+        # دریافت اطلاعات
+        # -------------------------------------------------
+
+        first_and_last_name = request.POST.get(
+            "first-and-last-name",
+            ""
+        ).strip()
+
+        email = request.POST.get(
+            "email",
+            ""
+        ).strip()
+
+        phone = request.POST.get(
+            "phone",
+            ""
+        ).strip()
+
+        password = request.POST.get(
+            "password",
+            ""
+        )
+
+        password_repeat = request.POST.get(
+            "password-repeat",
+            ""
+        )
+
+        # -------------------------------------------------
+        # نام
+        # -------------------------------------------------
+
+        if not first_and_last_name:
+
+            return fail(
+                "لطفاً نام و نام خانوادگی را وارد کنید."
+            )
+
+        # -------------------------------------------------
+        # شماره
+        # -------------------------------------------------
+
+        if not re.match(
+            r"^09\d{9}$",
+            phone
+        ):
+
+            return fail(
+                "شماره موبایل معتبر نیست."
+            )
+
+        # -------------------------------------------------
+        # ایمیل اختیاری
+        # -------------------------------------------------
+
+        if email:
+
+            if not re.match(
+                r"^[^@\s]+@[^@\s]+\.[^@\s]+$",
+                email
+            ):
+
+                return fail(
+                    "ایمیل وارد شده معتبر نیست."
+                )
+
+            if User.objects.filter(
+                email__iexact=email
+            ).exists():
+
+                return fail(
+                    "این ایمیل قبلاً ثبت شده است."
+                )
+
+        # -------------------------------------------------
+        # بررسی شماره تکراری
+        # -------------------------------------------------
+
+        if Profile.objects.filter(
+            phone=phone
+        ).exists():
+
+            return fail(
+                "این شماره موبایل قبلاً ثبت شده است."
+            )
+
+        # -------------------------------------------------
+        # بررسی OTP
+        # -------------------------------------------------
+
+        verified_phone = request.session.get(
+            "signup_otp_verified"
+        )
+
+        if verified_phone != phone:
+
+            return fail(
+                "لطفاً ابتدا شماره موبایل خود را تایید کنید."
+            )
+
+        # -------------------------------------------------
+        # پسورد
+        # -------------------------------------------------
+
+        if not password:
+
+            return fail(
+                "رمز عبور را وارد کنید."
+            )
+
         if password != password_repeat:
 
-            messages.error(
-                request,
+            return fail(
                 "رمزهای عبور یکسان نیستند."
             )
 
-            return render(
-                request,
-                "signup-signin/singup.html"
-            )
-
-        # بررسی طول پسورد
         if len(password) < 8:
 
-            messages.error(
-                request,
+            return fail(
                 "رمز عبور باید حداقل ۸ کاراکتر باشد."
             )
 
-            return render(
-                request,
-                "signup-signin/singup.html"
+        # -------------------------------------------------
+        # ساخت User + Profile
+        # -------------------------------------------------
+
+        try:
+
+            with transaction.atomic():
+
+                # برای کاربران جدید:
+                # شماره موبایل = username
+
+                user = User.objects.create_user(
+
+                    username=phone,
+
+                    email=email,
+
+                    password=password,
+
+                    first_name=first_and_last_name
+                )
+
+                Profile.objects.create(
+
+                    user=user,
+
+                    phone=phone,
+
+                    address="",
+
+                    city="",
+
+                    postal_code=""
+                )
+
+        except Exception as e:
+
+            print(
+                "SIGNUP ERROR:",
+                repr(e)
             )
 
-        # بررسی تکراری نبودن ایمیل
-        if User.objects.filter(
-            email__iexact=email
-        ).exists():
-
-            messages.error(
-                request,
-                "این ایمیل قبلاً ثبت شده است."
+            return fail(
+                "ساخت حساب با خطا مواجه شد."
             )
 
-            return render(
-                request,
-                "signup-signin/singup.html"
-            )
+        # -------------------------------------------------
+        # Login
+        # -------------------------------------------------
 
-        # ساخت User و Profile
-        with transaction.atomic():
+        login(
+            request,
+            user
+        )
 
-            user = User.objects.create_user(
-                username=email,
-                email=email,
-                password=password,
-                first_name=first_and_last_name,
-            )
+        # -------------------------------------------------
+        # پاک کردن OTP
+        # -------------------------------------------------
 
-            Profile.objects.create(
-                user=user,
-                phone=phone,
-                address="",
-                city="",
-                postal_code="",
-            )
+        request.session.pop(
+            "signup_otp",
+            None
+        )
 
-        # ورود خودکار
-        login(request, user)
+        request.session.pop(
+            "signup_otp_verified",
+            None
+        )
+
+        # -------------------------------------------------
+        # AJAX
+        # -------------------------------------------------
+
+        if ajax:
+
+            return JsonResponse({
+                "ok": True,
+                "redirect_url": reverse(
+                    "pages:home"
+                )
+            })
 
         messages.success(
             request,
             "حساب شما با موفقیت ساخته شد!"
         )
 
-        return redirect('pages:home')
+        return redirect(
+            "pages:home"
+        )
 
     return render(
         request,
-        'signup-signin/singup.html'
+        "signup-signin/singup.html"
     )
 
 
-# ====================== LOGOUT ======================
+# =========================================================
+# LOGOUT
+# =========================================================
+
 def logout_view(request):
 
     logout(request)
 
-    messages.success(
-        request,
-        'با موفقیت از حساب کاربری خارج شدید.'
+    return redirect(
+        "pages:home"
     )
 
-    return redirect('pages:home')
 
+# =========================================================
+# PROFILE
+# =========================================================
 
-# ====================== PROFILE ======================
 @login_required
 def profile(request):
 
-    user = request.user
-
-    # اگر Profile وجود نداشته باشد،
-    # به صورت خودکار ساخته می‌شود
-    profile, created = Profile.objects.get_or_create(
-        user=user
-    )
-
     return render(
         request,
-        'profile/profile.html',
+        "profile/profile.html",
         {
-            'user': user,
-            'profile': profile,
+            "user": request.user
         }
     )
 
 
-# ====================== PROFILE EDIT ======================
+# =========================================================
+# PROFILE EDIT
+# =========================================================
+
 @login_required
 def profile_edit(request):
 
-    user = request.user
+    profile = request.user.profile
 
-    # اگر Profile وجود نداشته باشد،
-    # به صورت خودکار ساخته می‌شود
-    profile, created = Profile.objects.get_or_create(
-        user=user
-    )
+    if request.method == "POST":
 
-    if request.method == 'POST':
+        request.user.first_name = request.POST.get(
+            "first_name",
+            ""
+        ).strip()
 
-        profile.phone = request.POST.get('phone')
+        request.user.email = request.POST.get(
+            "email",
+            ""
+        ).strip()
 
-        profile.address = request.POST.get('address')
+        request.user.save()
 
-        profile.city = request.POST.get('city')
-
-        profile.postal_code = request.POST.get(
-            'postal_code'
+        profile.address = request.POST.get(
+            "address",
+            ""
         )
 
-        # بررسی آپلود تصویر
-        if request.FILES.get('image'):
+        profile.city = request.POST.get(
+            "city",
+            ""
+        )
 
-            profile.image = request.FILES['image']
+        profile.postal_code = request.POST.get(
+            "postal_code",
+            ""
+        )
+
+        if request.FILES.get("image"):
+
+            profile.image = request.FILES["image"]
 
         profile.save()
 
@@ -238,117 +691,103 @@ def profile_edit(request):
         )
 
         return redirect(
-            'accounts:profile'
+            "accounts:profile"
         )
 
     return render(
         request,
-        'profile/profile.html',
+        "profile/profile-edit.html",
         {
-            'user': user,
-            'profile': profile,
+            "profile": profile
         }
     )
 
 
-# ====================== CHANGE PASSWORD ======================
+# =========================================================
+# CHANGE PASSWORD
+# =========================================================
+
 @login_required
 def change_password(request):
 
-    user = request.user
-
-    if request.method == 'POST':
+    if request.method == "POST":
 
         old_password = request.POST.get(
-            'old_password'
+            "old_password"
         )
 
-        new_password1 = request.POST.get(
-            'new_password1'
+        new_password = request.POST.get(
+            "new_password"
         )
 
-        new_password2 = request.POST.get(
-            'new_password2'
+        repeat_password = request.POST.get(
+            "repeat_password"
         )
 
-        # بررسی رمز فعلی
-        if not user.check_password(old_password):
+        if not request.user.check_password(
+            old_password
+        ):
 
             messages.error(
                 request,
-                'رمز عبور فعلی اشتباه است.'
+                "رمز عبور فعلی اشتباه است."
             )
 
-            return render(
-                request,
-                'profile/change_password.html',
-                {
-                    'user': user
-                }
+            return redirect(
+                "accounts:change-password"
             )
 
-        # بررسی یکسان بودن رمزهای جدید
-        if new_password1 != new_password2:
+        if new_password != repeat_password:
 
             messages.error(
                 request,
-                'رمزهای جدید مطابقت ندارند.'
+                "رمزهای عبور جدید یکسان نیستند."
             )
 
-            return render(
-                request,
-                'profile/change_password.html',
-                {
-                    'user': user
-                }
+            return redirect(
+                "accounts:change-password"
             )
 
-        # بررسی طول رمز جدید
-        if len(new_password1) < 8:
+        if len(new_password) < 8:
 
             messages.error(
                 request,
-                'رمز عبور جدید باید حداقل ۸ کاراکتر باشد.'
+                "رمز عبور باید حداقل ۸ کاراکتر باشد."
             )
 
-            return render(
-                request,
-                'profile/change_password.html',
-                {
-                    'user': user
-                }
+            return redirect(
+                "accounts:change-password"
             )
 
-        # تغییر رمز
-        user.password = make_password(
-            new_password1
+        request.user.password = make_password(
+            new_password
         )
 
-        user.save()
+        request.user.save()
 
         messages.success(
             request,
-            'رمز عبور با موفقیت تغییر کرد.'
+            "رمز عبور با موفقیت تغییر کرد."
         )
 
         return redirect(
-            'accounts:profile'
+            "accounts:profile"
         )
 
     return render(
         request,
-        'profile/change_password.html',
-        {
-            'user': user
-        }
+        "profile/change-password.html"
     )
 
 
-# ====================== FAVORITE ======================
+# =========================================================
+# FAVORITE
+# =========================================================
+
 @login_required
+@require_POST
 def favorite(request):
 
-    return render(
-        request,
-        'favorite/favorite.html'
-    )
+    return JsonResponse({
+        "ok": True
+    })

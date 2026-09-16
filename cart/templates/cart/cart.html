@@ -1,126 +1,158 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base/base.html' %} {% load static %} {% block content %}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
 
 <div class="cart-page">
-
-    <!-- ========================= HEADER ========================== -->
-    <header class="cart-header">
-        <div class="brand">
-            <i class="fa-solid fa-gem"></i>
-            <div><strong>JEWELRY</strong><span>بدلیجات</span></div>
-        </div>
-        <div class="cart-title">
-            <span>SHOPPING CART</span>
-            <h1>سبد خرید</h1>
-        </div>
-        <a href="{% url 'pages:home' %}" class="close-cart"><i class="fa-solid fa-xmark"></i></a>
-    </header>
-
-    <!-- ========================= MAIN ========================== -->
-    <main class="cart-container" {% if not items %}style="display:none"{% endif %}>
-
-        <!-- ========================= PRODUCTS ========================== -->
-        <section class="cart-products">
-            <div class="products-header">
-                <div>
-                    <span>YOUR CART</span>
-                    <h2>محصولات شما</h2>
-                </div>
-                <strong id="cart-count">{{ items|length }} محصول</strong>
-            </div>
-
-            <div class="products-list" id="products-list">
-                {% for item in items %}
-                <div class="cart-item" data-id="{{ item.id }}" data-price="{{ item.product.price }}">
-
-                    <div class="product-image">
-                        {% if item.product.image %}
-                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
-                        {% else %}
-                            <i class="fa-solid fa-gem"></i>
-                        {% endif %}
-                    </div>
-
-                    <div class="product-info">
-                        <strong>{{ item.product.name }}</strong>
-                    </div>
-
-                    <div class="product-price">
-                        <strong>{{ item.product.price }}</strong>
-                        <span>تومان</span>
-                    </div>
-
-                    <div class="quantity">
-                        <button class="quantity-minus" data-item="{{ item.id }}">−</button>
-                        <span class="quantity-value">{{ item.quantity }}</span>
-                        <button class="quantity-plus" data-item="{{ item.id }}">+</button>
-                    </div>
-
-                    <button class="remove-product" data-item="{{ item.id }}">
-                        <i class="fa-regular fa-trash-can"></i>
-                    </button>
-
-                </div>
-                {% endfor %}
-            </div>
-        </section>
-
-        <!-- ========================= SUMMARY ========================== -->
-        <aside class="cart-summary">
-            <div class="summary-header">
-                <span>ORDER SUMMARY</span>
-                <h2>خلاصه سفارش</h2>
-            </div>
-
-            <div class="summary-row">
-                <span>تعداد محصولات</span>
-                <strong id="summary-count">{{ items|length }}</strong>
-            </div>
-
-            <div class="summary-row">
-                <span>مجموع محصولات</span>
-                <strong id="subtotal">{{ cart.total_price }} تومان</strong>
-            </div>
-
-            <div class="summary-row">
-                <span>هزینه ارسال</span>
-                <strong class="free">رایگان</strong>
-            </div>
-
-            <div class="summary-line"></div>
-
-            <div class="total-row">
-                <span>مبلغ قابل پرداخت</span>
-                <strong id="total">{{ cart.total_price   }} تومان</strong>
-            </div>
-
-            <button class="checkout-btn">
-                ادامه فرایند خرید <i class="fa-solid fa-arrow-left"></i>
-            </button>
-
-            <div class="secure-payment">
-                <i class="fa-solid fa-shield-halved"></i>
-                <span>پرداخت امن و محافظت شده</span>
-            </div>
-        </aside>
-    </main>
-
-    <!-- ========================= EMPTY CART ========================== -->
-    <div class="empty-cart" id="empty-cart" {% if items %}style="display:none"{% endif %}>
-        <div class="empty-icon"><i class="fa-solid fa-bag-shopping"></i></div>
-        <h2>سبد خرید شما خالی است</h2>
-        <p>هنوز محصولی به سبد خرید اضافه نکرده‌اید.</p>
-        <a href="{% url 'pages:home' %}"><button>مشاهده محصولات</button></a>
+  <!-- ========================= HEADER ========================== -->
+  <header class="cart-header">
+    <div class="brand">
+      <i class="fa-solid fa-gem"></i>
+      <div><strong>JEWELRY</strong><span>بدلیجات</span></div>
     </div>
+    <div class="cart-title">
+      <span>SHOPPING CART</span>
+      <h1>سبد خرید</h1>
+    </div>
+    <a href="{% url 'pages:home' %}" class="close-cart"
+      ><i class="fa-solid fa-xmark"></i
+    ></a>
+  </header>
 
+  <!-- ========================= MAIN ========================== -->
+  <main
+    class="cart-container"
+    {%
+    if
+    not
+    items
+    %}style="display:none"
+    {%
+    endif
+    %}
+  >
+    <!-- ========================= PRODUCTS ========================== -->
+    <section class="cart-products">
+      <div class="products-header">
+        <div>
+          <span>YOUR CART</span>
+          <h2>محصولات شما</h2>
+        </div>
+        <strong id="cart-count">{{ items|length }} محصول</strong>
+      </div>
+
+      <div class="products-list" id="products-list">
+        {% for item in items %}
+        <div
+          class="cart-item"
+          data-id="{{ item.id }}"
+          data-price="{{ item.product.price }}"
+        >
+          <div class="product-image">
+            {% if item.product.image %}
+            <img
+              src="{{ item.product.image.url }}"
+              alt="{{ item.product.name }}"
+            />
+            {% else %}
+            <i class="fa-solid fa-gem"></i>
+            {% endif %}
+          </div>
+
+          <div class="product-info">
+            <strong>{{ item.product.name }}</strong>
+          </div>
+
+          <div class="product-price">
+            <strong>{{ item.product.price }}</strong>
+            <span>تومان</span>
+          </div>
+
+          <div class="quantity">
+            <button class="quantity-minus" data-item="{{ item.id }}">−</button>
+            <span class="quantity-value">{{ item.quantity }}</span>
+            <button class="quantity-plus" data-item="{{ item.id }}">+</button>
+          </div>
+
+          <button class="remove-product" data-item="{{ item.id }}">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- ========================= SUMMARY ========================== -->
+    <aside class="cart-summary">
+      <div class="summary-header">
+        <span>ORDER SUMMARY</span>
+        <h2>خلاصه سفارش</h2>
+      </div>
+
+      <div class="summary-row">
+        <span>تعداد محصولات</span>
+        <strong id="summary-count">{{ items|length }}</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>مجموع محصولات</span>
+        <strong id="subtotal">{{ cart.total_price }} تومان</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>هزینه ارسال</span>
+        <strong class="free">رایگان</strong>
+      </div>
+
+      <div class="summary-line"></div>
+
+      <div class="total-row">
+        <span>مبلغ قابل پرداخت</span>
+        <strong id="total">{{ cart.total_price }} تومان</strong>
+      </div>
+
+      <a href="{% url 'orders:checkout' %}" class="checkout-btn">
+        ادامه فرایند خرید
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+
+      <div class="secure-payment">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>پرداخت امن و محافظت شده</span>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ========================= EMPTY CART ========================== -->
+  <div
+    class="empty-cart"
+    id="empty-cart"
+    {%
+    if
+    items
+    %}style="display:none"
+    {%
+    endif
+    %}
+  >
+    <div class="empty-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+    <h2>سبد خرید شما خالی است</h2>
+    <p>هنوز محصولی به سبد خرید اضافه نکرده‌اید.</p>
+    <a href="{% url 'pages:home' %}"><button>مشاهده محصولات</button></a>
+  </div>
 </div>
 
 <script>
-    const CART_UPDATE_BASE = "{% url 'cart:update_quantity' 1 %}".replace('1/', '');
-    const CART_REMOVE_BASE = "{% url 'cart:remove_from_cart' 1 %}".replace('1/', '');
+  const CART_UPDATE_BASE = "{% url 'cart:update_quantity' 1 %}".replace(
+    "1/",
+    "",
+  );
+  const CART_REMOVE_BASE = "{% url 'cart:remove_from_cart' 1 %}".replace(
+    "1/",
+    "",
+  );
 </script>
 <script src="{% static 'cart/js/cart.js' %}"></script>
 

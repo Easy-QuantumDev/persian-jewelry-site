@@ -345,3 +345,149 @@ searchTags.forEach(tag => {
     });
 
 });
+
+
+/* =========================================
+   ADD TO CART — POPUP + LIVE BADGE
+   (روی هر فرم افزودن به سبد خرید تو کل سایت کار می‌کنه:
+   home, category, single-category, product-list, single_product)
+========================================= */
+
+function updateCartBadge(count) {
+
+    document.querySelectorAll(".cart-count").forEach(el => {
+
+        el.textContent = count;
+
+    });
+
+}
+
+
+function showCartToast(message, isError) {
+
+    let toast = document.getElementById("cartToast");
+
+    if (!toast) {
+
+        toast = document.createElement("div");
+        toast.id = "cartToast";
+
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%) translateY(16px);
+            background: #1c1c1c;
+            color: #fff;
+            padding: 13px 22px;
+            border-radius: 10px;
+            font-size: 14px;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 12px 30px rgba(0,0,0,.28);
+            opacity: 0;
+            transition: opacity .25s ease, transform .25s ease;
+            pointer-events: none;
+        `;
+
+        document.body.appendChild(toast);
+
+    }
+
+    toast.style.background = isError ? "#c0392b" : "#1c1c1c";
+
+    toast.innerHTML = `
+        <i class="fa-solid ${isError ? "fa-circle-exclamation" : "fa-circle-check"}"></i>
+        <span>${message}</span>
+    `;
+
+    requestAnimationFrame(() => {
+
+        toast.style.opacity = "1";
+        toast.style.transform = "translateX(-50%) translateY(0)";
+
+    });
+
+    clearTimeout(toast._hideTimer);
+
+    toast._hideTimer = setTimeout(() => {
+
+        toast.style.opacity = "0";
+        toast.style.transform = "translateX(-50%) translateY(16px)";
+
+    }, 2200);
+
+}
+
+
+document.addEventListener("submit", (event) => {
+
+    const submitter = event.submitter;
+
+    if (!submitter) return;
+
+    const isAddToCart =
+        submitter.classList.contains("add-cart") ||
+        submitter.classList.contains("cart-btn") ||
+        submitter.classList.contains("add-cart-btn");
+
+    // دکمه‌ی «خرید فوری» باید عادی سابمیت بشه و بره صفحه‌ی چک‌اوت،
+    // نه اینکه با AJAX قطع بشه
+    const isBuyNow =
+        submitter.name === "buy_now";
+
+    if (!isAddToCart || isBuyNow) return;
+
+    const form = event.target;
+
+    if (form.method.toLowerCase() !== "post") return;
+
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        body: formData,
+    })
+        .then(res => {
+
+            if (!res.ok) throw new Error("request-failed");
+
+            return res.json();
+
+        })
+        .then(data => {
+
+            if (!data.ok) {
+
+                showCartToast("اضافه کردن محصول با خطا مواجه شد", true);
+
+                return;
+
+            }
+
+            updateCartBadge(data.item_count);
+
+            if (data.limited) {
+
+                showCartToast("موجودی محدوده — حداکثر تعداد ممکن اضافه شد", true);
+
+            } else {
+
+                showCartToast("محصول به سبد خرید اضافه شد ✓");
+
+            }
+
+        })
+        .catch(() => {
+
+            showCartToast("برای افزودن به سبد خرید ابتدا وارد حساب کاربری شوید", true);
+
+        });
+
+});

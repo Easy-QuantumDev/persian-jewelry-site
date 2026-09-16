@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 
@@ -39,53 +40,95 @@ def add_to_cart(request, product_id):
     )
     if not created:
         item.quantity += quantity
-        item.save()
+
+    # اجازه نده تعداد توی سبد از موجودی واقعی بیشتر بشه
+    limited = False
+    if item.quantity > product.stock:
+        item.quantity = max(1, product.stock)
+        limited = True
+
+    item.save()
 
     if _is_ajax(request):
         return JsonResponse({
             'ok': True,
+            'limited': limited,
             'item_count': cart.items.count(),
             'cart_total': cart.total_price,
         })
+
+    if limited:
+        messages.warning(request, f'فقط {product.stock} عدد از «{product.name}» موجود است.')
 
     if request.POST.get('buy_now'):
         return redirect('orders:checkout')
 
     return redirect('cart:cart')
 
-
 @login_required
 @require_POST
 def update_quantity(request, item_id):
-    item = get_object_or_404(CartItem, id=item_id, cart__user=request.user)
+
+    item = get_object_or_404(
+        CartItem,
+        id=item_id,
+        cart__user=request.user
+    )
+
     action = request.POST.get('action')
     deleted = False
+    limited = False
 
     if action == 'increase':
-        item.quantity += 1
-        item.save()
+
+        if item.quantity < item.product.stock:
+            item.quantity += 1
+            item.save()
+
+        else:
+            limited = True
+
     elif action == 'decrease':
+
         item.quantity -= 1
+
         if item.quantity <= 0:
+            cart = item.cart
             item.delete()
             deleted = True
+
         else:
             item.save()
 
-    cart = item.cart if not deleted else Cart.objects.get(user=request.user)
+    else:
+        return JsonResponse(
+            {'ok': False, 'error': 'عملیات نامعتبر است'},
+            status=400
+        )
+
+    if deleted:
+        cart = Cart.objects.get(user=request.user)
+    else:
+        cart = item.cart
 
     if _is_ajax(request):
         return JsonResponse({
             'ok': True,
             'deleted': deleted,
+            'limited': limited,
             'quantity': 0 if deleted else item.quantity,
             'item_total': 0 if deleted else item.total_price,
             'cart_total': cart.total_price,
             'item_count': cart.items.count(),
         })
 
-    return redirect('cart:cart')
+    if limited:
+        messages.warning(
+            request,
+            f'فقط {item.product.stock} عدد از «{item.product.name}» موجود است.'
+        )
 
+    return redirect('cart:cart')
 
 @login_required
 @require_POST

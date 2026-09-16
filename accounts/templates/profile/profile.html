@@ -3,39 +3,23 @@
 <html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>پروفایل | Jewelry Store</title>
-
     <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   </head>
 
   <body>
     <div class="profile-page">
-      <!-- Background -->
+
       <div class="background-glow glow-1"></div>
       <div class="background-glow glow-2"></div>
 
       <div class="particles">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
 
-      <!-- Sidebar -->
       <aside class="profile-sidebar">
         <div class="sidebar-brand">
           <div class="brand-icon"><i class="fa-solid fa-gem"></i></div>
@@ -66,17 +50,18 @@
           <a href="{% url 'orders:my_orders' %}" class="nav-item">
             <i class="fa-solid fa-bag-shopping"></i>
             <span>سفارش‌های من</span>
+            <b>{{ order_count }}</b>
           </a>
           <a href="{% url 'accounts:favorite' %}" class="nav-item">
             <i class="fa-regular fa-heart"></i>
             <span>علاقه‌مندی‌ها</span>
-            <b>0</b>
+            <b>{{ favorite_count }}</b>
           </a>
-          <a href="{% url 'accounts:profile_edit' %}" class="nav-item">
+          <a href="{% url 'accounts:profile-edit' %}" class="nav-item">
             <i class="fa-solid fa-location-dot"></i>
             <span>آدرس من</span>
           </a>
-          <a href="#" class="nav-item">
+          <a href="{% url 'accounts:change-password' %}" class="nav-item">
             <i class="fa-solid fa-gear"></i>
             <span>تنظیمات</span>
           </a>
@@ -90,7 +75,6 @@
         </div>
       </aside>
 
-      <!-- Main -->
       <main class="profile-main">
         <header class="profile-header">
           <div>
@@ -117,8 +101,8 @@
               خوشحالیم که دوباره به فروشگاه ما سر زدی. جدیدترین محصولات بدلیجات
               منتظر تو هستند.
             </p>
-           <a href='{% url "pages:home" %}' class='shop-btn'>مشاهده فروشگاه</a>
-          </div> 
+            <a href="{% url 'pages:home' %}" class="shop-btn">مشاهده فروشگاه</a>
+          </div>
           <div class="welcome-decoration">
             <i class="fa-solid fa-gem"></i>
           </div>
@@ -126,26 +110,22 @@
 
         <section class="stats-grid">
           <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fa-solid fa-bag-shopping"></i>
-            </div>
-            <div><span>کل سفارش‌ها</span><strong>0</strong></div>
+            <div class="stat-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+            <div><span>کل سفارش‌ها</span><strong>{{ order_count }}</strong></div>
           </div>
           <div class="stat-card">
             <div class="stat-icon"><i class="fa-regular fa-heart"></i></div>
-            <div><span>علاقه‌مندی‌ها</span><strong>0</strong></div>
+            <div><span>علاقه‌مندی‌ها</span><strong>{{ favorite_count }}</strong></div>
           </div>
           <div class="stat-card">
             <div class="stat-icon"><i class="fa-solid fa-truck"></i></div>
             <div><span>در حال ارسال</span><strong>0</strong></div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fa-solid fa-location-dot"></i>
-            </div>
+            <div class="stat-icon"><i class="fa-solid fa-location-dot"></i></div>
             <div>
-              <span>آدرس‌ها</span
-              ><strong>{% if profile.address %}1{% else %}0{% endif %}</strong>
+              <span>آدرس‌ها</span>
+              <strong>{% if profile.address %}1{% else %}0{% endif %}</strong>
             </div>
           </div>
         </section>
@@ -157,26 +137,24 @@
                 <span>PERSONAL INFORMATION</span>
                 <h3>اطلاعات شخصی</h3>
               </div>
-              <a href="{% url 'accounts:profile_edit' %}" class="edit-btn"
-                >ویرایش</a
-              >
+              <a href="{% url 'accounts:profile-edit' %}" class="edit-btn">ویرایش</a>
             </div>
             <div class="information-grid">
               <div class="information-item">
-                <span>نام و نام خانوادگی</span
-                ><strong>{{ user.get_full_name|default:user.username }}</strong>
+                <span>نام و نام خانوادگی</span>
+                <strong>{{ user.get_full_name|default:user.username }}</strong>
               </div>
               <div class="information-item">
-                <span>شماره موبایل</span
-                ><strong>{{ profile.phone|default:"ثبت نشده" }}</strong>
+                <span>شماره موبایل</span>
+                <strong>{{ profile.phone|default:"ثبت نشده" }}</strong>
               </div>
               <div class="information-item">
-                <span>ایمیل</span
-                ><strong>{{ user.email|default:"ثبت نشده" }}</strong>
+                <span>ایمیل</span>
+                <strong>{{ user.email|default:"ثبت نشده" }}</strong>
               </div>
               <div class="information-item">
-                <span>تاریخ عضویت</span
-                ><strong>{{ user.date_joined|date:"Y/m/d" }}</strong>
+                <span>تاریخ عضویت</span>
+                <strong>{{ user.date_joined|date:"Y/m/d" }}</strong>
               </div>
             </div>
           </div>
@@ -187,17 +165,28 @@
                 <span>RECENT ORDERS</span>
                 <h3>سفارش‌های اخیر</h3>
               </div>
-              <a href="#">مشاهده همه</a>
+              <a href="{% url 'orders:my_orders' %}">مشاهده همه</a>
             </div>
             <div class="orders-list">
+              {% for order in recent_orders %}
+              <a href="{% url 'orders:order_detail' order.order_number %}" class="order-item">
+                <div class="order-image"><i class="fa-solid fa-gem"></i></div>
+                <div class="order-info">
+                  <strong>سفارش #{{ order.order_number }}</strong>
+                  <span>{{ order.created_at|date:"Y/m/d" }}</span>
+                </div>
+                <div class="order-status processing">{{ order.get_status_display }}</div>
+              </a>
+              {% empty %}
               <div class="order-item">
                 <div class="order-image"><i class="fa-solid fa-gem"></i></div>
                 <div class="order-info">
                   <strong>هنوز سفارشی ثبت نشده</strong>
                   <span>سفارش‌های شما اینجا نمایش داده می‌شود.</span>
                 </div>
-                <div class="order-status processing">در انتظار</div>
+                <div class="order-status processing">خالی</div>
               </div>
+              {% endfor %}
             </div>
           </div>
 
@@ -207,28 +196,23 @@
                 <span>DEFAULT ADDRESS</span>
                 <h3>آدرس پیش‌فرض</h3>
               </div>
-              {% comment %} <a href="{% url 'address:address_edit' %}" class="edit-btn" {% endcomment %}
-                >ویرایش</a
-              >
+              <a href="{% url 'accounts:profile-edit' %}" class="edit-btn">
+                <i class="fa-solid fa-pen"></i>
+              </a>
             </div>
             <div class="address-content">
               <div class="address-icon">
                 <i class="fa-solid fa-location-dot"></i>
               </div>
               <div>
-                <div>
-                  <strong>{{ profile.city }}</strong>
-
-                  <p>
-                    {{ profile.address|default:"هنوز آدرسی ثبت نشده است." }}
-                  </p>
-
-                  {% if profile.phone %}
-                  <span>{{ profile.phone }}</span>
-                  {% endif %} {% if profile.postal_code %}
-                  <span> کد پستی: {{ profile.postal_code }} </span>
-                  {% endif %}
-                </div>
+                <strong>{{ profile.city }}</strong>
+                <p>{{ profile.address|default:"هنوز آدرسی ثبت نشده است." }}</p>
+                {% if profile.phone %}
+                <span>{{ profile.phone }}</span>
+                {% endif %}
+                {% if profile.postal_code %}
+                <span>کد پستی: {{ profile.postal_code }}</span>
+                {% endif %}
               </div>
             </div>
           </div>
@@ -250,11 +234,7 @@
                 <p>حساب کاربری شما با رمز عبور محافظت می‌شود.</p>
               </div>
             </div>
-            <a
-              href="{% url 'accounts:change-password' %}"
-              class="change-password"
-              >تغییر رمز عبور</a
-            >
+            <a href="{% url 'accounts:change-password' %}" class="change-password">تغییر رمز عبور</a>
           </div>
         </section>
       </main>
