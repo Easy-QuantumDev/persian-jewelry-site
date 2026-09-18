@@ -491,3 +491,70 @@ document.addEventListener("submit", (event) => {
         });
 
 });
+
+
+/* =========================================
+   FAVORITE TOGGLE — AJAX + LIVE ICON
+   (روی هر فرمی با کلاس .favorite-form تو کل سایت کار می‌کنه)
+========================================= */
+
+document.addEventListener("submit", (event) => {
+
+    const form = event.target;
+
+    if (!form.classList.contains("favorite-form")) return;
+
+    if (form.method.toLowerCase() !== "post") return;
+
+    event.preventDefault();
+
+    const button = form.querySelector(".favorite");
+    const icon = button?.querySelector("i");
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        body: formData,
+    })
+        .then(res => {
+
+            if (!res.ok) throw new Error("request-failed");
+
+            return res.json();
+
+        })
+        .then(data => {
+
+            if (!data.ok) {
+
+                showCartToast("خطا در ثبت علاقه‌مندی", true);
+
+                return;
+
+            }
+
+            if (button && icon) {
+
+                button.classList.toggle("active", data.is_favorited);
+
+                icon.classList.toggle("fa-solid", data.is_favorited);
+                icon.classList.toggle("fa-regular", !data.is_favorited);
+
+            }
+
+            showCartToast(
+                data.is_favorited
+                    ? "به علاقه‌مندی‌ها اضافه شد ✓"
+                    : "از علاقه‌مندی‌ها حذف شد"
+            );
+
+        })
+        .catch(() => {
+
+            showCartToast("برای این کار ابتدا وارد حساب کاربری شوید", true);
+
+        });
+
+});

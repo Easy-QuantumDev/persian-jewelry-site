@@ -2,6 +2,12 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
   <head>
+    {% block extra_css %}
+    <link rel="stylesheet" href="{%  static 'css/profile.css' %}">
+    
+    {% endblock  %}
+
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>پروفایل | Jewelry Store</title>
@@ -93,6 +99,14 @@
           </div>
         </header>
 
+        {% if messages %}
+        <div class="page-messages">
+          {% for message in messages %}
+          <div class="page-message {{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
         <section class="welcome-card">
           <div class="welcome-content">
             <span>خوش آمدی ✨</span>
@@ -165,7 +179,7 @@
                 <span>RECENT ORDERS</span>
                 <h3>سفارش‌های اخیر</h3>
               </div>
-              <a href="{% url 'orders:my_orders' %}">مشاهده همه</a>
+              <a href="{% url 'accounts:my_orders' %}">مشاهده همه</a>
             </div>
             <div class="orders-list">
               {% for order in recent_orders %}

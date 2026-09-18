@@ -1,5 +1,9 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/product-list.css' %}">
+
+{% endblock  %}
 {% block content %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -123,7 +127,11 @@
                 <article class="product-card">
 
                     <div class="product-image">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+
+                        <a href="{% url 'products:single-product' product.slug %}" class="image-link">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </a>
+
                         {% if user.is_authenticated %}
                         <form method="post" action="{% url 'accounts:toggle-favorite' product.id %}" class="favorite-form">
                             {% csrf_token %}
@@ -134,27 +142,41 @@
                         {% else %}
                         <a href="{% url 'accounts:login' %}" class="favorite"><i class="fa-regular fa-heart"></i></a>
                         {% endif %}
+
+                        <a href="{% url 'products:single-product' product.slug %}" class="view-arrow" aria-label="مشاهده محصول">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </a>
+
                     </div>
 
                     <div class="product-info">
-                        <span class="product-category">{{ product.category.name }}</span>
+
+                        <div class="product-tags">
+                            <span class="tag-pill"><i class="fa-solid fa-tag"></i> {{ product.category.name }}</span>
+                            <a href="{% url 'products:single-product' product.slug %}" class="view-pill">
+                                <i class="fa-regular fa-eye"></i> مشاهده
+                            </a>
+                        </div>
+
                         <h3><a href="{% url 'products:single-product' product.slug %}">{{ product.name }}</a></h3>
 
                         <div class="product-bottom">
-                            <strong>{{ product.price|floatformat:0 }} تومان</strong>
 
                             {% if product.stock > 0 %}
-                            <form method="post" action="{% url 'cart:add_to_cart' product.id %}">
+                            <form method="post" action="{% url 'cart:add_to_cart' product.id %}" class="quick-add-form">
                                 {% csrf_token %}
-                                <button type="submit" class="add-cart">
+                                <button type="submit" class="cart-icon-btn add-cart" aria-label="افزودن به سبد خرید">
                                     <i class="fa-solid fa-cart-shopping"></i>
-                                    <span>افزودن</span>
                                 </button>
                             </form>
                             {% else %}
-                            <span class="out-of-stock">ناموجود</span>
+                            <span class="out-of-stock-badge">ناموجود</span>
                             {% endif %}
+
+                            <strong>{{ product.price|floatformat:0 }} تومان</strong>
+
                         </div>
+
                     </div>
 
                 </article>

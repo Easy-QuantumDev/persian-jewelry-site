@@ -1,33 +1,27 @@
-@font-face {
-
-    font-family: "Vazirmatn";
-
-    src:
-        url("../fonts/Vazirmatn-Medium.woff2")
-        format("woff2");
-
-}
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
 
 
 :root {
 
-    --brown-dark: #2d1806;
+    --brown-dark: #241812;
 
-    --brown: #5c3b2e;
+    --brown: #4a3023;
 
-    --brown-light: #765039;
+    --brown-light: #765442;
 
-    --cream: #f8f3ed;
+    --cream: #f8f2e9;
 
-    --gold: #b8915d;
+    --cream-dark: #eee3d5;
+
+    --gold: #b89562;
 
     --gold-light: #d9bd91;
 
     --white: #ffffff;
 
-    --text: #30231e;
+    --text: #2b211c;
 
-    --muted: #8c7c73;
+    --muted: #8c7b70;
 
 }
 
@@ -54,11 +48,29 @@ body {
 }
 
 
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+
 button,
 input,
 select {
 
     font-family: inherit;
+
+}
+
+
+button {
+
+    border: none;
+
+    cursor: pointer;
 
 }
 
@@ -76,7 +88,7 @@ select {
 
 /* =========================================
    HERO
-========================================= */
+========================================== */
 
 .products-hero {
 
@@ -89,8 +101,8 @@ select {
     background:
         linear-gradient(
             120deg,
-            #2d1806,
-            #5c3b2e
+            var(--brown-dark),
+            var(--brown)
         );
 
     color: white;
@@ -131,12 +143,6 @@ select {
     font-size: clamp(32px, 5vw, 55px);
 
     margin: 15px 0;
-    color: white !important;
-
-}
-
-
-.hero-content h1 strong {
 
     color: white;
 
@@ -162,9 +168,15 @@ select {
 
     left: 8%;
 
+    top: 50%;
+
+    transform: translateY(-50%);
+
     width: 260px;
 
     height: 260px;
+
+    pointer-events: none;
 
 }
 
@@ -208,7 +220,7 @@ select {
 
 /* =========================================
    AREA
-========================================= */
+========================================== */
 
 .products-area {
 
@@ -225,13 +237,13 @@ select {
 
 /* =========================================
    SIDEBAR
-========================================= */
+========================================== */
 
 .filter-sidebar {
 
     background: rgba(255,255,255,.65);
 
-    border: 1px solid rgba(92,59,46,.08);
+    border: 1px solid rgba(74,48,35,.08);
 
     border-radius: 24px;
 
@@ -276,6 +288,8 @@ select {
 
     font-size: 23px;
 
+    color: var(--brown-dark);
+
 }
 
 
@@ -283,12 +297,16 @@ select {
 
     display: none;
 
+    background: #eee7df;
+
+    color: var(--brown);
+
 }
 
 
 .filter-group {
 
-    border-top: 1px solid rgba(92,59,46,.1);
+    border-top: 1px solid rgba(74,48,35,.1);
 
     padding-top: 22px;
 
@@ -303,6 +321,8 @@ select {
 
     margin-bottom: 18px;
 
+    color: var(--brown-dark);
+
 }
 
 
@@ -316,7 +336,7 @@ select {
 
     margin-bottom: 14px;
 
-    color: #68574d;
+    color: var(--muted);
 
     cursor: pointer;
 
@@ -347,7 +367,7 @@ select {
 
     height: 40px;
 
-    border: 1px solid #ded3ca;
+    border: 1px solid var(--cream-dark);
 
     background: white;
 
@@ -368,15 +388,11 @@ select {
 
     height: 45px;
 
-    border: none;
-
     border-radius: 12px;
 
     background: var(--brown);
 
     color: white;
-
-    cursor: pointer;
 
     margin-top: 25px;
 
@@ -397,7 +413,7 @@ select {
 
 /* =========================================
    TOOLBAR
-========================================= */
+========================================== */
 
 .products-toolbar {
 
@@ -460,7 +476,7 @@ select {
 
 .sort select {
 
-    border: 1px solid #ddd2ca;
+    border: 1px solid var(--cream-dark);
 
     background: white;
 
@@ -479,13 +495,17 @@ select {
 
     display: none;
 
+    background: white;
+
+    color: var(--brown);
+
 }
 
 
 
 /* =========================================
    PRODUCTS GRID
-========================================= */
+========================================== */
 
 .products-grid {
 
@@ -494,41 +514,48 @@ select {
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 22px;
+    gap: 26px;
 
 }
 
 
-.store-product-card {
+.product-card {
 
     background: white;
 
-    border: 1px solid rgba(92,59,46,.08);
+    border: 1px solid rgba(74,48,35,.08);
 
-    border-radius: 22px;
+    border-radius: 18px;
 
-    overflow: hidden;
+    padding: 9px;
 
     transition: .35s ease;
 
 }
 
 
-.store-product-card:hover {
+.product-card:hover {
 
     transform: translateY(-7px);
 
-    box-shadow:
-        0 20px 45px rgba(60,40,30,.11);
+    box-shadow: 0 20px 45px rgba(60,40,30,.11);
 
 }
 
 
-.store-product-image {
+.product-image {
 
-    height: 300px;
+    height: 195px;
 
-    background: #f3eee9;
+    border-radius: 15px;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #f0e5d8,
+            #dfcdb8
+        );
 
     position: relative;
 
@@ -537,7 +564,17 @@ select {
 }
 
 
-.store-product-image img {
+.image-link {
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+
+.product-image img {
 
     width: 100%;
 
@@ -545,155 +582,132 @@ select {
 
     object-fit: cover;
 
+    border-radius: 15px;
+
+    display: block;
+
     transition: .5s ease;
 
 }
 
 
-.store-product-card:hover
-.store-product-image img {
+.product-card:hover .product-image img {
 
     transform: scale(1.06);
 
 }
 
 
-.product-label {
+.favorite {
 
     position: absolute;
 
-    top: 15px;
+    top: 10px;
+    left: 10px;
 
-    right: 15px;
-
-    background: var(--brown);
-
-    color: white;
-
-    padding: 6px 12px;
-
-    border-radius: 20px;
-
-    font-size: 10px;
-
-    z-index: 2;
-
-}
-
-
-.product-label.popular {
-
-    background: var(--gold);
-
-}
-
-
-.wishlist-btn {
-
-    position: absolute;
-
-    top: 14px;
-
-    left: 14px;
-
-    width: 38px;
-
-    height: 38px;
-
-    border: none;
+    width: 33px;
+    height: 33px;
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,.9);
+    background: rgba(255,255,255,.85);
 
     color: var(--brown);
 
-    cursor: pointer;
+    display: grid;
 
-    z-index: 3;
-
-}
-
-
-.wishlist-btn:hover {
-
-    color: #a52d2d;
-
-}
-
-
-.quick-view {
-
-    position: absolute;
-
-    bottom: 15px;
-
-    left: 15px;
-
-    right: 15px;
-
-    height: 43px;
-
-    background: rgba(45,24,6,.9);
-
-    color: white;
-
-    border-radius: 11px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-decoration: none;
-
-    font-size: 12px;
-
-    opacity: 0;
-
-    transform: translateY(10px);
+    place-items: center;
 
     transition: .3s;
 
 }
 
 
-.store-product-card:hover .quick-view {
+.favorite-form {
 
-    opacity: 1;
+    position: absolute;
 
-    transform: translateY(0);
+    top: 10px;
+    left: 10px;
 
-}
-
-
-.store-product-info {
-
-    padding: 18px;
+    z-index: 2;
 
 }
 
 
-.product-type {
+.favorite-form .favorite {
 
-    font-size: 10px;
-
-    color: var(--muted);
+    position: static;
 
 }
 
 
-.store-product-info h3 {
+.favorite:hover {
 
-    font-size: 16px;
-
-    margin: 8px 0 20px;
+    color: #a52d2d;
 
 }
 
 
-.product-card-bottom {
+.favorite.active {
+
+    background: var(--brown-dark);
+
+    color: #e0576b;
+
+}
+
+
+.view-arrow {
+
+    position: absolute;
+
+    bottom: 10px;
+    right: 10px;
+
+    width: 33px;
+    height: 33px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.85);
+
+    color: var(--brown-dark);
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 11px;
+
+    box-shadow: 0 10px 25px rgba(60,40,25,.15);
+
+    transition: .3s;
+
+    z-index: 2;
+
+}
+
+
+.view-arrow:hover {
+
+    background: var(--brown-dark);
+
+    color: white;
+
+    transform: scale(1.08);
+
+}
+
+
+.product-info {
+
+    padding: 12px 6px 4px;
+
+}
+
+
+.product-tags {
 
     display: flex;
 
@@ -701,10 +715,100 @@ select {
 
     justify-content: space-between;
 
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 10px;
+
 }
 
 
-.product-card-bottom strong {
+.tag-pill {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    background: var(--cream-dark);
+
+    color: var(--brown);
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+}
+
+
+.tag-pill i {
+
+    color: var(--gold);
+
+    font-size: 9px;
+
+}
+
+
+.view-pill {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    background: var(--cream-dark);
+
+    color: var(--brown-dark);
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    transition: .3s;
+
+}
+
+
+.view-pill:hover {
+
+    background: var(--gold);
+
+    color: white;
+
+}
+
+
+.product-info h3 {
+
+    font-size: 14px;
+
+    margin: 0 0 12px;
+
+}
+
+
+.product-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+}
+
+
+.product-bottom strong {
 
     color: var(--brown);
 
@@ -713,32 +817,66 @@ select {
 }
 
 
-.cart-btn {
+.quick-add-form {
 
-    width: 40px;
+    display: flex;
 
-    height: 40px;
+}
 
-    border: none;
 
-    border-radius: 11px;
+.cart-icon-btn {
 
-    background: var(--brown);
+    width: 34px;
+    height: 34px;
 
-    color: white;
+    border-radius: 9px;
 
-    cursor: pointer;
+    background: var(--cream-dark);
+
+    color: var(--brown-dark);
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 12px;
 
     transition: .25s;
 
 }
 
 
-.cart-btn:hover {
+.cart-icon-btn:hover {
 
-    background: var(--brown-dark);
+    background: var(--gold);
+
+    color: white;
 
     transform: scale(1.08);
+
+}
+
+
+.cart-icon-btn.added {
+
+    background: #4caf6d;
+
+    color: white;
+
+}
+
+
+.out-of-stock-badge {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    background: var(--cream-dark);
+
+    padding: 8px 14px;
+
+    border-radius: 11px;
 
 }
 
@@ -746,11 +884,11 @@ select {
 
 /* =========================================
    EMPTY
-========================================= */
+========================================== */
 
 .empty-products {
 
-    display: none;
+    display: block;
 
     text-align: center;
 
@@ -788,6 +926,8 @@ select {
 
     margin-top: 20px;
 
+    color: var(--brown-dark);
+
 }
 
 
@@ -805,7 +945,7 @@ select {
 
 /* =========================================
    PAGINATION
-========================================= */
+========================================== */
 
 .pagination {
 
@@ -820,13 +960,13 @@ select {
 }
 
 
-.pagination button {
+.pagination a {
 
     width: 40px;
 
     height: 40px;
 
-    border: 1px solid #ded3ca;
+    border: 1px solid var(--cream-dark);
 
     background: white;
 
@@ -834,13 +974,21 @@ select {
 
     border-radius: 10px;
 
-    cursor: pointer;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 13px;
+
+    transition: .25s;
 
 }
 
 
-.pagination button.active,
-.pagination button:hover {
+.pagination a.active,
+.pagination a:hover {
 
     background: var(--brown);
 
@@ -852,7 +1000,7 @@ select {
 
 /* =========================================
    MOBILE
-========================================= */
+========================================== */
 
 @media (max-width: 1000px) {
 
@@ -901,17 +1049,11 @@ select {
 
         height: 40px;
 
-        border: none;
-
         border-radius: 50%;
-
-        background: #eee7df;
 
         align-items: center;
 
         justify-content: center;
-
-        color: var(--brown);
 
     }
 
@@ -928,11 +1070,7 @@ select {
 
         padding: 0 14px;
 
-        border: 1px solid #ded3ca;
-
-        background: white;
-
-        color: var(--brown);
+        border: 1px solid var(--cream-dark);
 
         border-radius: 10px;
 
@@ -1029,57 +1167,65 @@ select {
     }
 
 
-    .store-product-image {
+    .product-card {
 
-        height: 210px;
-
-    }
-
-
-    .store-product-info {
-
-        padding: 13px;
+        padding: 8px;
 
     }
 
 
-    .store-product-info h3 {
+    .product-image {
+
+        height: 150px;
+
+    }
+
+
+    .product-info {
+
+        padding: 12px 4px 4px;
+
+    }
+
+
+    .product-info h3 {
 
         font-size: 13px;
 
-        margin-bottom: 14px;
+        margin-bottom: 12px;
 
     }
 
 
-    .product-card-bottom strong {
+    .tag-pill,
+    .view-pill {
 
         font-size: 10px;
 
-    }
-
-
-    .cart-btn {
-
-        width: 35px;
-
-        height: 35px;
+        padding: 5px 9px;
 
     }
 
 
-    .quick-view {
+    .product-bottom strong {
 
-        display: none;
+        font-size: 11px;
 
     }
 
 
-    .product-label {
+    .cart-icon-btn {
 
-        font-size: 9px;
+        width: 34px;
+        height: 34px;
 
-        padding: 5px 8px;
+    }
+
+
+    .view-arrow {
+
+        width: 36px;
+        height: 36px;
 
     }
 
@@ -1095,9 +1241,9 @@ select {
     }
 
 
-    .store-product-image {
+    .product-image {
 
-        height: 280px;
+        height: 220px;
 
     }
 

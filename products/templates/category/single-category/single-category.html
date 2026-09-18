@@ -1,5 +1,9 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/single-category.css' %}">
+
+{% endblock %}
 {% block content %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -26,31 +30,45 @@
                 <p>{{ category.description }}</p>
                 {% endif %}
 
-                <a href="#category-products" class="hero-btn">
-                    مشاهده محصولات
-                    <i class="fa-solid fa-arrow-left"></i>
-                </a>
+                <div class="hero-actions">
+                    <a href="#category-products" class="hero-btn">
+                        مشاهده محصولات
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>ضمانت اصالت</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>ارسال سریع</span>
+                    </div>
+                    <div class="hero-feature">
+                        <i class="fa-solid fa-gem"></i>
+                        <span>طراحی انحصاری</span>
+                    </div>
+                </div>
 
             </div>
 
-            <!-- CHARACTER (decorative, not tied to data) -->
-            <div class="character-container">
-                <div class="character-glow"></div>
-                <div class="character-circle">
-                    <div class="character">
-                        <div class="character-head">
-                            <div class="hair"></div>
-                            <div class="face"></div>
-                        </div>
-                        <div class="character-body">
-                            <div class="necklace"></div>
-                            <div class="shirt"></div>
-                        </div>
-                    </div>
+            <!-- MODERN ABSTRACT VISUAL (decorative, not tied to data) -->
+            <div class="hero-visual">
+
+                <div class="orbit-ring ring-one"></div>
+                <div class="orbit-ring ring-two"></div>
+
+                <div class="hero-core">
+                    <i class="fa-solid fa-gem"></i>
                 </div>
-                <div class="floating-jewel jewel-one"><i class="fa-solid fa-gem"></i></div>
-                <div class="floating-jewel jewel-two"><i class="fa-solid fa-ring"></i></div>
-                <div class="floating-jewel jewel-three"><i class="fa-solid fa-star"></i></div>
+
+                <div class="orbit-item item-one"><i class="fa-solid fa-ring"></i></div>
+                <div class="orbit-item item-two"><i class="fa-solid fa-star"></i></div>
+                <div class="orbit-item item-three"><i class="fa-solid fa-crown"></i></div>
+                <div class="orbit-item item-four"><i class="fa-solid fa-gem"></i></div>
+
             </div>
 
         </section>
@@ -102,7 +120,11 @@
                 <article class="product-card">
 
                     <div class="product-image">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+
+                        <a href="{% url 'products:single-product' product.slug %}" class="image-link">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </a>
+
                         {% if user.is_authenticated %}
                         <form method="post" action="{% url 'accounts:toggle-favorite' product.id %}" class="favorite-form">
                             {% csrf_token %}
@@ -113,15 +135,39 @@
                         {% else %}
                         <a href="{% url 'accounts:login' %}" class="favorite"><i class="fa-regular fa-heart"></i></a>
                         {% endif %}
+
+                        <a href="{% url 'products:single-product' product.slug %}" class="view-arrow" aria-label="مشاهده محصول">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </a>
+
                     </div>
 
                     <div class="product-info">
-                        <span>{{ category.name }}</span>
-                        <h3>{{ product.name }}</h3>
-                        <strong>{{ product.price|floatformat:0 }} تومان</strong>
-                    </div>
 
-                    <a href="{% url 'products:single-product' product.slug %}" class="buy-btn">مشاهده</a>
+                        <div class="product-tags">
+                            <span class="tag-pill"><i class="fa-solid fa-tag"></i> {{ category.name }}</span>
+                            <a href="{% url 'products:single-product' product.slug %}" class="view-pill">
+                                <i class="fa-regular fa-eye"></i> مشاهده
+                            </a>
+                        </div>
+
+                        <h3>{{ product.name }}</h3>
+
+                        <div class="product-bottom">
+
+                            <form method="post" action="#" class="quick-add-form">
+                                {% csrf_token %}
+                                {# TODO: مسیر افزودن به سبد خرید رو جایگزین action="#" کن #}
+                                <button type="submit" class="cart-icon-btn add-cart" aria-label="افزودن به سبد خرید">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </form>
+
+                            <strong>{{ product.price|floatformat:0 }} تومان</strong>
+
+                        </div>
+
+                    </div>
 
                 </article>
                 {% empty %}

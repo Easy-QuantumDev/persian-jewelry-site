@@ -1,249 +1,161 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/single-category.css' %}">
+
+{% endblock %}
 {% block content %}
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<div class="category-page">
 
-<div class="product-page">
+    <div class="bg-glow glow-one"></div>
+    <div class="bg-glow glow-two"></div>
 
-    <main class="container">
-        <section class="product-main">
+    <main>
 
-            <!-- =========================================
-                 PRODUCT GALLERY
-            ========================================== -->
-            <div class="product-gallery">
+        <!-- =========================
+             CATEGORY HERO
+        ========================== -->
+        <section class="category-hero">
 
-                <div class="main-image-wrapper">
+            <div class="hero-content">
 
-                    <button class="gallery-like"><i class="fa-regular fa-heart"></i></button>
+                <span class="hero-label">COLLECTION 2026</span>
 
-                    <div class="main-product-image">
-                        <img id="mainProductImage" src="{{ product.image.url }}" alt="{{ product.name }}">
-                    </div>
+                <h1>{{ category.name }}</h1>
 
-                    {% if gallery_images %}
-                    <div class="image-counter">
-                        <span id="currentImage">01</span>
-                        <span>/</span>
-                        <span>{{ gallery_images.count|add:1 }}</span>
-                    </div>
-                    {% endif %}
-
-                </div>
-
-                {% if gallery_images %}
-                <div class="product-thumbnails">
-
-                    <button class="thumbnail active" data-image="{{ product.image.url }}">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                    </button>
-
-                    {% for img in gallery_images %}
-                    <button class="thumbnail" data-image="{{ img.image.url }}">
-                        <img src="{{ img.image.url }}" alt="{{ img.alt_text|default:product.name }}">
-                    </button>
-                    {% endfor %}
-
-                </div>
+                {% if category.description %}
+                <p>{{ category.description }}</p>
                 {% endif %}
+
+                <a href="#category-products" class="hero-btn">
+                    مشاهده محصولات
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
 
             </div>
 
-            <!-- =========================================
-                 PRODUCT INFORMATION
-            ========================================== -->
-            <div class="product-information">
-
-                <span class="product-category">{{ product.category.name }}</span>
-
-                <h1>{{ product.name }}</h1>
-
-                <div class="product-description-short">
-                    {{ product.description|truncatewords:30 }}
-                </div>
-
-                <div class="product-price">
-                    <span>قیمت محصول</span>
-                    <strong>{{ product.price|floatformat:0 }}</strong>
-                    <small>تومان</small>
-                </div>
-
-                {% if product.stock > 0 %}
-
-                <form method="post" action="{% url 'cart:add_to_cart' product.id %}" id="addToCartForm">
-                    {% csrf_token %}
-                    <input type="hidden" name="quantity" id="quantityInput" value="1">
-
-                    <!-- =====================================
-                         QUANTITY
-                    ====================================== -->
-                    <div class="quantity-section">
-                        <h3>تعداد</h3>
-                        <div class="quantity-control">
-                            <button type="button" class="qty-btn" id="minusBtn"><i class="fa-solid fa-minus"></i></button>
-                            <span id="quantity">1</span>
-                            <button type="button" class="qty-btn" id="plusBtn"><i class="fa-solid fa-plus"></i></button>
+            <!-- CHARACTER (decorative, not tied to data) -->
+            <div class="character-container">
+                <div class="character-glow"></div>
+                <div class="character-circle">
+                    <div class="character">
+                        <div class="character-head">
+                            <div class="hair"></div>
+                            <div class="face"></div>
                         </div>
-                        <small>{{ product.stock }} عدد موجود</small>
-                    </div>
-
-                    <!-- =====================================
-                         ACTIONS
-                    ====================================== -->
-                    <div class="product-actions">
-                        <button type="submit" class="add-cart-btn">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                            افزودن به سبد خرید
-                        </button>
-
-                        <button type="submit" name="buy_now" value="1" class="buy-now-btn">
-                            خرید فوری
-                            <i class="fa-solid fa-arrow-left"></i>
-                        </button>
-                    </div>
-
-                </form>
-
-                {% else %}
-                <div class="product-actions">
-                    <button type="button" class="add-cart-btn" disabled>ناموجود</button>
-                </div>
-                {% endif %}
-
-                <!-- =====================================
-                     FEATURES (static)
-                ====================================== -->
-                <div class="product-features">
-
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fa-solid fa-truck"></i></div>
-                        <div>
-                            <strong>ارسال رایگان</strong>
-                            <span>سفارش‌های بالای ۵۰۰ هزار تومان</span>
+                        <div class="character-body">
+                            <div class="necklace"></div>
+                            <div class="shirt"></div>
                         </div>
                     </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
-                        <div>
-                            <strong>تضمین کیفیت</strong>
-                            <span>ضمانت اصالت و کیفیت</span>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div>
-                            <strong>پرداخت امن</strong>
-                            <span>پرداخت کاملاً امن</span>
-                        </div>
-                    </div>
-
                 </div>
-
+                <div class="floating-jewel jewel-one"><i class="fa-solid fa-gem"></i></div>
+                <div class="floating-jewel jewel-two"><i class="fa-solid fa-ring"></i></div>
+                <div class="floating-jewel jewel-three"><i class="fa-solid fa-star"></i></div>
             </div>
 
         </section>
 
-        <!-- =================================================
-             PRODUCT DETAILS
-        ================================================== -->
-        <section class="product-details-section">
+        <!-- =========================
+             OTHER CATEGORIES
+        ========================== -->
+        {% if other_categories %}
+        <section class="subcategories">
 
             <div class="section-heading">
-                <span>PRODUCT DETAILS</span>
-                <h2>جزئیات محصول</h2>
-            </div>
-
-            <div class="details-wrapper">
-                <div class="details-text">
-                    <h3>{{ product.name }}</h3>
-                    <p>{{ product.description|linebreaksbr }}</p>
+                <div>
+                    <span>EXPLORE COLLECTION</span>
+                    <h2>دسته‌بندی‌های مرتبط</h2>
                 </div>
             </div>
 
-        </section>
-
-        <!-- =================================================
-             SIMILAR PRODUCTS
-        ================================================== -->
-        {% if similar_products %}
-        <section class="similar-products">
-
-            <div class="section-heading">
-                <span>YOU MAY ALSO LIKE</span>
-                <h2>شاید این‌ها را هم دوست داشته باشید</h2>
-                <p>انتخاب‌هایی نزدیک به این محصول</p>
-            </div>
-
-            <div class="similar-grid">
-                {% for item in similar_products %}
-                <article class="similar-card">
-
-                    <div class="similar-image">
-                        <button class="similar-like"><i class="fa-regular fa-heart"></i></button>
-                        <a href="{% url 'products:single-product' item.slug %}">
-                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
-                        </a>
-                    </div>
-
-                    <div class="similar-info">
-                        <span>{{ item.category.name }}</span>
-                        <h3><a href="{% url 'products:single-product' item.slug %}">{{ item.name }}</a></h3>
-                        <strong>{{ item.price|floatformat:0 }} تومان</strong>
-                    </div>
-
-                </article>
+            <div class="subcategory-grid">
+                {% for cat in other_categories %}
+                <a href="{% url 'products:single-category' cat.slug %}" class="subcategory-card">
+                    <div class="subcategory-icon"><i class="fa-solid fa-gem"></i></div>
+                    <strong>{{ cat.name }}</strong>
+                    <span>مشاهده مجموعه</span>
+                </a>
                 {% endfor %}
             </div>
 
         </section>
         {% endif %}
 
+        <!-- =========================
+             PRODUCTS
+        ========================== -->
+        <section class="products-section" id="category-products">
+
+            <div class="section-heading">
+                <div>
+                    <span>OUR COLLECTION</span>
+                    <h2>محصولات منتخب</h2>
+                </div>
+                <a href="{% url 'products:product-list' %}">
+                    مشاهده همه
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            </div>
+
+            <div class="products-grid">
+                {% for product in products %}
+                <article class="product-card">
+
+                    <div class="product-image">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'accounts:toggle-favorite' product.id %}" class="favorite-form">
+                            {% csrf_token %}
+                            <button type="submit" class="favorite {% if product.id in favorite_ids %}active{% endif %}">
+                                <i class="fa-{% if product.id in favorite_ids %}solid{% else %}regular{% endif %} fa-heart"></i>
+                            </button>
+                        </form>
+                        {% else %}
+                        <a href="{% url 'accounts:login' %}" class="favorite"><i class="fa-regular fa-heart"></i></a>
+                        {% endif %}
+                    </div>
+
+                    <div class="product-info">
+                        <span>{{ category.name }}</span>
+                        <h3>{{ product.name }}</h3>
+                        <strong>{{ product.price|floatformat:0 }} تومان</strong>
+                    </div>
+
+                    <div class="product-card-actions">
+
+                        <a href="{% url 'products:single-product' product.slug %}" class="buy-btn">مشاهده</a>
+
+                        {% if product.stock > 0 %}
+                        <form method="post" action="{% url 'cart:add_to_cart' product.id %}" class="quick-add-form">
+                            {% csrf_token %}
+                            <button type="submit" class="add-cart">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span>افزودن</span>
+                            </button>
+                        </form>
+                        {% else %}
+                        <span class="out-of-stock">ناموجود</span>
+                        {% endif %}
+
+                    </div>
+
+                </article>
+                {% empty %}
+                <p>محصولی در این دسته‌بندی ثبت نشده است.</p>
+                {% endfor %}
+            </div>
+
+        </section>
+
     </main>
 
+    <footer>
+        <span>© 2026 Jewelry Store</span>
+        <span>ساخته شده با ♥</span>
+    </footer>
+
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // quantity stepper
-        const qtyEl = document.getElementById('quantity');
-        const qtyInput = document.getElementById('quantityInput');
-        const minusBtn = document.getElementById('minusBtn');
-        const plusBtn = document.getElementById('plusBtn');
-        const maxStock = {{ product.stock|default:0 }};
-
-        function syncQty(val) {
-            qtyEl.textContent = val;
-            if (qtyInput) qtyInput.value = val;
-        }
-
-        if (qtyEl && minusBtn && plusBtn) {
-            minusBtn.addEventListener('click', function () {
-                let val = parseInt(qtyEl.textContent, 10);
-                if (val > 1) syncQty(val - 1);
-            });
-            plusBtn.addEventListener('click', function () {
-                let val = parseInt(qtyEl.textContent, 10);
-                if (val < maxStock) syncQty(val + 1);
-            });
-        }
-
-        // thumbnail gallery swap
-        document.querySelectorAll('.thumbnail').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('.thumbnail').forEach(function (b) { b.classList.remove('active'); });
-                btn.classList.add('active');
-                document.getElementById('mainProductImage').src = btn.dataset.image;
-            });
-        });
-    });
-</script>
 
 {% endblock %}

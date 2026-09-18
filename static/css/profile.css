@@ -587,13 +587,13 @@ a {
 
 .welcome-card {
 
-    min-height: 190px;
+    min-height: 150px;
 
     background: var(--brown-dark);
 
-    border-radius: 20px;
+    border-radius: 18px;
 
-    padding: 30px 35px;
+    padding: 22px 28px;
 
     color: white;
 
@@ -747,9 +747,9 @@ a {
     grid-template-columns:
         repeat(4, 1fr);
 
-    gap: 15px;
+    gap: 12px;
 
-    margin-bottom: 22px;
+    margin-bottom: 18px;
 }
 
 
@@ -759,17 +759,17 @@ a {
 
     border: 1px solid var(--border);
 
-    border-radius: 16px;
+    border-radius: 14px;
 
-    min-height: 95px;
+    min-height: 76px;
 
-    padding: 17px;
+    padding: 13px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 13px;
+    gap: 11px;
 
     box-shadow: var(--shadow);
 
@@ -787,10 +787,10 @@ a {
 
 .stat-icon {
 
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
 
-    border-radius: 12px;
+    border-radius: 10px;
 
     background: var(--cream);
 
@@ -802,7 +802,7 @@ a {
 
     justify-content: center;
 
-    font-size: 15px;
+    font-size: 13px;
 
     flex-shrink: 0;
 }
@@ -822,9 +822,9 @@ a {
 
     display: block;
 
-    margin-top: 4px;
+    margin-top: 3px;
 
-    font-size: 20px;
+    font-size: 17px;
 
     color: var(--brown-dark);
 }
@@ -841,7 +841,7 @@ a {
     grid-template-columns:
         repeat(2, minmax(0, 1fr));
 
-    gap: 18px;
+    gap: 14px;
 }
 
 
@@ -851,9 +851,9 @@ a {
 
     border: 1px solid var(--border);
 
-    border-radius: 18px;
+    border-radius: 15px;
 
-    padding: 23px;
+    padding: 17px;
 
     box-shadow: var(--shadow);
 }
@@ -871,11 +871,11 @@ a {
 
     justify-content: space-between;
 
-    padding-bottom: 17px;
+    padding-bottom: 13px;
 
     border-bottom: 1px solid var(--border);
 
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 }
 
 
@@ -968,7 +968,7 @@ a {
     grid-template-columns:
         repeat(2, 1fr);
 
-    gap: 18px 25px;
+    gap: 14px 20px;
 }
 
 
@@ -1016,24 +1016,24 @@ a {
 
 .order-item {
 
-    min-height: 64px;
+    min-height: 54px;
 
-    padding: 8px;
+    padding: 7px;
 
     border: 1px solid var(--border);
 
-    border-radius: 11px;
+    border-radius: 10px;
 
     display: grid;
 
     grid-template-columns:
-        48px
+        40px
         minmax(0, 1fr)
         auto;
 
     align-items: center;
 
-    gap: 10px;
+    gap: 9px;
 
     transition: .2s;
 }
@@ -1047,8 +1047,8 @@ a {
 
 .order-image {
 
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
 
     border-radius: 9px;
 
@@ -1062,7 +1062,7 @@ a {
 
     justify-content: center;
 
-    font-size: 17px;
+    font-size: 15px;
 }
 
 
@@ -1152,10 +1152,10 @@ a {
 
 .address-icon {
 
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
 
-    border-radius: 11px;
+    border-radius: 10px;
 
     background: var(--cream);
 
@@ -1227,8 +1227,8 @@ a {
 
 .security-circle {
 
-    width: 44px;
-    height: 44px;
+    width: 38px;
+    height: 38px;
 
     border-radius: 50%;
 
@@ -1301,6 +1301,307 @@ a {
     color: white;
 
     border-color: var(--brown-dark);
+}
+
+
+/* =====================================================
+   PAGE MESSAGES
+===================================================== */
+
+.page-messages {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+
+.page-message {
+
+    padding: 11px 16px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+}
+
+
+.page-message.success {
+
+    background: var(--green-bg);
+
+    color: var(--green);
+}
+
+
+.page-message.error {
+
+    background: #fdeceb;
+
+    color: var(--danger);
+}
+
+
+/* =====================================================
+   EDIT FORM
+===================================================== */
+
+.edit-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+.edit-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.avatar-edit {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.avatar-preview {
+
+    width: 64px;
+    height: 64px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--cream-dark),
+            #f9f5ef
+        );
+
+    color: var(--brown);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    flex-shrink: 0;
+}
+
+
+.avatar-preview img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.avatar-upload-btn {
+
+    height: 36px;
+
+    padding: 0 14px;
+
+    border: 1px solid var(--border);
+
+    background: var(--cream);
+
+    color: var(--brown);
+
+    border-radius: 9px;
+
+    font-size: 11px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+
+.avatar-upload-btn:hover {
+
+    background: var(--brown-dark);
+
+    color: white;
+}
+
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 16px;
+}
+
+
+.form-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.form-field-full {
+
+    grid-column: 1 / -1;
+}
+
+
+.form-field label {
+
+    font-size: 10px;
+
+    color: var(--text-light);
+}
+
+
+.form-field input,
+.form-field textarea {
+
+    border: 1px solid var(--border);
+
+    background: var(--cream);
+
+    border-radius: 10px;
+
+    padding: 10px 12px;
+
+    font-size: 12px;
+
+    color: var(--text);
+
+    outline: none;
+
+    resize: vertical;
+
+    transition: .2s;
+}
+
+
+.form-field input:focus,
+.form-field textarea:focus {
+
+    border-color: var(--gold);
+
+    background: white;
+}
+
+
+.form-field input:disabled {
+
+    color: var(--text-light);
+
+    cursor: not-allowed;
+}
+
+
+.edit-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+}
+
+
+.cancel-btn {
+
+    height: 42px;
+
+    padding: 0 20px;
+
+    border: 1px solid var(--border);
+
+    background: var(--white);
+
+    color: var(--brown);
+
+    border-radius: 10px;
+
+    font-size: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    transition: .25s;
+}
+
+
+.cancel-btn:hover {
+
+    background: var(--cream);
+}
+
+
+.save-btn {
+
+    height: 42px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    background: var(--brown-dark);
+
+    color: white;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: .25s;
+}
+
+
+.save-btn:hover {
+
+    background: var(--brown);
+
+    transform: translateY(-2px);
 }
 
 
@@ -1577,9 +1878,9 @@ a {
 
     .content-card {
 
-        padding: 17px;
+        padding: 14px;
 
-        border-radius: 15px;
+        border-radius: 14px;
     }
 
 
@@ -1588,6 +1889,27 @@ a {
         grid-template-columns: 1fr;
 
         gap: 14px;
+    }
+
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .edit-actions {
+
+        flex-direction: column-reverse;
+    }
+
+
+    .cancel-btn,
+    .save-btn {
+
+        width: 100%;
+
+        justify-content: center;
     }
 
 

@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 
 from .models import Category, Product
+from accounts.models import Favorite
 
 
 def product_list(request):
@@ -59,10 +60,20 @@ def single_category(request, slug):
     products = category.products.filter(is_available=True)
     other_categories = Category.objects.exclude(id=category.id)[:4]
 
+    favorite_ids = set()
+    if request.user.is_authenticated:
+        favorite_ids = set(
+            Favorite.objects.filter(
+                user=request.user,
+                product__in=products,
+            ).values_list('product_id', flat=True)
+        )
+
     context = {
         'category': category,
         'products': products,
         'other_categories': other_categories,
+        'favorite_ids': favorite_ids,
     }
     return render(request, 'category/single-category/single-category.html', context)
 

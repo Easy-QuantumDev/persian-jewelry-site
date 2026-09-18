@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+
+/* =====================================================
+   ROOT
+===================================================== */
+:root {
+    --brown-dark: #2b170d;
+    --brown: #4a2c1b;
+    --brown-light: #765039;
+    --cream: #f8f5f0;
+    --cream-dark: #eee7df;
+    --white: #ffffff;
+    --gold: #b68a4a;
+    --gold-light: #e0c17e;
+    --text: #35251b;
+    --text-light: #8a796c;
+    --border: #e8dfd6;
+    --green: #4d8b69;
+    --green-bg: #edf7f1;
+    --orange: #b8793d;
+    --orange-bg: #fff4e8;
+    --blue: #647fa1;
+    --blue-bg: #edf3fa;
+    --danger: #b85c5c;
+    --shadow: 0 15px 40px rgba(43, 23, 13, .06);
+}
+
+/* =====================================================
+   RESET & PAGE
+===================================================== */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:"Vazirmatn",sans-serif; background:var(--cream); color:var(--text); direction:rtl; }
+
+/* =====================================================
+   SIDEBAR (مشابه profile.html)
+===================================================== */
+.profile-page { min-height:100vh; position:relative; overflow:hidden; }
+.background-glow, .particles { display:none; }
+
+.profile-sidebar {
+    position:fixed; top:20px; right:20px; bottom:20px; width:260px;
+    background:var(--white); border:1px solid var(--border); border-radius:22px;
+    box-shadow:var(--shadow); padding:25px 18px; display:flex; flex-direction:column; z-index:20;
+}
+.sidebar-brand { text-align:center; padding-bottom:22px; border-bottom:1px solid var(--border); }
+.brand-icon { width:48px; height:48px; margin:0 auto 10px; border-radius:14px; background:var(--brown-dark); color:var(--gold-light); display:flex; align-items:center; justify-content:center; font-size:19px; }
+.sidebar-brand > span { display:block; color:var(--brown-dark); font-size:15px; font-weight:800; letter-spacing:3px; }
+.sidebar-brand h2 { margin-top:3px; font-size:9px; font-weight:400; color:var(--text-light); }
+.sidebar-user { margin:22px 5px; display:flex; align-items:center; gap:12px; }
+.user-avatar { width:46px; height:46px; border-radius:14px; background:linear-gradient(145deg, var(--cream-dark), #f9f5ef); color:var(--brown); display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:800; position:relative; }
+.online { width:9px; height:9px; border-radius:50%; background:#5b9b72; border:2px solid white; position:absolute; left:0; bottom:0; }
+.user-info { min-width:0; display:flex; flex-direction:column; }
+.user-info strong { font-size:12px; color:var(--brown-dark); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.user-info small { margin-top:3px; font-size:9px; color:var(--text-light); text-align:right; }
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+.profile-nav { display:flex; flex-direction:column; gap:5px; }
+.nav-item { min-height:46px; padding:0 13px; border-radius:11px; display:flex; align-items:center; gap:12px; color:var(--text-light); font-size:11px; transition:.25s; }
+.nav-item.active { background:var(--brown-dark); color:white; box-shadow:0 8px 20px rgba(43,23,13,.14); }
+.nav-item b { margin-right:auto; min-width:23px; height:23px; border-radius:7px; background:var(--cream); color:var(--brown); font-size:9px; }
+
+/* =====================================================
+   MAIN
+===================================================== */
+.profile-main { margin-right:300px; width:calc(100% - 300px); padding:40px 5% 30px; }
+.profile-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; }
+.header-label { font-size:9px; letter-spacing:2px; color:var(--gold); }
+.profile-header h1 { margin-top:5px; font-size:28px; font-weight:800; color:var(--brown-dark); }
+.header-actions { display:flex; gap:9px; }
+
+/* =====================================================
+   CONTENT GRID
+===================================================== */
+.content-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; }
+.content-card { background:var(--white); border:1px solid var(--border); border-radius:15px; padding:17px; box-shadow:var(--shadow); }
+.card-header { display:flex; align-items:center; justify-content:space-between; padding-bottom:13px; border-bottom:1px solid var(--border); margin-bottom:14px; }
+.card-header span { font-size:8px; letter-spacing:1.5px; color:var(--gold); }
+.card-header h3 { margin-top:4px; font-size:16px; color:var(--brown-dark); }
+
+/* =====================================================
+   AVATAR EDIT
+===================================================== */
+.avatar-edit { display:flex; align-items:center; gap:16px; }
+.avatar-preview { width:64px; height:64px; border-radius:16px; overflow:hidden; background:linear-gradient(145deg, var(--cream-dark), #f9f5ef); color:var(--brown); display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:800; flex-shrink:0; }
+.avatar-upload-btn { height:36px; padding:0 14px; border:1px solid var(--border); background:var(--cream); color:var(--brown); border-radius:9px; font-size:11px; display:inline-flex; align-items:center; gap:7px; cursor:pointer; transition:.25s; }
+
+/* =====================================================
+   FORM FIELDS
+===================================================== */
+.form-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+.form-field-full { grid-column:1 / -1; }
+.form-field label { font-size:10px; color:var(--text-light); }
+.form-field input, .form-field textarea {
+    border:1px solid var(--border); background:var(--cream); border-radius:10px;
+    padding:10px 12px; font-size:12px; color:var(--text); outline:none; resize:vertical; transition:.2s;
+}
+.form-field input:focus, .form-field textarea:focus { border-color:var(--gold); background:white; }
+
+/* =====================================================
+   EDIT ACTIONS
+===================================================== */
+.edit-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:22px; }
+.cancel-btn, .save-btn {
+    height:42px; padding:0 20px; border-radius:10px; font-size:11px; display:flex; align-items:center; gap:8px; transition:.25s;
+}
+.cancel-btn { border:1px solid var(--border); background:var(--white); color:var(--brown); }
+.save-btn { border:none; background:var(--brown-dark); color:white; }
+
+/* =====================================================
+   MOBILE (مشابه profile.html)
+===================================================== */
+@media (max-width:1100px) {
+    .profile-sidebar { width:220px; }
+    .profile-main { margin-right:250px; width:calc(100% - 250px); }
+    .content-grid { grid-template-columns:1fr; }
+}
+@media (max-width:768px) {
+    .profile-sidebar { position:relative; width:calc(100%-24px); margin:12px auto; padding:15px; }
+    .profile-main { margin-right:0; width:100%; padding:20px 12px 30px; }
+    .content-grid { grid-template-columns:1fr; }
+    .form-grid { grid-template-columns:1fr; }
+    .edit-actions { flex-direction:column-reverse; }
+    .cancel-btn, .save-btn { width:100%; justify-content:center; }
+}

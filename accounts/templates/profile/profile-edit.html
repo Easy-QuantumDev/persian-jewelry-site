@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <link rel="stylesheet" href="{% static 'css/profile-edit.css' %}" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ویرایش پروفایل | Jewelry Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  </head>
+
+  <body>
+    <div class="profile-page">
+
+      <div class="background-glow glow-1"></div>
+      <div class="background-glow glow-2"></div>
+
+      <div class="particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <aside class="profile-sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-icon"><i class="fa-solid fa-gem"></i></div>
+          <span>JEWELRY</span>
+          <h2>بدلیجات</h2>
+        </div>
+
+        <div class="sidebar-user">
+          <div class="user-avatar">
+            {% if profile.image %}
+            <img src="{{ profile.image.url }}" alt="{{ user.username }}" />
+            {% else %}
+            <span>{{ user.first_name|first|default:user.username|first }}</span>
+            {% endif %}
+            <div class="online"></div>
+          </div>
+          <div class="user-info">
+            <strong>{{ user.get_full_name|default:user.username }}</strong>
+            <small>{{ user.email }}</small>
+          </div>
+        </div>
+
+        <nav class="profile-nav">
+          <a href="{% url 'accounts:profile' %}" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>حساب کاربری</span>
+          </a>
+          <a href="{% url 'orders:my_orders' %}" class="nav-item">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>سفارش‌های من</span>
+          </a>
+          <a href="{% url 'accounts:favorite' %}" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>علاقه‌مندی‌ها</span>
+          </a>
+          <a href="{% url 'accounts:profile-edit' %}" class="nav-item active">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>آدرس من</span>
+          </a>
+          <a href="{% url 'accounts:change-password' %}" class="nav-item">
+            <i class="fa-solid fa-gear"></i>
+            <span>تنظیمات</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <a href="{% url 'accounts:logout' %}" class="logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>خروج از حساب</span>
+          </a>
+        </div>
+      </aside>
+
+      <main class="profile-main">
+        <header class="profile-header">
+          <div>
+            <span class="header-label">EDIT ACCOUNT</span>
+            <h1>ویرایش پروفایل</h1>
+            <p>اطلاعات شخصی و آدرس خود را به‌روزرسانی کنید.</p>
+          </div>
+          <div class="header-actions">
+            <a href="{% url 'accounts:profile' %}" class="cart-btn" title="بازگشت به پروفایل">
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </header>
+
+        {% if messages %}
+        <div class="page-messages">
+          {% for message in messages %}
+          <div class="page-message {{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" class="edit-form">
+          {% csrf_token %}
+
+          <div class="content-card edit-card">
+            <div class="card-header">
+              <div>
+                <span>PERSONAL INFORMATION</span>
+                <h3>اطلاعات شخصی</h3>
+              </div>
+            </div>
+
+            <div class="avatar-edit">
+              <div class="avatar-preview">
+                {% if profile.image %}
+                <img src="{{ profile.image.url }}" alt="{{ user.username }}" />
+                {% else %}
+                <span>{{ user.first_name|first|default:user.username|first }}</span>
+                {% endif %}
+              </div>
+              <label class="avatar-upload-btn">
+                <i class="fa-solid fa-camera"></i>
+                تغییر عکس
+                <input type="file" name="image" accept="image/*" hidden>
+              </label>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="fieldFullName">نام و نام خانوادگی</label>
+                <input type="text" id="fieldFullName" value="{{ user.get_full_name|default:user.username }}" disabled>
+              </div>
+              <div class="form-field">
+                <label for="fieldEmail">ایمیل</label>
+                <input type="email" id="fieldEmail" value="{{ user.email }}" disabled>
+              </div>
+              <div class="form-field">
+                <label for="fieldPhone">شماره موبایل</label>
+                <input type="text" id="fieldPhone" name="phone" value="{{ profile.phone|default_if_none:'' }}" placeholder="09xxxxxxxxx">
+              </div>
+            </div>
+          </div>
+
+          <div class="content-card edit-card">
+            <div class="card-header">
+              <div>
+                <span>ADDRESS</span>
+                <h3>آدرس</h3>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="fieldCity">شهر</label>
+                <input type="text" id="fieldCity" name="city" value="{{ profile.city|default_if_none:'' }}">
+              </div>
+              <div class="form-field">
+                <label for="fieldPostal">کد پستی</label>
+                <input type="text" id="fieldPostal" name="postal_code" value="{{ profile.postal_code|default_if_none:'' }}">
+              </div>
+              <div class="form-field form-field-full">
+                <label for="fieldAddress">آدرس کامل</label>
+                <textarea id="fieldAddress" name="address" rows="3">{{ profile.address|default_if_none:'' }}</textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="edit-actions">
+            <a href="{% url 'accounts:profile' %}" class="cancel-btn">انصراف</a>
+            <button type="submit" class="save-btn">
+              <i class="fa-solid fa-check"></i>
+              ذخیره تغییرات
+            </button>
+          </div>
+
+        </form>
+      </main>
+    </div>
+
+    <script src="{% static 'js/profile.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سفارش‌های من | Jewelry Store</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/profile-edit.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+<div class="profile-page">
+
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+    <div class="particles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+    <aside class="profile-sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon"><i class="fa-solid fa-gem"></i></div>
+            <span>JEWELRY</span>
+            <h2>بدلیجات</h2>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-avatar">
+                {% if user.profile.image %}
+                <img src="{{ user.profile.image.url }}" alt="{{ user.username }}" />
+                {% else %}
+                <span>{{ user.first_name|first|default:user.username|first }}</span>
+                {% endif %}
+                <div class="online"></div>
+            </div>
+            <div class="user-info">
+                <strong>{{ user.get_full_name|default:user.username }}</strong>
+                <small>{{ user.email }}</small>
+            </div>
+        </div>
+        <nav class="profile-nav">
+            <a href="{% url 'accounts:profile' %}" class="nav-item">
+                <i class="fa-regular fa-user"></i><span>حساب کاربری</span>
+            </a>
+            <a href="{% url 'accounts:my_orders' %}" class="nav-item active">
+                <i class="fa-solid fa-bag-shopping"></i><span>سفارش‌های من</span><b>{{ orders.count }}</b>
+            </a>
+            <a href="{% url 'accounts:favorite' %}" class="nav-item">
+                <i class="fa-regular fa-heart"></i><span>علاقه‌مندی‌ها</span><b>0</b>
+            </a>
+            <a href="{% url 'accounts:profile-edit' %}" class="nav-item">
+                <i class="fa-solid fa-location-dot"></i><span>آدرس من</span>
+            </a>
+            <a href="{% url 'accounts:change-password' %}" class="nav-item">
+                <i class="fa-solid fa-gear"></i><span>تنظیمات</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <a href="{% url 'accounts:logout' %}" class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i><span>خروج از حساب</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="profile-main">
+        <header class="profile-header">
+            <div>
+                <span class="header-label">MY ORDERS</span>
+                <h1>سفارش‌های من</h1>
+                <p>نظارت بر سفارش‌های قبلی و وضعیت آنها</p>
+            </div>
+            <div class="header-actions">
+                <a href="{% url 'accounts:profile' %}" class="cart-btn" title="بازگشت به پروفایل">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </header>
+
+        {% if messages %}
+        <div class="page-messages">
+            {% for message in messages %}
+            <div class="page-message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-header">
+                    <div><span>ORDER HISTORY</span><h3>تاریخچه سفارش‌ها</h3></div>
+                </div>
+                <div class="orders-list">
+                    {% for order in orders %}
+                    <a href="{% url 'orders:order_detail' order.order_number %}" class="order-item">
+                        <div class="order-image"><i class="fa-solid fa-gem"></i></div>
+                        <div class="order-info">
+                            <strong>سفارش #{{ order.order_number }}</strong>
+                            <span>{{ order.created_at|date:"Y/m/d" }}</span>
+                        </div>
+                        <div class="order-status">
+                            {% if order.status == 'completed' %}delivered{% elif order.status == 'shipped' %}shipping{% elif order.status == 'cancelled' %}cancelled{% else %}processing{% endif %}
+                            {{ order.get_status_display }}
+                        </div>
+                    </a>
+                    {% empty %}
+                    <div class="order-item">
+                        <div class="order-image"><i class="fa-solid fa-gem"></i></div>
+                        <div class="order-info"><strong>هیچ سفارشی ثبت نشده است</strong><span>سفارش‌های شما اینجا نمایش داده می‌شود.</span></div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="{% static 'js/profile.js' %}"></script>
+</body>
+</html>

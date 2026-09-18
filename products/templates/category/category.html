@@ -1,5 +1,9 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+
+{% endblock %}
 {% block content %}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
